@@ -1,0 +1,30 @@
+{
+    "name": "binance-api-client",
+    "version": "0.0.1",
+    "description": "A wrapper which can be used to interact with Binance's API. Entirely developed in TypeScript.",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "prepublish": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/luzzif/binance-api-client.git"
+    },
+    "keywords": [
+        "binance",
+        "api",
+        "client",
+        "typescript",
+        "crypto"
+    ],
+    "author": "Federico Luzzi <fedeluzzi00@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/luzzif/binance-api-client/issues"
+    },
+    "homepage": "https://github.com/luzzif/binance-api-client#readme",
+    "dependencies": {
+        "typescript": "^2.6.1"
+    }
+}
