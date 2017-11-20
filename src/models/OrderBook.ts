@@ -1,9 +1,10 @@
 import { Order } from "./Order";
+import { PlacedOrder } from "./PlacedOrder";
 
 export class OrderBook {
 
-    private _bids: Order[];
-    private _asks: Order[];
+    private _bids: PlacedOrder[];
+    private _asks: PlacedOrder[];
 
     constructor( json: any ) {
 

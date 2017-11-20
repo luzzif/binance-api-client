@@ -1,4 +1,4 @@
-export class Order {
+export class PlacedOrder {
 
     private _price: number;
     private _quantity: number;
