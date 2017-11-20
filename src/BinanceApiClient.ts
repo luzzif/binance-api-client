@@ -7,6 +7,10 @@ import * as requestPromise from "request-promise";
 import * as Path from "path";
 import { isNullOrUndefined } from "util";
 import { URL } from "url";
+import { Order } from "./models/Order";
+import { OrderBook } from "./models/OrderBook";
+import * as Http from "http";
+import { ApiError } from "./errors/ApiError";
 
 /**
  * Represents a single Binance API client.
@@ -66,6 +70,31 @@ export class BinanceApiClient {
     }
 
     /**
+     * Interface to the "v1/depth" Binance's API operation.
+     *
+     * @param market        The market for which we want to retrieve the order book.
+     * @param quantityLimit The maximum number of elements (being them bids
+     *                      or asks) returned from the operation.
+     *
+     * @returns Either a promise of the order book for the given coin, with
+     *          the order book elements limited to the specified value, or
+     *          the unwrapped order book respecting the same constraints if
+     *          using the await construct.
+     */
+    public async getOrderBook( market: string, quantityLimit?: number ): Promise< OrderBook > {
+
+        return new OrderBook( await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "depth",
+            AuthenticationMethod.NONE,
+            [ "symbol", market ],
+            [ "limit", quantityLimit ]
+        ) );
+
+    }
+
+    /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
      * when instantiating the client itself.
@@ -86,7 +115,7 @@ export class BinanceApiClient {
         apiVersion: ApiVersion,
         accessedResource: string,
         requiredAuthentication: AuthenticationMethod,
-        ...parameters: [ string, string ][] ): Promise< any > {
+        ...parameters: [ string, any ][] ): Promise< any > {
 
         let apiUrl: URL = new URL(
             Path.join( "/api", apiVersion, accessedResource ),
@@ -98,22 +127,34 @@ export class BinanceApiClient {
             if( isNullOrUndefined( parameter[ 1 ] ) ) {
                 continue;
             }
-            baseUrl.searchParams.append( parameter[ 0 ], parameter[ 1 ] );
+            apiUrl.searchParams.append( parameter[ 0 ], parameter[ 1 ].toString() );
 
         }
 
         let headers: any =
             this.setupAuthentication( httpMethod, apiUrl, requiredAuthentication );
 
-        return await requestPromise( {
+        try {
 
-            method: HttpMethod[ httpMethod ],
-            url: apiUrl.href,
-            headers: headers,
-            json: true,
-            fullResponse: false
+            return await requestPromise( {
 
-        } );
+                method: HttpMethod[ httpMethod ],
+                url: apiUrl.href,
+                headers: headers,
+                json: true,
+                fullResponse: false
+
+            } );
+
+        }
+        catch( error ) {
+
+            throw new ApiError(
+                error.error.code,
+                error.error.msg
+            );
+
+        }
 
     }
 
