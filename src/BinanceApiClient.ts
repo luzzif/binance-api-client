@@ -49,6 +49,23 @@ export class BinanceApiClient {
     }
 
     /**
+     * Interface to the "v1/time" Binance's API operation.
+     *
+     * @returns Either a promise of the Binance's server time, or
+     *          the Binance's server time if using the await construct.
+     */
+    public async getServerTime(): Promise< number > {
+
+        return ( await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "time",
+            AuthenticationMethod.NONE
+        ) ).serverTime;
+
+    }
+
+    /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
      * when instantiating the client itself.
