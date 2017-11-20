@@ -35,6 +35,20 @@ export class BinanceApiClient {
     }
 
     /**
+     * Interface to the "v1/ping" Binance's API operation.
+     */
+    public async ping(): Promise< void > {
+
+        await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "ping",
+            AuthenticationMethod.NONE
+        );
+
+    }
+
+    /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
      * when instantiating the client itself.
