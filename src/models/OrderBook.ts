@@ -1,6 +1,8 @@
-import { Order } from "./Order";
 import { PlacedOrder } from "./PlacedOrder";
 
+/**
+ * Represents a single order book.
+ */
 export class OrderBook {
 
     private _bids: PlacedOrder[];
@@ -10,29 +12,29 @@ export class OrderBook {
 
         this._asks = [];
         for( let askJson of json.asks ) {
-            this._asks.push( new Order( askJson ) );
+            this._asks.push( new PlacedOrder( askJson ) );
         }
 
         this._bids = [];
         for( let bidJson of json.bids ) {
-            this._bids.push( new Order( bidJson ) );
+            this._bids.push( new PlacedOrder( bidJson ) );
         }
 
     }
 
-    get bids(): Order[] {
+    get bids(): PlacedOrder[] {
         return this._bids;
     }
 
-    set bids( value: Order[] ) {
+    set bids( value: PlacedOrder[] ) {
         this._bids = value;
     }
 
-    get asks(): Order[] {
+    get asks(): PlacedOrder[] {
         return this._asks;
     }
 
-    set asks( value: Order[] ) {
+    set asks( value: PlacedOrder[] ) {
         this._asks = value;
     }
 

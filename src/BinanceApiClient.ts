@@ -7,10 +7,9 @@ import * as requestPromise from "request-promise";
 import * as Path from "path";
 import { isNullOrUndefined } from "util";
 import { URL } from "url";
-import { Order } from "./models/Order";
 import { OrderBook } from "./models/OrderBook";
-import * as Http from "http";
 import { ApiError } from "./errors/ApiError";
+import { OpenOrder } from "./models/OpenOrder";
 
 /**
  * Represents a single Binance API client.
@@ -95,6 +94,34 @@ export class BinanceApiClient {
     }
 
     /**
+     * Interface to the "v3/openOrders" Binance's API operation.
+     *
+     * @param market  The market for which we want to retrieve the open orders (if any).
+     * @param timeout The request validity maximum time frame (defaults to 5000 ms).
+     *
+     * @returns Either a promise of an open order array for the given coin or
+     *          the unwrapped open order array if using the await construct.
+     */
+    public async getOpenOrders( market: string, timeout?: number ): Promise< OpenOrder[] > {
+
+        let openOrdersJson: any = await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V3,
+            "openOrders",
+            AuthenticationMethod.SIGNED,
+            [ "symbol", market ],
+            [ "recvWindow", timeout ]
+        );
+
+        let openOrders: OpenOrder[] = [];
+        for( let openOrderJson of openOrdersJson ) {
+            openOrders.push( new OpenOrder( openOrderJson ) );
+        }
+        return openOrders;
+
+    }
+
+    /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
      * when instantiating the client itself.
@@ -174,29 +201,25 @@ export class BinanceApiClient {
         authenticationMethod: AuthenticationMethod ): any {
 
         let headers: any = {};
-        switch( authenticationMethod ) {
+        if( authenticationMethod === AuthenticationMethod.NONE ) {
+            return;
+        }
 
-            case AuthenticationMethod.API_KEY: {
+        if( isNullOrUndefined( this.apiKey ) ) {
+            throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
+        }
+        headers[ "X-MBX-APIKEY" ] = this.apiKey;
 
-                if( isNullOrUndefined( this.apiKey ) ) {
-                    throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
-                }
-                headers[ "X-MBX-APIKEY" ] = this.apiKey;
-                break;
+        if( authenticationMethod === AuthenticationMethod.SIGNED ) {
 
+            if( isNullOrUndefined( this.apiSecret ) ) {
+                throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
             }
-            case AuthenticationMethod.SIGNED: {
-
-                if( isNullOrUndefined( this.apiKey ) || isNullOrUndefined( this.apiSecret ) ) {
-                    throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
-                }
-                apiUrl.searchParams.append( "timestamp", new Date().getDay().toString() );
-                apiUrl.searchParams.append(
-                    "signature",
-                    CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), this.apiSecret )
-                );
-
-            }
+            apiUrl.searchParams.append( "timestamp", new Date().getTime().toString() );
+            apiUrl.searchParams.append(
+                "signature",
+                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), this.apiSecret )
+            );
 
         }
         return headers;

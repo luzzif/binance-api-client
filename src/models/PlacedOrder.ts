@@ -1,3 +1,6 @@
+/**
+ * Represents a single already placed order.
+ */
 export class PlacedOrder {
 
     private _price: number;
