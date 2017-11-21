@@ -10,6 +10,8 @@ import { URL } from "url";
 import { OrderBook } from "./models/OrderBook";
 import { ApiError } from "./errors/ApiError";
 import { OpenOrder } from "./models/OpenOrder";
+import { CandlestickInterval } from "./enums/CandlestickInterval";
+import { Candlestick } from "./models/Candlestick";
 
 /**
  * Represents a single Binance API client.
@@ -71,32 +73,74 @@ export class BinanceApiClient {
     /**
      * Interface to the "v1/depth" Binance's API operation.
      *
-     * @param market        The market for which we want to retrieve the order book.
-     * @param quantityLimit The maximum number of elements (being them bids
-     *                      or asks) returned from the operation.
+     * @param symbol The symbol for which we want to retrieve the order book.
+     * @param limit  The maximum number of orders in the returned order book.
      *
      * @returns Either a promise of the order book for the given coin, with
      *          the order book elements limited to the specified value, or
      *          the unwrapped order book respecting the same constraints if
      *          using the await construct.
      */
-    public async getOrderBook( market: string, quantityLimit?: number ): Promise< OrderBook > {
+    public async getOrderBook( symbol: string, limit?: number ): Promise< OrderBook > {
 
         return new OrderBook( await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V1,
             "depth",
             AuthenticationMethod.NONE,
-            [ "symbol", market ],
-            [ "limit", quantityLimit ]
+            [ "symbol", symbol ],
+            [ "limit", limit ]
         ) );
+
+    }
+
+    /**
+     * Interface to the "v1/klines" Binance's API operation. Get
+     * candlestick bars for the specified symbol, respecting
+     * all the other given constraints. Candlesticks are uniquely
+     * identified by their opening time.
+     *
+     * @param symbol    The symbol for which we want to retrieve the
+     *                  candlesticks.
+     * @param interval  The interval which the requested candlesticks refer to.
+     * @param limit     The maximum number of candlesticks returned.
+     * @param startTime The time from which the candlesticks are returned.
+     * @param endTime   The time until which the candlesticks are returned.
+     *
+     * @returns Either a promise of a candlesticks array or the unwrapped
+     *          candlesticks array if using the await construct.
+     */
+    public async getCandlesticks(
+        symbol: string,
+        interval: CandlestickInterval,
+        limit?: number,
+        startTime?: number,
+        endTime?: number ): Promise< Candlestick[] > {
+
+        let candlesticksJson: any = await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "klines",
+            AuthenticationMethod.NONE,
+            [ "symbol", symbol ],
+            [ "interval", interval ],
+            [ "limit", limit ],
+            [ "startTime", startTime ],
+            [ "endTime", endTime ]
+        );
+
+        let candlesticks: Candlestick[] = [];
+        for( let candlestickJson of candlesticksJson ) {
+            candlesticks.push( new Candlestick( candlestickJson ) );
+        }
+        return candlesticks;
 
     }
 
     /**
      * Interface to the "v3/openOrders" Binance's API operation.
      *
-     * @param market  The market for which we want to retrieve the open orders (if any).
+     * @param market  The symbol for which we want to retrieve the open orders (if any).
      * @param timeout The request validity maximum time frame (defaults to 5000 ms).
      *
      * @returns Either a promise of an open order array for the given coin or

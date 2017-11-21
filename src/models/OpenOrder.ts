@@ -8,7 +8,7 @@ import { OrderSide } from "../enums/OrderSide";
  */
 export class OpenOrder {
 
-    private _market: string;
+    private _symbol: string;
     private _id: number;
     private _clientId: string;
     private _price: number;
@@ -20,11 +20,11 @@ export class OpenOrder {
     private _side: OrderSide;
     private _stopPrice: number;
     private _icebergQuantity: number;
-    private _timestamp: number;
+    private _timestamp: Date;
 
     constructor( json: any ) {
 
-        this._market = json.symbol;
+        this._symbol = json.symbol;
         this._id = json.orderId;
         this._clientId = json.clientOrderId;
         this._price = json._price;
@@ -36,16 +36,16 @@ export class OpenOrder {
         this._side = OrderSide[ json._side as string ];
         this._stopPrice = json._stopPrice;
         this._icebergQuantity = json.icebergQty;
-        this._timestamp = json.time;
+        this._timestamp = new Date( json.time );
 
     }
 
-    get market(): string {
-        return this._market;
+    get symbol(): string {
+        return this._symbol;
     }
 
-    set market( value: string ) {
-        this._market = value;
+    set symbol( value: string ) {
+        this._symbol = value;
     }
 
     get id(): number {
@@ -136,11 +136,11 @@ export class OpenOrder {
         this._icebergQuantity = value;
     }
 
-    get timestamp(): number {
+    get timestamp(): Date {
         return this._timestamp;
     }
 
-    set timestamp( value: number ) {
+    set timestamp( value: Date ) {
         this._timestamp = value;
     }
 
