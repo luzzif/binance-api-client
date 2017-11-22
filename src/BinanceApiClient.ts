@@ -243,7 +243,7 @@ export class BinanceApiClient {
         price: number,
         clientOrderId?: string,
         stopPrice?: number,
-        icebergQuantity?: number ): Promise< PlacedOrderData[] > {
+        icebergQuantity?: number ): Promise< PlacedOrderData > {
 
         return new PlacedOrderData( await this.makeRequest(
             HttpMethod.POST,
@@ -251,15 +251,63 @@ export class BinanceApiClient {
             "order",
             AuthenticationMethod.SIGNED,
             [ "symbol", symbol ],
-            [ "side", side ],
-            [ "type", type ],
-            [ "timeInForce", timeInForce ],
+            [ "side", OrderSide[ side ] ],
+            [ "type", OrderType[ type ] ],
+            [ "timeInForce", type === OrderType.MARKET ? null : TimeInForce[ timeInForce ] ],
             [ "quantity", quantity ],
-            [ "price", price ],
+            [ "price", type === OrderType.MARKET ? null : price ],
             [ "newClientOrderId", clientOrderId ],
             [ "stopPrice", stopPrice ],
             [ "icebergQty", icebergQuantity ]
         ) );
+
+    }
+
+    /**
+     * Interface to the "v3/order/test" Binance's API operation. Places a new
+     * test order respecting the given constraints.
+     *
+     * @param symbol          The market on which the order is to be placed.
+     * @param side            Whether the order is a buy or sell.
+     * @param type            Whether the order is at limit or market.
+     * @param timeInForce     Whether the time in force should be GTC or IOC.
+     * @param quantity        The quantity of assets that is to be moved.
+     * @param price           The price at which the order should be filled.
+     * @param clientOrderId   A unique ID associated with the order
+     *                        (automatically generated if not sent).
+     * @param stopPrice       The price at which a stop order should be filled.
+     * @param icebergQuantity Only used with iceberg orders.
+     * @param timeout         The request validity maximum time frame
+     *                        (defaults to 5000 ms).
+     */
+    public async testOrder(
+        symbol: string,
+        side: OrderSide,
+        type: OrderType,
+        timeInForce: TimeInForce,
+        quantity: number,
+        price: number,
+        clientOrderId?: string,
+        stopPrice?: number,
+        icebergQuantity?: number,
+        timeout?: number ): Promise< void > {
+
+        await this.makeRequest(
+            HttpMethod.POST,
+            ApiVersion.V3,
+            "order/test",
+            AuthenticationMethod.SIGNED,
+            [ "symbol", symbol ],
+            [ "side", OrderSide[ side ] ],
+            [ "type", OrderType[ type ] ],
+            [ "timeInForce", type === OrderType.MARKET ? null : TimeInForce[ timeInForce ] ],
+            [ "quantity", quantity ],
+            [ "price", type === OrderType.MARKET ? null : price ],
+            [ "newClientOrderId", clientOrderId ],
+            [ "stopPrice", stopPrice ],
+            [ "icebergQty", icebergQuantity ],
+            [ "recvWindow", timeout ]
+        );
 
     }
 
