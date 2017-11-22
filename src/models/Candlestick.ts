@@ -11,7 +11,7 @@ export class Candlestick {
     private _baseAssetVolume: number;
     private _closureTime: Date;
     private _quoteAssetVolume: number;
-    private _tradesNumber: number;
+    private _tradesCount: number;
     private _boughtBaseAssetVolume: number;
     private _boughtQuoteAssetVolume: number;
 
@@ -25,7 +25,7 @@ export class Candlestick {
         this._baseAssetVolume = json[ 5 ];
         this._closureTime = new Date( json[ 6 ] );
         this._quoteAssetVolume = json[ 7 ];
-        this._tradesNumber = json[ 8 ];
+        this._tradesCount = json[ 8 ];
         this._boughtBaseAssetVolume = json[ 9 ];
         this._boughtQuoteAssetVolume = json[ 10 ];
 
@@ -95,12 +95,12 @@ export class Candlestick {
         this._quoteAssetVolume = value;
     }
 
-    get tradesNumber(): number {
-        return this._tradesNumber;
+    get tradesCount(): number {
+        return this._tradesCount;
     }
 
-    set tradesNumber( value: number ) {
-        this._tradesNumber = value;
+    set tradesCount( value: number ) {
+        this._tradesCount = value;
     }
 
     get boughtBaseAssetVolume(): number {

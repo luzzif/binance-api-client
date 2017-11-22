@@ -12,6 +12,7 @@ import { ApiError } from "./errors/ApiError";
 import { OpenOrder } from "./models/OpenOrder";
 import { CandlestickInterval } from "./enums/CandlestickInterval";
 import { Candlestick } from "./models/Candlestick";
+import { TickerStatistics } from "./models/TickerStatistics";
 
 /**
  * Represents a single Binance API client.
@@ -134,6 +135,29 @@ export class BinanceApiClient {
             candlesticks.push( new Candlestick( candlestickJson ) );
         }
         return candlesticks;
+
+    }
+
+    /**
+     * Interface to the "v1/ticker/24hr" Binance's API operation.
+     * Get last 24 hours price change statistics.
+     *
+     * @param symbol The symbol for which we want to retrieve the
+     *               last day ticker statistics.
+     *
+     * @returns Either a promise of the last day ticker statistics
+     *          or the unwrapped ticker statistics if using
+     *          the await construct.
+     */
+    public async getLastDayTickerStatistics( symbol: string ): Promise< TickerStatistics > {
+
+        return new TickerStatistics( await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "ticker/24hr",
+            AuthenticationMethod.NONE,
+            [ "symbol", symbol ]
+        ) );
 
     }
 
