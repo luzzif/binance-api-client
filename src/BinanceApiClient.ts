@@ -14,6 +14,7 @@ import { CandlestickInterval } from "./enums/CandlestickInterval";
 import { Candlestick } from "./models/Candlestick";
 import { TickerStatistics } from "./models/TickerStatistics";
 import { LatestPrice } from "./models/LatestPrice";
+import { Ticker } from "./models/Ticker";
 
 /**
  * Represents a single Binance API client.
@@ -183,6 +184,30 @@ export class BinanceApiClient {
             latestPrices.push( new LatestPrice( latestPriceJson ) );
         }
         return latestPrices;
+
+    }
+
+    /**
+     * Interface to the "v1/ticker/allBookTickers" Binance's API operation.
+     * Get the best price/quantity in the order book for all symbols.
+     *
+     * @returns Either a promise of a ticker array or the unwrapped ticker
+     *          array if using the await construct.
+     */
+    public async getTickers(): Promise< Ticker[] > {
+
+        let tickersJson: any = await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "ticker/allBookTickers",
+            AuthenticationMethod.NONE
+        );
+
+        let tickers: Ticker[] = [];
+        for( let tickerJson of tickersJson ) {
+            tickers.push( new Ticker( tickerJson ) );
+        }
+        return tickers;
 
     }
 
