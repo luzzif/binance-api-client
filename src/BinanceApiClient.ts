@@ -15,6 +15,10 @@ import { Candlestick } from "./models/Candlestick";
 import { TickerStatistics } from "./models/TickerStatistics";
 import { LatestPrice } from "./models/LatestPrice";
 import { Ticker } from "./models/Ticker";
+import { OrderSide } from "./enums/OrderSide";
+import { OrderType } from "./enums/OrderType";
+import { TimeInForce } from "./enums/TimeInForce";
+import { PlacedOrderData } from "./models/PlacedOrderData";
 
 /**
  * Represents a single Binance API client.
@@ -208,6 +212,54 @@ export class BinanceApiClient {
             tickers.push( new Ticker( tickerJson ) );
         }
         return tickers;
+
+    }
+
+    /**
+     * Interface to the "v3/order" Binance's API operation. Places a new order
+     * respecting the given constraints.
+     *
+     * @param symbol          The market on which the order is to be placed.
+     * @param side            Whether the order is a buy or sell.
+     * @param type            Whether the order is at limit or market.
+     * @param timeInForce     Whether the time in force should be GTC or IOC.
+     * @param quantity        The quantity of assets that is to be moved.
+     * @param price           The price at which the order should be filled.
+     * @param clientOrderId   A unique ID associated with the order
+     *                        (automatically generated if not sent).
+     * @param stopPrice       The price at which a stop order should be filled.
+     * @param icebergQuantity Only used with iceberg orders.
+     *
+     * @returns Either a promise of a placed order data or
+     *          the unwrapped placed order data if using the
+     *          await construct.
+     */
+    public async placeOrder(
+        symbol: string,
+        side: OrderSide,
+        type: OrderType,
+        timeInForce: TimeInForce,
+        quantity: number,
+        price: number,
+        clientOrderId?: string,
+        stopPrice?: number,
+        icebergQuantity?: number ): Promise< PlacedOrderData[] > {
+
+        return new PlacedOrderData( await this.makeRequest(
+            HttpMethod.POST,
+            ApiVersion.V3,
+            "order",
+            AuthenticationMethod.SIGNED,
+            [ "symbol", symbol ],
+            [ "side", side ],
+            [ "type", type ],
+            [ "timeInForce", timeInForce ],
+            [ "quantity", quantity ],
+            [ "price", price ],
+            [ "newClientOrderId", clientOrderId ],
+            [ "stopPrice", stopPrice ],
+            [ "icebergQty", icebergQuantity ]
+        ) );
 
     }
 
