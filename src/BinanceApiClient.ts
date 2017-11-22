@@ -13,6 +13,7 @@ import { OpenOrder } from "./models/OpenOrder";
 import { CandlestickInterval } from "./enums/CandlestickInterval";
 import { Candlestick } from "./models/Candlestick";
 import { TickerStatistics } from "./models/TickerStatistics";
+import { LatestPrice } from "./models/LatestPrice";
 
 /**
  * Represents a single Binance API client.
@@ -158,6 +159,30 @@ export class BinanceApiClient {
             AuthenticationMethod.NONE,
             [ "symbol", symbol ]
         ) );
+
+    }
+
+    /**
+     * Interface to the "v1/ticker/allPrices" Binance's API operation.
+     * Get the latest price for all symbols.
+     *
+     * @returns Either a promise of a last price array or the unwrapped
+     *          last price array if using the await construct.
+     */
+    public async getLatestPrices(): Promise< LatestPrice[] > {
+
+        let latestPricesJson: any = await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "ticker/allPrices",
+            AuthenticationMethod.NONE
+        );
+
+        let latestPrices: LatestPrice[] = [];
+        for( let latestPriceJson of latestPricesJson ) {
+            latestPrices.push( new LatestPrice( latestPriceJson ) );
+        }
+        return latestPrices;
 
     }
 
