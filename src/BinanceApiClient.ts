@@ -20,6 +20,7 @@ import { OrderType } from "./enums/OrderType";
 import { TimeInForce } from "./enums/TimeInForce";
 import { PlacedOrderData } from "./models/PlacedOrderData";
 import { CanceledOrderData } from "./models/CanceledOrderData";
+import { AccountData } from "./models/AccountData";
 
 /**
  * Represents a single Binance API client.
@@ -428,6 +429,26 @@ export class BinanceApiClient {
             orders.push( new Order( orderJson ) );
         }
         return orders;
+
+    }
+
+    /**
+     * Interface to the "GET v3/account" Binance's API operation. Get current
+     * account information.
+     *
+     * @param timeout The request validity maximum time frame (defaults to 5000 ms).
+     *
+     * @returns The current account information.
+     */
+    public async getAccountData( timeout?: number ): Promise< AccountData > {
+
+        return new AccountData( await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V3,
+            "account",
+            AuthenticationMethod.SIGNED,
+            [ "recvWindow", timeout ]
+        ) );
 
     }
 
