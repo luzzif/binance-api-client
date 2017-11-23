@@ -9,7 +9,7 @@ import { isNullOrUndefined } from "util";
 import { URL } from "url";
 import { OrderBook } from "./models/OrderBook";
 import { ApiError } from "./errors/ApiError";
-import { OpenOrder } from "./models/OpenOrder";
+import { Order } from "./models/Order";
 import { CandlestickInterval } from "./enums/CandlestickInterval";
 import { Candlestick } from "./models/Candlestick";
 import { TickerStatistics } from "./models/TickerStatistics";
@@ -47,7 +47,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v1/ping" Binance's API operation.
+     * Interface to the "GET v1/ping" Binance's API operation.
      */
     public async ping(): Promise< void > {
 
@@ -61,7 +61,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v1/time" Binance's API operation.
+     * Interface to the "GET v1/time" Binance's API operation.
      *
      * @returns Either a promise of the Binance's server time, or
      *          the Binance's server time if using the await construct.
@@ -78,7 +78,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v1/depth" Binance's API operation.
+     * Interface to the "GET v1/depth" Binance's API operation.
      *
      * @param symbol The symbol for which we want to retrieve the order book.
      * @param limit  The maximum number of orders in the returned order book.
@@ -102,7 +102,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v1/klines" Binance's API operation. Get
+     * Interface to the "GET v1/klines" Binance's API operation. Get
      * candlestick bars for the specified symbol, respecting
      * all the other given constraints. Candlesticks are uniquely
      * identified by their opening time.
@@ -145,7 +145,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v1/ticker/24hr" Binance's API operation.
+     * Interface to the "GET v1/ticker/24hr" Binance's API operation.
      * Get last 24 hours price change statistics.
      *
      * @param symbol The symbol for which we want to retrieve the
@@ -168,7 +168,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v1/ticker/allPrices" Binance's API operation.
+     * Interface to the "GET v1/ticker/allPrices" Binance's API operation.
      * Get the latest price for all symbols.
      *
      * @returns Either a promise of a last price array or the unwrapped
@@ -192,7 +192,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v1/ticker/allBookTickers" Binance's API operation.
+     * Interface to the "GET v1/ticker/allBookTickers" Binance's API operation.
      * Get the best price/quantity in the order book for all symbols.
      *
      * @returns Either a promise of a ticker array or the unwrapped ticker
@@ -216,7 +216,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v3/order" Binance's API operation. Places a new order
+     * Interface to the "POST v3/order" Binance's API operation. Places a new order
      * respecting the given constraints.
      *
      * @param symbol          The market on which the order is to be placed.
@@ -264,7 +264,7 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v3/order/test" Binance's API operation. Places a new
+     * Interface to the "POST v3/order/test" Binance's API operation. Places a new
      * test order respecting the given constraints.
      *
      * @param symbol          The market on which the order is to be placed.
@@ -273,7 +273,7 @@ export class BinanceApiClient {
      * @param timeInForce     Whether the time in force should be GTC or IOC.
      * @param quantity        The quantity of assets that is to be moved.
      * @param price           The price at which the order should be filled.
-     * @param clientOrderId   A unique ID associated with the order
+     * @param clientId        A unique ID associated with the order.
      *                        (automatically generated if not sent).
      * @param stopPrice       The price at which a stop order should be filled.
      * @param icebergQuantity Only used with iceberg orders.
@@ -287,7 +287,7 @@ export class BinanceApiClient {
         timeInForce: TimeInForce,
         quantity: number,
         price: number,
-        clientOrderId?: string,
+        clientId?: string,
         stopPrice?: number,
         icebergQuantity?: number,
         timeout?: number ): Promise< void > {
@@ -300,14 +300,43 @@ export class BinanceApiClient {
             [ "symbol", symbol ],
             [ "side", OrderSide[ side ] ],
             [ "type", OrderType[ type ] ],
-            [ "timeInForce", type === OrderType.MARKET ? null : TimeInForce[ timeInForce ] ],
+            [ "timeInForce", TimeInForce[ timeInForce ] ],
             [ "quantity", quantity ],
-            [ "price", type === OrderType.MARKET ? null : price ],
-            [ "newClientOrderId", clientOrderId ],
+            [ "price", price ],
+            [ "newClientOrderId", clientId ],
             [ "stopPrice", stopPrice ],
             [ "icebergQty", icebergQuantity ],
             [ "recvWindow", timeout ]
         );
+
+    }
+
+    /**
+     * Interface to the "GET v3/order" Binance's API operation. Gets a
+     * placed order detail given some constraints.
+     *
+     * @param symbol   The market on which the order was originally placed.
+     * @param id       The wanted order ID.
+     * @param clientId The wanted client given order ID (its description).
+     * @param timeout  The request validity maximum time frame
+     *                 (defaults to 5000 ms).
+     */
+    public async getOrder(
+        symbol: string,
+        id?: number,
+        clientId?: OrderType,
+        timeout?: number ): Promise< Order > {
+
+        return new Order( await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V3,
+            "order",
+            AuthenticationMethod.SIGNED,
+            [ "symbol", symbol ],
+            [ "orderId", id ],
+            [ "origClientOrderId", clientId ],
+            [ "recvWindow", timeout ]
+        ) );
 
     }
 
@@ -320,7 +349,7 @@ export class BinanceApiClient {
      * @returns Either a promise of an open order array for the given coin or
      *          the unwrapped open order array if using the await construct.
      */
-    public async getOpenOrders( market: string, timeout?: number ): Promise< OpenOrder[] > {
+    public async getOpenOrders( market: string, timeout?: number ): Promise< Order[] > {
 
         let openOrdersJson: any = await this.makeRequest(
             HttpMethod.GET,
@@ -331,9 +360,9 @@ export class BinanceApiClient {
             [ "recvWindow", timeout ]
         );
 
-        let openOrders: OpenOrder[] = [];
+        let openOrders: Order[] = [];
         for( let openOrderJson of openOrdersJson ) {
-            openOrders.push( new OpenOrder( openOrderJson ) );
+            openOrders.push( new Order( openOrderJson ) );
         }
         return openOrders;
 

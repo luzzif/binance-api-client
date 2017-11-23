@@ -6,7 +6,7 @@ import { OrderSide } from "../enums/OrderSide";
 /**
  * Represents a single open order.
  */
-export class OpenOrder {
+export class Order {
 
     private _symbol: string;
     private _id: number;
