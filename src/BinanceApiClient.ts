@@ -19,6 +19,7 @@ import { OrderSide } from "./enums/OrderSide";
 import { OrderType } from "./enums/OrderType";
 import { TimeInForce } from "./enums/TimeInForce";
 import { PlacedOrderData } from "./models/PlacedOrderData";
+import { CanceledOrderData } from "./models/CanceledOrderData";
 
 /**
  * Represents a single Binance API client.
@@ -324,7 +325,7 @@ export class BinanceApiClient {
     public async getOrder(
         symbol: string,
         id?: number,
-        clientId?: OrderType,
+        clientId?: string,
         timeout?: number ): Promise< Order > {
 
         return new Order( await this.makeRequest(
@@ -335,6 +336,38 @@ export class BinanceApiClient {
             [ "symbol", symbol ],
             [ "orderId", id ],
             [ "origClientOrderId", clientId ],
+            [ "recvWindow", timeout ]
+        ) );
+
+    }
+
+    /**
+     * Interface to the "DELETE v3/order" Binance's API operation.
+     * Cancels a previously placed order.
+     *
+     * @param symbol      The market on which the order was originally placed.
+     * @param id          The wanted order ID.
+     * @param oldClientId The pre-cancel client given order ID (its description).
+     * @param newClientId The post-cancel order ID (automatically generated if not passed).
+     * @param timeout     The request validity maximum time frame
+     *                    (defaults to 5000 ms).
+     */
+    public async cancelOrder(
+        symbol: string,
+        id?: number,
+        oldClientId?: string,
+        newClientId?: string,
+        timeout?: number ): Promise< CanceledOrderData > {
+
+        return new CanceledOrderData( await this.makeRequest(
+            HttpMethod.DELETE,
+            ApiVersion.V3,
+            "order",
+            AuthenticationMethod.SIGNED,
+            [ "symbol", symbol ],
+            [ "orderId", id ],
+            [ "origClientOrderId", oldClientId ],
+            [ "newClientOrderId", newClientId ],
             [ "recvWindow", timeout ]
         ) );
 
