@@ -64,17 +64,16 @@ export class BinanceApiClient {
     /**
      * Interface to the "GET v1/time" Binance's API operation.
      *
-     * @returns Either a promise of the Binance's server time, or
-     *          the Binance's server time if using the await construct.
+     * @returns The Binance's server time.
      */
-    public async getServerTime(): Promise< number > {
+    public async getServerTime(): Promise< Date > {
 
-        return ( await this.makeRequest(
+        return new Date( ( await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V1,
             "time",
             AuthenticationMethod.NONE
-        ) ).serverTime;
+        ) ).serverTime );
 
     }
 
@@ -84,10 +83,7 @@ export class BinanceApiClient {
      * @param symbol The symbol for which we want to retrieve the order book.
      * @param limit  The maximum number of orders in the returned order book.
      *
-     * @returns Either a promise of the order book for the given coin, with
-     *          the order book elements limited to the specified value, or
-     *          the unwrapped order book respecting the same constraints if
-     *          using the await construct.
+     * @returns The order book respecting the given constraints.
      */
     public async getOrderBook( symbol: string, limit?: number ): Promise< OrderBook > {
 
@@ -115,8 +111,7 @@ export class BinanceApiClient {
      * @param startTime The time from which the candlesticks are returned.
      * @param endTime   The time until which the candlesticks are returned.
      *
-     * @returns Either a promise of a candlesticks array or the unwrapped
-     *          candlesticks array if using the await construct.
+     * @returns A candlesticks array respecting the given constraints.
      */
     public async getCandlesticks(
         symbol: string,
@@ -152,9 +147,7 @@ export class BinanceApiClient {
      * @param symbol The symbol for which we want to retrieve the
      *               last day ticker statistics.
      *
-     * @returns Either a promise of the last day ticker statistics
-     *          or the unwrapped ticker statistics if using
-     *          the await construct.
+     * @returns The last 24-hour ticker statistics.
      */
     public async getLastDayTickerStatistics( symbol: string ): Promise< TickerStatistics > {
 
@@ -172,8 +165,7 @@ export class BinanceApiClient {
      * Interface to the "GET v1/ticker/allPrices" Binance's API operation.
      * Get the latest price for all symbols.
      *
-     * @returns Either a promise of a last price array or the unwrapped
-     *          last price array if using the await construct.
+     * @returns A latest prices array for all the symbols.
      */
     public async getLatestPrices(): Promise< LatestPrice[] > {
 
@@ -196,8 +188,7 @@ export class BinanceApiClient {
      * Interface to the "GET v1/ticker/allBookTickers" Binance's API operation.
      * Get the best price/quantity in the order book for all symbols.
      *
-     * @returns Either a promise of a ticker array or the unwrapped ticker
-     *          array if using the await construct.
+     * @returns The best price/quantity in the order book for all symbols.
      */
     public async getTickers(): Promise< Ticker[] > {
 
@@ -231,9 +222,7 @@ export class BinanceApiClient {
      * @param stopPrice       The price at which a stop order should be filled.
      * @param icebergQuantity Only used with iceberg orders.
      *
-     * @returns Either a promise of a placed order data or
-     *          the unwrapped placed order data if using the
-     *          await construct.
+     * @returns The just-placed order data.
      */
     public async placeOrder(
         symbol: string,
@@ -321,6 +310,8 @@ export class BinanceApiClient {
      * @param clientId The wanted client given order ID (its description).
      * @param timeout  The request validity maximum time frame
      *                 (defaults to 5000 ms).
+     *
+     * @return The placed order detail respecting the given constraints.
      */
     public async getOrder(
         symbol: string,
@@ -351,6 +342,8 @@ export class BinanceApiClient {
      * @param newClientId The post-cancel order ID (automatically generated if not passed).
      * @param timeout     The request validity maximum time frame
      *                    (defaults to 5000 ms).
+     *
+     * @return The just-canceled order data.
      */
     public async cancelOrder(
         symbol: string,
@@ -374,13 +367,12 @@ export class BinanceApiClient {
     }
 
     /**
-     * Interface to the "v3/openOrders" Binance's API operation.
+     * Interface to the "GET v3/openOrders" Binance's API operation.
      *
      * @param market  The symbol for which we want to retrieve the open orders (if any).
      * @param timeout The request validity maximum time frame (defaults to 5000 ms).
      *
-     * @returns Either a promise of an open order array for the given coin or
-     *          the unwrapped open order array if using the await construct.
+     * @returns An array representing all of the account's open orders.
      */
     public async getOpenOrders( market: string, timeout?: number ): Promise< Order[] > {
 
@@ -398,6 +390,44 @@ export class BinanceApiClient {
             openOrders.push( new Order( openOrderJson ) );
         }
         return openOrders;
+
+    }
+
+    /**
+     * Interface to the "GET v3/allOrders" Binance's API operation. Get all account
+     * orders (active, canceled, or filled).
+     *
+     * @param symbol  The symbol for which we want to retrieve the orders.
+     * @param id      The order ID from which we want to retrieve the orders
+     *                (if set, the API will retrieve the orders with an ID greater
+     *                or equal to the one specified, otherwise the most recent orders).
+     * @param limit   The maximum number of returned orders.
+     * @param timeout The request validity maximum time frame (defaults to 5000 ms).
+     *
+     * @returns An array representing all of the account's orders in every state.
+     */
+    public async getOrders(
+        symbol: string,
+        id?: number,
+        limit?: number,
+        timeout?: number ): Promise< Order[] > {
+
+        let ordersJson: any = await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V3,
+            "allOrders",
+            AuthenticationMethod.SIGNED,
+            [ "symbol", symbol ],
+            [ "orderId", id ],
+            [ "limit", limit ],
+            [ "recvWindow", timeout ]
+        );
+
+        let orders: Order[] = [];
+        for( let orderJson of ordersJson ) {
+            orders.push( new Order( orderJson ) );
+        }
+        return orders;
 
     }
 
