@@ -22,6 +22,8 @@ import { PlacedOrderData } from "./models/PlacedOrderData";
 import { CanceledOrderData } from "./models/CanceledOrderData";
 import { AccountData } from "./models/AccountData";
 import { Trade } from "./models/Trade";
+import * as WebSocket from "ws";
+import { OrderBookUpdate } from "./models/OrderBookUpdate";
 
 /**
  * Represents a single Binance API client.
@@ -497,7 +499,7 @@ export class BinanceApiClient {
      * @returns A listen key to be passed as a parameter when starting a
      *          new data stream.
      */
-    public async initializeStream(): Promise< string > {
+    public async openStream(): Promise< string > {
 
         return ( await this.makeRequest(
             HttpMethod.POST,
@@ -519,6 +521,25 @@ export class BinanceApiClient {
 
         await this.makeRequest(
             HttpMethod.PUT,
+            ApiVersion.V1,
+            "userDataStream",
+            AuthenticationMethod.API_KEY,
+            [ "listenKey", streamId ]
+        );
+
+    }
+
+    /**
+     * Interface to the "DELETE v1/userDataStream" Binance's API operation.
+     * Closes out a user data stream.
+     *
+     * @param streamId A string representing the stream's ID
+     *                (returned by [[initializeStream]]).
+     */
+    public async closeStream( streamId: string ): Promise< void > {
+
+        await this.makeRequest(
+            HttpMethod.DELETE,
             ApiVersion.V1,
             "userDataStream",
             AuthenticationMethod.API_KEY,
