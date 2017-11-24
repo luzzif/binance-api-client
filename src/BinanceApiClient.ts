@@ -549,6 +549,26 @@ export class BinanceApiClient {
     }
 
     /**
+     * Initializes a websocket data stream that gives us information about a
+     * single symbol's order book updates.
+     *
+     * @param symbol   A string representing the stream's ID
+     *                 (returned by [[initializeStream]]).
+     * @param callback A function to be called when a new update is received.
+     */
+    public monitorOrderBook( symbol: string, callback: ( update: OrderBookUpdate ) => any ): void {
+
+        let websocket: WebSocket = new WebSocket(
+            `wss://stream.binance.com:9443/ws/${ symbol.toLowerCase() }@depth`
+        );
+
+        websocket.on( "message", ( data ) => {
+            callback( new OrderBookUpdate( JSON.parse( data ) ) );
+        } );
+
+    }
+
+    /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
      * when instantiating the client itself.
