@@ -509,6 +509,25 @@ export class BinanceApiClient {
     }
 
     /**
+     * Interface to the "PUT v1/userDataStream" Binance's API operation.
+     * Pings a user data stream in order to prevent a time out.
+     *
+     * @param streamId A string representing the stream's ID
+     *                (returned by [[initializeStream]]).
+     */
+    public async keepAliveStream( streamId: string ): Promise< void > {
+
+        await this.makeRequest(
+            HttpMethod.PUT,
+            ApiVersion.V1,
+            "userDataStream",
+            AuthenticationMethod.API_KEY,
+            [ "listenKey", streamId ]
+        );
+
+    }
+
+    /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
      * when instantiating the client itself.
