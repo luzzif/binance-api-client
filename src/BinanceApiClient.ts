@@ -21,6 +21,7 @@ import { TimeInForce } from "./enums/TimeInForce";
 import { PlacedOrderData } from "./models/PlacedOrderData";
 import { CanceledOrderData } from "./models/CanceledOrderData";
 import { AccountData } from "./models/AccountData";
+import { Trade } from "./models/Trade";
 
 /**
  * Represents a single Binance API client.
@@ -449,6 +450,43 @@ export class BinanceApiClient {
             AuthenticationMethod.SIGNED,
             [ "recvWindow", timeout ]
         ) );
+
+    }
+
+    /**
+     * Interface to the "GET v3/myTrades" Binance's API operation. Get trades for
+     * a specific account and symbol.
+     *
+     * @param symbol  The market on which the trades were originally executed.
+     * @param limit   The maximum number of returned trades.
+     * @param fromId  The trade's ID to start fetching from. If not given, the
+     *                API will retrieve the most recent trades first.
+     * @param timeout The request validity maximum time frame (defaults to 5000 ms).
+     *
+     * @returns The account's trade list respecting the given constraints.
+     */
+    public async getTrades(
+        symbol: string,
+        limit?: number,
+        fromId?: number,
+        timeout?: number ): Promise< Trade[] > {
+
+        let tradesJson: any = await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V3,
+            "myTrades",
+            AuthenticationMethod.SIGNED,
+            [ "symbol", symbol ],
+            [ "limit", limit ],
+            [ "fromId", fromId ],
+            [ "recvWindow", timeout ]
+        );
+
+        let trades: Trade[] = [];
+        for( let tradeJson of tradesJson ) {
+            trades.push( new Trade( tradeJson ) );
+        }
+        return trades;
 
     }
 
