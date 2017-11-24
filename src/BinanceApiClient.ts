@@ -491,6 +491,24 @@ export class BinanceApiClient {
     }
 
     /**
+     * Interface to the "POST v1/userDataStream" Binance's API operation.
+     * Initializes a new data stream.
+     *
+     * @returns A listen key to be passed as a parameter when starting a
+     *          new data stream.
+     */
+    public async initializeStream(): Promise< string > {
+
+        return ( await this.makeRequest(
+            HttpMethod.POST,
+            ApiVersion.V1,
+            "userDataStream",
+            AuthenticationMethod.API_KEY
+        ) ).listenKey;
+
+    }
+
+    /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
      * when instantiating the client itself.
