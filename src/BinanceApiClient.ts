@@ -24,6 +24,7 @@ import { AccountData } from "./models/AccountData";
 import { Trade } from "./models/Trade";
 import * as WebSocket from "ws";
 import { OrderBookUpdate } from "./models/OrderBookUpdate";
+import { CandlestickUpdate } from "./models/CandlestickUpdate";
 
 /**
  * Represents a single Binance API client.
@@ -549,11 +550,10 @@ export class BinanceApiClient {
     }
 
     /**
-     * Initializes a websocket data stream that gives us information about a
+     * Initializes a web socket data stream that gives us information about a
      * single symbol's order book updates.
      *
-     * @param symbol   A string representing the stream's ID
-     *                 (returned by [[initializeStream]]).
+     * @param symbol   The symbol of which we want to get the order book updates.
      * @param callback A function to be called when a new update is received.
      */
     public monitorOrderBook( symbol: string, callback: ( update: OrderBookUpdate ) => any ): void {
@@ -564,6 +564,31 @@ export class BinanceApiClient {
 
         websocket.on( "message", ( data ) => {
             callback( new OrderBookUpdate( JSON.parse( data ) ) );
+        } );
+
+    }
+
+    /**
+     * Initializes a web socket data stream that gives us information about
+     * Kline/candlestick updates.
+     *
+     * @param symbol   A string representing the stream's ID
+     *                 (returned by [[initializeStream]]).
+     * @param interval The interval to which the requested candlestick updates
+     *                 refer to.
+     * @param callback A function to be called when a new update is received.
+     */
+    public monitorCandlesticks(
+        symbol: string,
+        interval: CandlestickInterval,
+        callback: ( update: CandlestickUpdate ) => any ): void {
+
+        let websocket: WebSocket = new WebSocket(
+            `wss://stream.binance.com:9443/ws/${ symbol.toLowerCase() }@kline_${ interval }`
+        );
+
+        websocket.on( "message", ( data ) => {
+            callback( new CandlestickUpdate( JSON.parse( data ) ) );
         } );
 
     }
