@@ -25,6 +25,7 @@ import { Trade } from "./models/Trade";
 import * as WebSocket from "ws";
 import { OrderBookUpdate } from "./models/OrderBookUpdate";
 import { CandlestickUpdate } from "./models/CandlestickUpdate";
+import { TradeUpdate } from "./models/TradeUpdate";
 
 /**
  * Represents a single Binance API client.
@@ -572,8 +573,7 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about
      * Kline/candlestick updates.
      *
-     * @param symbol   A string representing the stream's ID
-     *                 (returned by [[initializeStream]]).
+     * @param symbol   The symbol of which we want to get the candlestick updates.
      * @param interval The interval to which the requested candlestick updates
      *                 refer to.
      * @param callback A function to be called when a new update is received.
@@ -589,6 +589,27 @@ export class BinanceApiClient {
 
         websocket.on( "message", ( data ) => {
             callback( new CandlestickUpdate( JSON.parse( data ) ) );
+        } );
+
+    }
+
+    /**
+     * Initializes a web socket data stream that gives us information about
+     * trade updates.
+     *
+     * @param symbol   The symbol of which we want to get the trade updates.
+     * @param callback A function to be called when a new update is received.
+     */
+    public monitorTrades(
+        symbol: string,
+        callback: ( update: TradeUpdate ) => any ): void {
+
+        let websocket: WebSocket = new WebSocket(
+            `wss://stream.binance.com:9443/ws/${ symbol.toLowerCase() }@aggTrade`
+        );
+
+        websocket.on( "message", ( data ) => {
+            callback( new TradeUpdate( JSON.parse( data ) ) );
         } );
 
     }
