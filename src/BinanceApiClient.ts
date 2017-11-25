@@ -26,21 +26,18 @@ import * as WebSocket from "ws";
 import { OrderBookUpdate } from "./models/OrderBookUpdate";
 import { CandlestickUpdate } from "./models/CandlestickUpdate";
 import { TradeUpdate } from "./models/TradeUpdate";
+import { AccountUpdate } from "./models/AccountUpdate";
+import { UserUpdate } from "./models/abstraction/UserUpdate";
+import { OrderUpdate } from "./models/OrderUpdate";
 
 /**
  * Represents a single Binance API client.
  */
 export class BinanceApiClient {
 
-    /**
-     * The Binance's personal API key.
-     */
-    private readonly apiKey: string;
-
-    /**
-     * The Binance's personal API secret.
-     */
-    private readonly apiSecret: string;
+    private readonly API_KEY: string;
+    private readonly API_SECRET: string;
+    private readonly WS_BASE_URL: string = " wss://stream.binance.com:9443/ws/";
 
     /**
      * Initializes a new Binance API client.
@@ -49,8 +46,8 @@ export class BinanceApiClient {
      * @param apiSecret The personal account API secret.
      */
     constructor( apiKey?: string, apiSecret?: string ) {
-        this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
+        this.API_KEY = apiKey;
+        this.API_SECRET = apiSecret;
     }
 
     /**
@@ -501,7 +498,7 @@ export class BinanceApiClient {
      * @returns A listen key to be passed as a parameter when starting a
      *          new data stream.
      */
-    public async openStream(): Promise< string > {
+    public async openUserStream(): Promise< string > {
 
         return ( await this.makeRequest(
             HttpMethod.POST,
@@ -517,9 +514,9 @@ export class BinanceApiClient {
      * Pings a user data stream in order to prevent a time out.
      *
      * @param streamId A string representing the stream's ID
-     *                (returned by [[initializeStream]]).
+     *                (returned by [[openUserStream]]).
      */
-    public async keepAliveStream( streamId: string ): Promise< void > {
+    public async keepAliveUserStream( streamId: string ): Promise< void > {
 
         await this.makeRequest(
             HttpMethod.PUT,
@@ -536,9 +533,9 @@ export class BinanceApiClient {
      * Closes out a user data stream.
      *
      * @param streamId A string representing the stream's ID
-     *                (returned by [[initializeStream]]).
+     *                (returned by [[openUserStream]]).
      */
-    public async closeStream( streamId: string ): Promise< void > {
+    public async closeUserStream( streamId: string ): Promise< void > {
 
         await this.makeRequest(
             HttpMethod.DELETE,
@@ -560,7 +557,8 @@ export class BinanceApiClient {
     public monitorOrderBook( symbol: string, callback: ( update: OrderBookUpdate ) => any ): void {
 
         let websocket: WebSocket = new WebSocket(
-            `wss://stream.binance.com:9443/ws/${ symbol.toLowerCase() }@depth`
+            this.WS_BASE_URL + symbol.toLowerCase() + "@depth",
+            { perMessageDeflate: false }
         );
 
         websocket.on( "message", ( data ) => {
@@ -584,7 +582,8 @@ export class BinanceApiClient {
         callback: ( update: CandlestickUpdate ) => any ): void {
 
         let websocket: WebSocket = new WebSocket(
-            `wss://stream.binance.com:9443/ws/${ symbol.toLowerCase() }@kline_${ interval }`
+            this.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
+            { perMessageDeflate: false }
         );
 
         websocket.on( "message", ( data ) => {
@@ -605,11 +604,49 @@ export class BinanceApiClient {
         callback: ( update: TradeUpdate ) => any ): void {
 
         let websocket: WebSocket = new WebSocket(
-            `wss://stream.binance.com:9443/ws/${ symbol.toLowerCase() }@aggTrade`
+            this.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
+            { perMessageDeflate: false }
         );
 
         websocket.on( "message", ( data ) => {
             callback( new TradeUpdate( JSON.parse( data ) ) );
+        } );
+
+    }
+
+    /**
+     * Initializes a web socket data stream that gives us information about
+     * the personal account updates.
+     *
+     * @param listenKey  The listen key returned when a user data stream gets
+     *                   initialized by [[openUserStream]].
+     * @param callback A function to be called when a new account update is received.
+     */
+    public monitorUser(
+        listenKey: string,
+        callback: ( update: UserUpdate ) => any ): void {
+
+        let websocket: WebSocket = new WebSocket(
+            this.WS_BASE_URL + listenKey,
+            { perMessageDeflate: false }
+        );
+
+        websocket.on( "message", ( data ) => {
+
+            let jsonData = JSON.parse( data );
+            switch( jsonData.e ) {
+
+                case "outboundAccountInfo": {
+                    callback( new AccountUpdate( jsonData ) );
+                    break;
+                }
+                case "executionReport": {
+                    callback( new OrderUpdate( jsonData ) );
+                    break;
+                }
+
+            }
+
         } );
 
     }
@@ -698,20 +735,20 @@ export class BinanceApiClient {
             return;
         }
 
-        if( isNullOrUndefined( this.apiKey ) ) {
+        if( isNullOrUndefined( this.API_KEY ) ) {
             throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
         }
-        headers[ "X-MBX-APIKEY" ] = this.apiKey;
+        headers[ "X-MBX-APIKEY" ] = this.API_KEY;
 
         if( authenticationMethod === AuthenticationMethod.SIGNED ) {
 
-            if( isNullOrUndefined( this.apiSecret ) ) {
+            if( isNullOrUndefined( this.API_SECRET ) ) {
                 throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
             }
             apiUrl.searchParams.append( "timestamp", new Date().getTime().toString() );
             apiUrl.searchParams.append(
                 "signature",
-                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), this.apiSecret )
+                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), this.API_SECRET )
             );
 
         }

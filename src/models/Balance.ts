@@ -4,15 +4,15 @@
 export class Balance {
 
     private _asset: string;
-    private _free: number;
+    private _available: number;
     private _locked: number;
 
 
     constructor( json: any ) {
 
-        this._asset = json.asset;
-        this._free = json.free;
-        this._locked = json.locked;
+        this._asset = json.asset || json.a;
+        this._available = json.free || json.f;
+        this._locked = json.locked || json.l;
 
     }
 
@@ -24,12 +24,12 @@ export class Balance {
         this._asset = value;
     }
 
-    get free(): number {
-        return this._free;
+    get available(): number {
+        return this._available;
     }
 
-    set free( value: number ) {
-        this._free = value;
+    set available( value: number ) {
+        this._available = value;
     }
 
     get locked(): number {
