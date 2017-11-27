@@ -4,6 +4,7 @@
 export class TradeUpdate {
 
     private _timestamp: Date;
+    private _symbol: string;
     private _aggregatedId: number;
     private _price: number;
     private _quantity: number;
@@ -15,6 +16,7 @@ export class TradeUpdate {
     constructor( json: any ) {
 
         this._timestamp = new Date( json.E );
+        this._symbol = json.s;
         this._aggregatedId = json.a;
         this._price = json.p;
         this._quantity = json.q;
@@ -31,6 +33,14 @@ export class TradeUpdate {
 
     set timestamp( value: Date ) {
         this._timestamp = value;
+    }
+
+    get symbol(): string {
+        return this._symbol;
+    }
+
+    set symbol( value: string ) {
+        this._symbol = value;
     }
 
     get aggregatedId(): number {
