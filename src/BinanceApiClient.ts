@@ -37,7 +37,7 @@ export class BinanceApiClient {
 
     private readonly API_KEY: string;
     private readonly API_SECRET: string;
-    private readonly WS_BASE_URL: string = " wss://stream.binance.com:9443/ws/";
+    private readonly WS_BASE_URL: string = "wss://stream.binance.com:9443/ws/";
 
     /**
      * Initializes a new Binance API client.
