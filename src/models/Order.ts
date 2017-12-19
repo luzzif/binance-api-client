@@ -27,7 +27,7 @@ export class Order {
         this._symbol = json.symbol;
         this._id = json.orderId;
         this._clientId = json.clientOrderId;
-        this._price = json._price;
+        this._price = json.price;
         this._originalQuantity = json.origQty;
         this._executedQuantity = json.executedQty;
         this._status = OrderStatus[ json.status as string ];
