@@ -20,6 +20,7 @@ export class OrderUpdate implements UserUpdate {
     private _status: OrderStatus;
     private _rejectionMotive: OrderRejectionMotive;
     private _id: number;
+    private _lastFilledTradePrice: number;
     private _placedAt: Date;
 
     constructor( json: any ) {
@@ -36,6 +37,7 @@ export class OrderUpdate implements UserUpdate {
         this._status = OrderStatus[ json.X as string ];
         this._rejectionMotive = OrderRejectionMotive[ json.r as string ];
         this._id = json.i;
+        this._lastFilledTradePrice = json.L;
         this._placedAt = new Date( json.T );
 
     }
@@ -134,6 +136,14 @@ export class OrderUpdate implements UserUpdate {
 
     set id( value: number ) {
         this._id = value;
+    }
+
+    get lastFilledTradePrice(): number {
+        return this._lastFilledTradePrice;
+    }
+
+    set lastFilledTradePrice( value: number ) {
+        this._lastFilledTradePrice = value;
     }
 
     get placedAt(): Date {
