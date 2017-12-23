@@ -17,7 +17,7 @@ export class Trade {
 
         this._id = json.id;
         this._price = json.price;
-        this._quantity = json.quantity;
+        this._quantity = json.qty;
         this._commission = json.commission;
         this._commissionAsset = json.commissionAsset;
         this._timestamp = new Date( json.time );
