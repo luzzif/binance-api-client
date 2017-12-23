@@ -4,6 +4,7 @@
 export class Trade {
 
     private _id: string;
+    private _orderId: string;
     private _price: number;
     private _quantity: number;
     private _commission: number;
@@ -16,6 +17,7 @@ export class Trade {
     constructor( json: any ) {
 
         this._id = json.id;
+        this._orderId = json.orderId;
         this._price = json.price;
         this._quantity = json.qty;
         this._commission = json.commission;
@@ -33,6 +35,14 @@ export class Trade {
 
     set id( value: string ) {
         this._id = value;
+    }
+
+    get orderId(): string {
+        return this._orderId;
+    }
+
+    set orderId( value: string ) {
+        this._orderId = value;
     }
 
     get price(): number {
