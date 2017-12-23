@@ -3,8 +3,8 @@
  */
 export class Trade {
 
-    private _id: string;
-    private _orderId: string;
+    private _id: number;
+    private _orderId: number;
     private _price: number;
     private _quantity: number;
     private _commission: number;
@@ -29,19 +29,19 @@ export class Trade {
 
     }
 
-    get id(): string {
+    get id(): number {
         return this._id;
     }
 
-    set id( value: string ) {
+    set id( value: number ) {
         this._id = value;
     }
 
-    get orderId(): string {
+    get orderId(): number {
         return this._orderId;
     }
 
-    set orderId( value: string ) {
+    set orderId( value: number ) {
         this._orderId = value;
     }
 
