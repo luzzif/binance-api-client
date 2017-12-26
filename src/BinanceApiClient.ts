@@ -29,6 +29,7 @@ import { TradeUpdate } from "./models/TradeUpdate";
 import { AccountUpdate } from "./models/AccountUpdate";
 import { UserUpdate } from "./models/abstraction/UserUpdate";
 import { OrderUpdate } from "./models/OrderUpdate";
+import { ExchangeInfo } from "./models/ExchangeInfo";
 
 /**
  * Represents a single Binance API client.
@@ -61,6 +62,17 @@ export class BinanceApiClient {
             "ping",
             AuthenticationMethod.NONE
         );
+
+    }
+
+    public async getExchangeInfo(): Promise< ExchangeInfo > {
+
+        return new ExchangeInfo( await this.makeRequest(
+            HttpMethod.GET,
+            ApiVersion.V1,
+            "exchangeInfo",
+            AuthenticationMethod.NONE
+        ) );
 
     }
 
