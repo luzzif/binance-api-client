@@ -1,7 +1,7 @@
-import { OrderStatus } from "../enums/OrderStatus";
-import { TimeInForce } from "../enums/TimeInForce";
-import { OrderType } from "../enums/OrderType";
-import { OrderSide } from "../enums/OrderSide";
+import { OrderStatus } from "../../enums/OrderStatus";
+import { TimeInForce } from "../../enums/TimeInForce";
+import { OrderType } from "../../enums/OrderType";
+import { OrderSide } from "../../enums/OrderSide";
 
 /**
  * Represents a single open order.

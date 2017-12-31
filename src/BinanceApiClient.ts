@@ -7,9 +7,9 @@ import * as requestPromise from "request-promise";
 import * as Path from "path";
 import { isNullOrUndefined } from "util";
 import { URL } from "url";
-import { OrderBook } from "./models/OrderBook";
+import { OrderBook } from "./models/orders/OrderBook";
 import { ApiError } from "./errors/ApiError";
-import { Order } from "./models/Order";
+import { Order } from "./models/orders/Order";
 import { CandlestickInterval } from "./enums/CandlestickInterval";
 import { Candlestick } from "./models/Candlestick";
 import { TickerStatistics } from "./models/TickerStatistics";
@@ -18,18 +18,20 @@ import { Ticker } from "./models/Ticker";
 import { OrderSide } from "./enums/OrderSide";
 import { OrderType } from "./enums/OrderType";
 import { TimeInForce } from "./enums/TimeInForce";
-import { PlacedOrderData } from "./models/PlacedOrderData";
-import { CanceledOrderData } from "./models/CanceledOrderData";
+import { OrderAcknowledgement } from "./models/orders/OrderAcknowledgement";
+import { CanceledOrderData } from "./models/orders/CanceledOrderData";
 import { AccountData } from "./models/AccountData";
 import { Trade } from "./models/Trade";
 import * as WebSocket from "ws";
-import { OrderBookUpdate } from "./models/OrderBookUpdate";
+import { OrderBookUpdate } from "./models/orders/OrderBookUpdate";
 import { CandlestickUpdate } from "./models/CandlestickUpdate";
 import { TradeUpdate } from "./models/TradeUpdate";
 import { AccountUpdate } from "./models/AccountUpdate";
-import { UserUpdate } from "./models/abstraction/UserUpdate";
-import { OrderUpdate } from "./models/OrderUpdate";
+import { OrderUpdate } from "./models/orders/OrderUpdate";
 import { ExchangeInfo } from "./models/ExchangeInfo";
+import { ResponseType } from "./enums/ResponseType";
+import { OrderResult } from "./models/orders/OrderResult";
+import { OrderFull } from "./models/orders/OrderFull";
 
 /**
  * Represents a single Binance API client.
@@ -236,6 +238,7 @@ export class BinanceApiClient {
      *                        (automatically generated if not sent).
      * @param stopPrice       The price at which a stop order should be filled.
      * @param icebergQuantity Only used with iceberg orders.
+     * @param responseType    Set the response JSON. ACK, RESULT, or FULL; default: RESULT.
      *
      * @returns The just-placed order data.
      */
@@ -248,9 +251,10 @@ export class BinanceApiClient {
         price: number,
         clientOrderId?: string,
         stopPrice?: number,
-        icebergQuantity?: number ): Promise< PlacedOrderData > {
+        icebergQuantity?: number,
+        responseType?: ResponseType ): Promise< OrderAcknowledgement | OrderResult | OrderFull > {
 
-        return new PlacedOrderData( await this.makeRequest(
+        let jsonResponse: any = await this.makeRequest(
             HttpMethod.POST,
             ApiVersion.V3,
             "order",
@@ -263,8 +267,23 @@ export class BinanceApiClient {
             [ "price", type === OrderType.MARKET ? null : price ],
             [ "newClientOrderId", clientOrderId ],
             [ "stopPrice", stopPrice ],
-            [ "icebergQty", icebergQuantity ]
-        ) );
+            [ "icebergQty", icebergQuantity ],
+            [ "newOrderRespType", ResponseType[ responseType] ]
+        );
+
+        switch( responseType ) {
+
+            case ResponseType.RESULT: {
+                return new OrderResult( jsonResponse );
+            }
+            case ResponseType.FULL: {
+                return new OrderFull( jsonResponse );
+            }
+            default: {
+                return new OrderAcknowledgement( jsonResponse );
+            }
+
+        }
 
     }
 
@@ -636,7 +655,7 @@ export class BinanceApiClient {
      */
     public monitorUser(
         listenKey: string,
-        callback: ( update: UserUpdate ) => any ): void {
+        callback: ( update: AccountUpdate | OrderUpdate ) => any ): void {
 
         let websocket: WebSocket = new WebSocket(
             this.WS_BASE_URL + listenKey,

@@ -1,12 +1,11 @@
-import { UserUpdate } from "./abstraction/UserUpdate";
-import { OrderSide } from "../enums/OrderSide";
-import { OrderType } from "../enums/OrderType";
-import { TimeInForce } from "../enums/TimeInForce";
-import { OrderExecutionStatus } from "../enums/OrderExecutionStatus";
-import { OrderStatus } from "../enums/OrderStatus";
-import { OrderRejectionMotive } from "../enums/OrderRejectionMotive";
+import { OrderSide } from "../../enums/OrderSide";
+import { OrderType } from "../../enums/OrderType";
+import { TimeInForce } from "../../enums/TimeInForce";
+import { OrderExecutionStatus } from "../../enums/OrderExecutionStatus";
+import { OrderStatus } from "../../enums/OrderStatus";
+import { OrderRejectionMotive } from "../../enums/OrderRejectionMotive";
 
-export class OrderUpdate implements UserUpdate {
+export class OrderUpdate {
 
     private _timestamp: Date;
     private _symbol: string;

@@ -1,9 +1,7 @@
-import { Filter } from "./abstraction/Filter";
-
 /**
  * Represents a single minimum notional filter.
  */
-export class MinimumNotionalFilter implements Filter {
+export class MinimumNotionalFilter {
 
     private _value: number;
 

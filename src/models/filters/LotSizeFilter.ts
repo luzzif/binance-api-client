@@ -1,9 +1,7 @@
-import { Filter } from "./abstraction/Filter";
-
 /**
  * Represents a single lot size filter.
  */
-export class LotSizeFilter implements Filter {
+export class LotSizeFilter {
 
     private _minimumQuantity: number;
     private _maximumQuantity: number;

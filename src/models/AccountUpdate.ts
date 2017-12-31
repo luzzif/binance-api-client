@@ -2,9 +2,8 @@
  * Represents a single account update.
  */
 import { Balance } from "./Balance";
-import { UserUpdate } from "./abstraction/UserUpdate";
 
-export class AccountUpdate implements UserUpdate {
+export class AccountUpdate {
 
     private _timestamp: Date;
     private _balances: Balance[];

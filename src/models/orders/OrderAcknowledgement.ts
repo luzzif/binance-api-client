@@ -1,7 +1,7 @@
 /**
  * Represents a single placed order data.
  */
-export class PlacedOrderData {
+export class OrderAcknowledgement {
 
     private _symbol: string;
     private _id: number;
