@@ -1,9 +1,9 @@
 import { RateLimit } from "./RateLimit";
 import { Symbol } from "./Symbol";
-import { Filter } from "./abstraction/Filter";
+import { Filter } from "./filters/abstraction/Filter";
 import { FilterType } from "../enums/FilterType";
-import { MaxOrdersFilter } from "./MaxOrdersFilter";
-import { MaxAlgoOrdersFilter } from "./MaxAlgoOrdersFilter";
+import { MaxOrdersFilter } from "./filters/MaxOrdersFilter";
+import { MaxAlgoOrdersFilter } from "./filters/MaxAlgoOrdersFilter";
 
 /**
  * Represents a single exchange info.

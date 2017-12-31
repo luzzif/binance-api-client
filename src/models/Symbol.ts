@@ -1,12 +1,12 @@
 import { SymbolStatus } from "../enums/SymbolStatus";
 import { OrderType } from "../enums/OrderType";
-import { Filter } from "./abstraction/Filter";
-import { PriceFilter } from "./PriceFilter";
+import { Filter } from "./filters/abstraction/Filter";
+import { PriceFilter } from "./filters/PriceFilter";
 import { FilterType } from "../enums/FilterType";
-import { LotSizeFilter } from "./LotSizeFilter";
-import { MinimumNotionalFilter } from "./MinimumNotionalFilter";
-import { MaxOrdersFilter } from "./MaxOrdersFilter";
-import { MaxAlgoOrdersFilter } from "./MaxAlgoOrdersFilter";
+import { LotSizeFilter } from "./filters/LotSizeFilter";
+import { MinimumNotionalFilter } from "./filters/MinimumNotionalFilter";
+import { MaxOrdersFilter } from "./filters/MaxOrdersFilter";
+import { MaxAlgoOrdersFilter } from "./filters/MaxAlgoOrdersFilter";
 
 /**
  * Represents a single symbol.
