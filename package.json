@@ -1,6 +1,6 @@
 {
     "name": "binance-api-client",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A wrapper which can be used to interact with Binance's API. Entirely developed in TypeScript.",
     "main": "build/index.js",
     "scripts": {
