@@ -11,7 +11,7 @@ export class OrderFull {
         this._result = new OrderResult( json );
 
         this._fills = [];
-        for( let jsonFill of json._fills ) {
+        for( let jsonFill of json.fills ) {
             this._fills.push( new PlacedOrderFill( jsonFill ) );
         }
 

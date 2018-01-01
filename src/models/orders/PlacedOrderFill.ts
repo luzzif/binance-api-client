@@ -10,11 +10,10 @@ export class PlacedOrderFill {
 
     constructor( json: any ) {
 
-        this._quantity = json.price;
-        this._price = json.price;
         this._quantity = json.qty;
-        this._commission = json._commission;
-        this._commissionAsset = json._commissionAsset;
+        this._price = json.price;
+        this._commission = json.commission;
+        this._commissionAsset = json.commissionAsset;
 
     }
 

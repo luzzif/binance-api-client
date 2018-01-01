@@ -20,16 +20,16 @@ export class OrderResult {
     constructor( json: any ) {
 
         this._symbol = json.symbol;
-        this._orderId = json._orderId;
-        this._clientOrderId = json._clientOrderId;
+        this._orderId = json.orderId;
+        this._clientOrderId = json.clientOrderId;
         this._timestamp = new Date( json.transactTime );
         this._price = json.price;
         this._originalQuantity = json.origQty;
         this._executedQuantity = json.executedQty;
         this._status = OrderStatus[ json.status as string ];
-        this._timeInForce = TimeInForce[ json._timeInForce as string ];
+        this._timeInForce = TimeInForce[ json.timeInForce as string ];
         this._type = OrderType[ json.type as string ];
-        this._side = OrderSide[ json._side as string ];
+        this._side = OrderSide[ json.side as string ];
 
     }
 
