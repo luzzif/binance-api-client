@@ -9,8 +9,8 @@ export class RateLimit {
 
     constructor( json: any ) {
 
-        this._type = json.rateLimitType;
-        this._interval = json.interval;
+        this._type = RateLimitType[ json.rateLimitType as string ];
+        this._interval = RateLimitInterval[ json.interval as string ];
         this._value = json.limit;
 
     }
