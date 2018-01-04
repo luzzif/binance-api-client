@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OrderBook | binance-api-client</title>
+	<title>PlacedOrder | binance-api-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_models_orderbook_.html">&quot;models/OrderBook&quot;</a>
+					<a href="../modules/_models_orders_placedorder_.html">&quot;models/orders/PlacedOrder&quot;</a>
 				</li>
 				<li>
-					<a href="_models_orderbook_.orderbook.html">OrderBook</a>
+					<a href="_models_orders_placedorder_.placedorder.html">PlacedOrder</a>
 				</li>
 			</ul>
-			<h1>Class OrderBook</h1>
+			<h1>Class PlacedOrder</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a single order book.</p>
+						<p>Represents a single already placed order.</p>
 					</div>
 				</div>
 			</section>
@@ -80,7 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OrderBook</span>
+						<span class="target">PlacedOrder</span>
 					</li>
 				</ul>
 			</section>
@@ -91,21 +91,21 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_models_orderbook_.orderbook.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_models_orders_placedorder_.placedorder.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_models_orderbook_.orderbook.html#_asks" class="tsd-kind-icon">_asks</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_models_orderbook_.orderbook.html#_bids" class="tsd-kind-icon">_bids</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_models_orders_placedorder_.placedorder.html#_price" class="tsd-kind-icon">_price</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_models_orders_placedorder_.placedorder.html#_quantity" class="tsd-kind-icon">_quantity</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_models_orderbook_.orderbook.html#asks" class="tsd-kind-icon">asks</a></li>
-								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_models_orderbook_.orderbook.html#bids" class="tsd-kind-icon">bids</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_models_orders_placedorder_.placedorder.html#price" class="tsd-kind-icon">price</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_models_orders_placedorder_.placedorder.html#quantity" class="tsd-kind-icon">quantity</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,13 +117,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Order<wbr>Book<span class="tsd-signature-symbol">(</span>json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Placed<wbr>Order<span class="tsd-signature-symbol">(</span>json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/2d7f7fe/src/models/OrderBook.ts#L9">models/OrderBook.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/PlacedOrder.ts#L7">models/orders/PlacedOrder.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -132,7 +132,7 @@
 									<h5>json: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_models_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -140,22 +140,22 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="_asks" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _asks</h3>
-					<div class="tsd-signature tsd-kind-icon">_asks<span class="tsd-signature-symbol">:</span> <a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="_price" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _price</h3>
+					<div class="tsd-signature tsd-kind-icon">_price<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/2d7f7fe/src/models/OrderBook.ts#L9">models/OrderBook.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/PlacedOrder.ts#L6">models/orders/PlacedOrder.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="_bids" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _bids</h3>
-					<div class="tsd-signature tsd-kind-icon">_bids<span class="tsd-signature-symbol">:</span> <a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="_quantity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _quantity</h3>
+					<div class="tsd-signature tsd-kind-icon">_quantity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/2d7f7fe/src/models/OrderBook.ts#L8">models/OrderBook.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/PlacedOrder.ts#L7">models/orders/PlacedOrder.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,31 +163,31 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<a name="asks" class="tsd-anchor"></a>
-					<h3>asks</h3>
+					<a name="price" class="tsd-anchor"></a>
+					<h3>price</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> asks<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> asks<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> price<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> price<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/2d7f7fe/src/models/OrderBook.ts#L33">models/OrderBook.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/PlacedOrder.ts#L14">models/orders/PlacedOrder.ts:14</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/2d7f7fe/src/models/OrderBook.ts#L37">models/OrderBook.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/PlacedOrder.ts#L18">models/orders/PlacedOrder.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -195,31 +195,31 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<a name="bids" class="tsd-anchor"></a>
-					<h3>bids</h3>
+					<a name="quantity" class="tsd-anchor"></a>
+					<h3>quantity</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> bids<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> bids<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> quantity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> quantity<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/2d7f7fe/src/models/OrderBook.ts#L25">models/OrderBook.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/PlacedOrder.ts#L22">models/orders/PlacedOrder.ts:22</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/2d7f7fe/src/models/OrderBook.ts#L29">models/OrderBook.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/PlacedOrder.ts#L26">models/orders/PlacedOrder.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="_models_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -235,7 +235,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_models_orderbook_.html">"models/<wbr>Order<wbr>Book"</a>
+						<a href="../modules/_models_orders_placedorder_.html">"models/orders/<wbr>Placed<wbr>Order"</a>
 					</li>
 				</ul>
 			</nav>
@@ -244,22 +244,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_models_orderbook_.orderbook.html" class="tsd-kind-icon">Order<wbr>Book</a>
+						<a href="_models_orders_placedorder_.placedorder.html" class="tsd-kind-icon">Placed<wbr>Order</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<a href="_models_orderbook_.orderbook.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_models_orders_placedorder_.placedorder.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_models_orderbook_.orderbook.html#_asks" class="tsd-kind-icon">_asks</a>
+								<a href="_models_orders_placedorder_.placedorder.html#_price" class="tsd-kind-icon">_price</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="_models_orderbook_.orderbook.html#_bids" class="tsd-kind-icon">_bids</a>
+								<a href="_models_orders_placedorder_.placedorder.html#_quantity" class="tsd-kind-icon">_quantity</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-								<a href="_models_orderbook_.orderbook.html#asks" class="tsd-kind-icon">asks</a>
+								<a href="_models_orders_placedorder_.placedorder.html#price" class="tsd-kind-icon">price</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-								<a href="_models_orderbook_.orderbook.html#bids" class="tsd-kind-icon">bids</a>
+								<a href="_models_orders_placedorder_.placedorder.html#quantity" class="tsd-kind-icon">quantity</a>
 							</li>
 						</ul>
 					</li>

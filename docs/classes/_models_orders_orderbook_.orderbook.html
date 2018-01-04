@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ApiError | binance-api-client</title>
+	<title>OrderBook | binance-api-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_errors_apierror_.html">&quot;errors/ApiError&quot;</a>
+					<a href="../modules/_models_orders_orderbook_.html">&quot;models/orders/OrderBook&quot;</a>
 				</li>
 				<li>
-					<a href="_errors_apierror_.apierror.html">ApiError</a>
+					<a href="_models_orders_orderbook_.orderbook.html">OrderBook</a>
 				</li>
 			</ul>
-			<h1>Class ApiError</h1>
+			<h1>Class OrderBook</h1>
 		</div>
 	</div>
 </header>
@@ -72,10 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Thrown when Binance&#39;s API response is identified as an error.
-							Both code and message are taken from the response message itself
-							and are returned from the client directly from Binance, without
-						alterations.</p>
+						<p>Represents a single order book.</p>
 					</div>
 				</div>
 			</section>
@@ -83,12 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">Error</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">ApiError</span>
-							</li>
-						</ul>
+						<span class="target">OrderBook</span>
 					</li>
 				</ul>
 			</section>
@@ -99,16 +91,21 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_errors_apierror_.apierror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_models_orders_orderbook_.orderbook.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_models_orders_orderbook_.orderbook.html#_asks" class="tsd-kind-icon">_asks</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_models_orders_orderbook_.orderbook.html#_bids" class="tsd-kind-icon">_bids</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Properties</h3>
+							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="_errors_apierror_.apierror.html#error" class="tsd-kind-icon">Error</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external"><a href="_errors_apierror_.apierror.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external"><a href="_errors_apierror_.apierror.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static tsd-is-external"><a href="_errors_apierror_.apierror.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_models_orders_orderbook_.orderbook.html#asks" class="tsd-kind-icon">asks</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="_models_orders_orderbook_.orderbook.html#bids" class="tsd-kind-icon">bids</a></li>
 							</ul>
 						</section>
 					</div>
@@ -120,74 +117,114 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<wbr>Error<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_errors_apierror_.apierror.html" class="tsd-signature-type">ApiError</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Order<wbr>Book<span class="tsd-signature-symbol">(</span>json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_orders_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/errors/ApiError.ts#L7">errors/ApiError.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/OrderBook.ts#L9">models/orders/OrderBook.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>code: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<h5>json: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_errors_apierror_.apierror.html" class="tsd-signature-type">ApiError</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_models_orders_orderbook_.orderbook.html" class="tsd-signature-type">OrderBook</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
-					<a name="error" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
-					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="_asks" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _asks</h3>
+					<div class="tsd-signature tsd-kind-icon">_asks<span class="tsd-signature-symbol">:</span> <a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:884</li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/OrderBook.ts#L9">models/orders/OrderBook.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-					<a name="message" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="_bids" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _bids</h3>
+					<div class="tsd-signature tsd-kind-icon">_bids<span class="tsd-signature-symbol">:</span> <a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from Error.message</p>
 						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:874</li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/OrderBook.ts#L8">models/orders/OrderBook.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-					<a name="name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.name</p>
-						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:873</li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="asks" class="tsd-anchor"></a>
+					<h3>asks</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> asks<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> asks<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/OrderBook.ts#L33">models/orders/OrderBook.ts:33</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/OrderBook.ts#L37">models/orders/OrderBook.ts:37</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static tsd-is-external">
-					<a name="stack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
-					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.stack</p>
-						<p>Overrides Error.stack</p>
-						<ul>
-							<li>Defined in /usr/local/lib/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:875</li>
-						</ul>
-					</aside>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+					<a name="bids" class="tsd-anchor"></a>
+					<h3>bids</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> bids<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> bids<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/OrderBook.ts#L25">models/orders/OrderBook.ts:25</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/8d9f1c2/src/models/orders/OrderBook.ts#L29">models/orders/OrderBook.ts:29</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="_models_orders_placedorder_.placedorder.html" class="tsd-signature-type">PlacedOrder</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -198,7 +235,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_errors_apierror_.html">"errors/<wbr>Api<wbr>Error"</a>
+						<a href="../modules/_models_orders_orderbook_.html">"models/orders/<wbr>Order<wbr>Book"</a>
 					</li>
 				</ul>
 			</nav>
@@ -207,22 +244,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-is-external">
-						<a href="_errors_apierror_.apierror.html" class="tsd-kind-icon">Api<wbr>Error</a>
+						<a href="_models_orders_orderbook_.orderbook.html" class="tsd-kind-icon">Order<wbr>Book</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<a href="_errors_apierror_.apierror.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_models_orders_orderbook_.orderbook.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
-								<a href="_errors_apierror_.apierror.html#error" class="tsd-kind-icon">Error</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_models_orders_orderbook_.orderbook.html#_asks" class="tsd-kind-icon">_asks</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-								<a href="_errors_apierror_.apierror.html#message" class="tsd-kind-icon">message</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="_models_orders_orderbook_.orderbook.html#_bids" class="tsd-kind-icon">_bids</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-								<a href="_errors_apierror_.apierror.html#name" class="tsd-kind-icon">name</a>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_models_orders_orderbook_.orderbook.html#asks" class="tsd-kind-icon">asks</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static tsd-is-external">
-								<a href="_errors_apierror_.apierror.html#stack" class="tsd-kind-icon">stack</a>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
+								<a href="_models_orders_orderbook_.orderbook.html#bids" class="tsd-kind-icon">bids</a>
 							</li>
 						</ul>
 					</li>
