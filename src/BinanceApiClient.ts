@@ -39,9 +39,9 @@ import { setWsHeartbeat } from "ws-heartbeat/client";
  */
 export class BinanceApiClient {
 
-    private readonly API_KEY: string;
-    private readonly API_SECRET: string;
-    private readonly WS_BASE_URL: string = "wss://stream.binance.com:9443/ws/";
+    private static API_KEY: string;
+    private static API_SECRET: string;
+    private static readonly WS_BASE_URL: string = "wss://stream.binance.com:9443/ws/";
 
     /**
      * Initializes a new Binance API client.
@@ -50,8 +50,8 @@ export class BinanceApiClient {
      * @param apiSecret The personal account API secret.
      */
     constructor( apiKey?: string, apiSecret?: string ) {
-        this.API_KEY = apiKey;
-        this.API_SECRET = apiSecret;
+        BinanceApiClient.API_KEY = apiKey;
+        BinanceApiClient.API_SECRET = apiSecret;
     }
 
     /**
@@ -600,7 +600,7 @@ export class BinanceApiClient {
                 onClosedConnection();
             }
             websocket = new WebSocket(
-                this.WS_BASE_URL + symbol.toLowerCase() + "@depth",
+                BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth",
                 { perMessageDeflate: false }
             );
             websocket.addEventListener( "message", handleMessage );
@@ -649,11 +649,11 @@ export class BinanceApiClient {
                 onClosedConnection();
             }
             websocket = new WebSocket(
-                this.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
+                BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
                 { perMessageDeflate: false }
             );
-            websocket.addEventListener( "message", handleMessage );
-            websocket.addEventListener( "close", handleClosedConnection );
+            websocket.on( "message", handleMessage );
+            websocket.on( "close", handleClosedConnection );
 
             setWsHeartbeat( websocket, '{ "kind": "ping" }', {
                 pingTimeout: 60000,
@@ -691,11 +691,11 @@ export class BinanceApiClient {
                 onClosedConnection();
             }
             websocket = new WebSocket(
-                this.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
+                BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
                 { perMessageDeflate: false }
             );
-            websocket.addEventListener( "message", handleMessage );
-            websocket.addEventListener( "close", handleClosedConnection );
+            websocket.on( "message", handleMessage );
+            websocket.on( "close", handleClosedConnection );
 
             setWsHeartbeat( websocket, '{ "kind": "ping" }', {
                 pingTimeout: 60000,
@@ -730,11 +730,11 @@ export class BinanceApiClient {
                 onClosedConnection();
             }
             websocket = new WebSocket(
-                this.WS_BASE_URL + listenKey,
+                BinanceApiClient.WS_BASE_URL + listenKey,
                 { perMessageDeflate: false }
             );
-            websocket.addEventListener( "message", handleMessage );
-            websocket.addEventListener( "close", handleClosedConnection );
+            websocket.on( "message", handleMessage );
+            websocket.on( "close", handleClosedConnection );
 
             setWsHeartbeat( websocket, '{ "kind": "ping" }', {
                 pingTimeout: 60000,
@@ -849,20 +849,20 @@ export class BinanceApiClient {
             return;
         }
 
-        if( isNullOrUndefined( this.API_KEY ) ) {
+        if( isNullOrUndefined( BinanceApiClient.API_KEY ) ) {
             throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
         }
-        headers[ "X-MBX-APIKEY" ] = this.API_KEY;
+        headers[ "X-MBX-APIKEY" ] = BinanceApiClient.API_KEY;
 
         if( authenticationMethod === AuthenticationMethod.SIGNED ) {
 
-            if( isNullOrUndefined( this.API_SECRET ) ) {
+            if( isNullOrUndefined( BinanceApiClient.API_SECRET ) ) {
                 throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
             }
             apiUrl.searchParams.append( "timestamp", new Date().getTime().toString() );
             apiUrl.searchParams.append(
                 "signature",
-                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), this.API_SECRET )
+                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), BinanceApiClient.API_SECRET )
             );
 
         }
