@@ -592,23 +592,32 @@ export class BinanceApiClient {
         onMessage: ( update: OrderBookUpdate ) => any,
         onClosedConnection: () => any ): void {
 
-        let websocket: WebSocket = new WebSocket(
-            this.WS_BASE_URL + symbol.toLowerCase() + "@depth",
-            { perMessageDeflate: false }
-        );
+        let websocket: WebSocket;
 
-        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
-            pingTimeout: 60000,
-            pingInterval: 60000
-        } );
+        function handleClosedConnection() {
 
-        websocket.on( "message", ( data ) => {
+            if( !isNullOrUndefined( websocket ) ) {
+                onClosedConnection();
+            }
+            websocket = new WebSocket(
+                this.WS_BASE_URL + symbol.toLowerCase() + "@depth",
+                { perMessageDeflate: false }
+            );
+            websocket.addEventListener( "message", handleMessage );
+            websocket.addEventListener( "close", handleClosedConnection );
+
+            setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+                pingTimeout: 60000,
+                pingInterval: 60000
+            } );
+
+        }
+
+        function handleMessage( data ) {
             onMessage( new OrderBookUpdate( JSON.parse( data ) ) );
-        } );
+        }
 
-        websocket.on( "close", async () => {
-            onClosedConnection();
-        } );
+        handleClosedConnection();
 
     }
 
@@ -628,23 +637,32 @@ export class BinanceApiClient {
         onMessage: ( update: CandlestickUpdate ) => any,
         onClosedConnection?: () => any ) {
 
-        let websocket: WebSocket = new WebSocket(
-            this.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
-            { perMessageDeflate: false }
-        );
+        let websocket: WebSocket;
 
-        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
-            pingTimeout: 60000,
-            pingInterval: 60000
-        } );
-
-        websocket.on( "message", ( data ) => {
+        function handleMessage( data ) {
             onMessage( new CandlestickUpdate( JSON.parse( data ) ) );
-        } );
+        }
 
-        websocket.on( "close", async () => {
-            onClosedConnection();
-        } );
+        function handleClosedConnection() {
+
+            if( !isNullOrUndefined( websocket ) ) {
+                onClosedConnection();
+            }
+            websocket = new WebSocket(
+                this.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
+                { perMessageDeflate: false }
+            );
+            websocket.addEventListener( "message", handleMessage );
+            websocket.addEventListener( "close", handleClosedConnection );
+
+            setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+                pingTimeout: 60000,
+                pingInterval: 60000
+            } );
+
+        }
+
+        handleClosedConnection();
 
     }
 
@@ -661,23 +679,32 @@ export class BinanceApiClient {
         onMessage: ( update: TradeUpdate ) => any,
         onClosedConnection: () => any ): void {
 
-        let websocket: WebSocket = new WebSocket(
-            this.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
-            { perMessageDeflate: false }
-        );
+        let websocket: WebSocket;
 
-        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
-            pingTimeout: 60000,
-            pingInterval: 60000
-        } );
-
-        websocket.on( "message", ( data ) => {
+        function handleMessage( data: any ) {
             onMessage( new TradeUpdate( JSON.parse( data ) ) );
-        } );
+        }
 
-        websocket.on( "close", async () => {
-            onClosedConnection();
-        } );
+        function handleClosedConnection() {
+
+            if( !isNullOrUndefined( websocket ) ) {
+                onClosedConnection();
+            }
+            websocket = new WebSocket(
+                this.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
+                { perMessageDeflate: false }
+            );
+            websocket.addEventListener( "message", handleMessage );
+            websocket.addEventListener( "close", handleClosedConnection );
+
+            setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+                pingTimeout: 60000,
+                pingInterval: 60000
+            } );
+
+        }
+
+        handleClosedConnection();
 
     }
 
@@ -695,17 +722,28 @@ export class BinanceApiClient {
         onMessage: ( update: AccountUpdate | OrderUpdate ) => any,
         onClosedConnection: () => any ): void {
 
-        let websocket: WebSocket = new WebSocket(
-            this.WS_BASE_URL + listenKey,
-            { perMessageDeflate: false }
-        );
+        let websocket: WebSocket;
 
-        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
-            pingTimeout: 60000,
-            pingInterval: 60000
-        } );
+        function handleClosedConnection() {
 
-        websocket.on( "message", ( data ) => {
+            if( !isNullOrUndefined( websocket ) ) {
+                onClosedConnection();
+            }
+            websocket = new WebSocket(
+                this.WS_BASE_URL + listenKey,
+                { perMessageDeflate: false }
+            );
+            websocket.addEventListener( "message", handleMessage );
+            websocket.addEventListener( "close", handleClosedConnection );
+
+            setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+                pingTimeout: 60000,
+                pingInterval: 60000
+            } );
+
+        }
+
+        function handleMessage( data: any ) {
 
             let jsonData = JSON.parse( data );
             switch( jsonData.e ) {
@@ -721,11 +759,9 @@ export class BinanceApiClient {
 
             }
 
-        } );
+        }
 
-        websocket.on( "close", async () => {
-            onClosedConnection();
-        } );
+        handleClosedConnection();
 
     }
 
