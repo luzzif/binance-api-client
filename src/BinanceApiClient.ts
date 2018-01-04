@@ -32,6 +32,7 @@ import { ExchangeInfo } from "./models/ExchangeInfo";
 import { ResponseType } from "./enums/ResponseType";
 import { OrderResult } from "./models/orders/OrderResult";
 import { OrderFull } from "./models/orders/OrderFull";
+import { setWsHeartbeat } from "ws-heartbeat/client";
 
 /**
  * Represents a single Binance API client.
@@ -582,18 +583,31 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about a
      * single symbol's order book updates.
      *
-     * @param symbol   The symbol of which we want to get the order book updates.
-     * @param callback A function to be called when a new update is received.
+     * @param symbol             The symbol of which we want to get the order book updates.
+     * @param onMessage          A function to be called when a new update is received.
+     * @param onClosedConnection A function to be called when the web socket connection gets closed.
      */
-    public monitorOrderBook( symbol: string, callback: ( update: OrderBookUpdate ) => any ): void {
+    public monitorOrderBook(
+        symbol: string,
+        onMessage: ( update: OrderBookUpdate ) => any,
+        onClosedConnection: () => any ): void {
 
         let websocket: WebSocket = new WebSocket(
             this.WS_BASE_URL + symbol.toLowerCase() + "@depth",
             { perMessageDeflate: false }
         );
 
+        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+            pingTimeout: 60000,
+            pingInterval: 60000
+        } );
+
         websocket.on( "message", ( data ) => {
-            callback( new OrderBookUpdate( JSON.parse( data ) ) );
+            onMessage( new OrderBookUpdate( JSON.parse( data ) ) );
+        } );
+
+        websocket.on( "close", async () => {
+            onClosedConnection();
         } );
 
     }
@@ -602,23 +616,34 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about
      * Kline/candlestick updates.
      *
-     * @param symbol   The symbol of which we want to get the candlestick updates.
-     * @param interval The interval to which the requested candlestick updates
-     *                 refer to.
-     * @param callback A function to be called when a new update is received.
+     * @param symbol             The symbol of which we want to get the candlestick updates.
+     * @param interval           The interval to which the requested candlestick updates
+     *                           refer to.
+     * @param onMessage          A function to be called when a new update is received.
+     * @param onClosedConnection A function to be called when the web socket connection gets closed.
      */
-    public monitorCandlesticks(
+    public async monitorCandlesticks(
         symbol: string,
         interval: CandlestickInterval,
-        callback: ( update: CandlestickUpdate ) => any ): void {
+        onMessage: ( update: CandlestickUpdate ) => any,
+        onClosedConnection?: () => any ) {
 
         let websocket: WebSocket = new WebSocket(
             this.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
             { perMessageDeflate: false }
         );
 
+        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+            pingTimeout: 60000,
+            pingInterval: 60000
+        } );
+
         websocket.on( "message", ( data ) => {
-            callback( new CandlestickUpdate( JSON.parse( data ) ) );
+            onMessage( new CandlestickUpdate( JSON.parse( data ) ) );
+        } );
+
+        websocket.on( "close", async () => {
+            onClosedConnection();
         } );
 
     }
@@ -627,20 +652,31 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about
      * trade updates.
      *
-     * @param symbol   The symbol of which we want to get the trade updates.
-     * @param callback A function to be called when a new update is received.
+     * @param symbol             The symbol of which we want to get the trade updates.
+     * @param onMessage          A function to be called when a new update is received.
+     * @param onClosedConnection A function to be called when the web socket connection gets closed.
      */
     public monitorTrades(
         symbol: string,
-        callback: ( update: TradeUpdate ) => any ): void {
+        onMessage: ( update: TradeUpdate ) => any,
+        onClosedConnection: () => any ): void {
 
         let websocket: WebSocket = new WebSocket(
             this.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
             { perMessageDeflate: false }
         );
 
+        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+            pingTimeout: 60000,
+            pingInterval: 60000
+        } );
+
         websocket.on( "message", ( data ) => {
-            callback( new TradeUpdate( JSON.parse( data ) ) );
+            onMessage( new TradeUpdate( JSON.parse( data ) ) );
+        } );
+
+        websocket.on( "close", async () => {
+            onClosedConnection();
         } );
 
     }
@@ -649,18 +685,25 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about
      * the personal account updates.
      *
-     * @param listenKey  The listen key returned when a user data stream gets
-     *                   initialized by [[openUserStream]].
-     * @param callback A function to be called when a new account update is received.
+     * @param listenKey          The listen key returned when a user data stream gets
+     *                           initialized by [[openUserStream]].
+     * @param onMessage          A function to be called when a new account update is received.
+     * @param onClosedConnection A function to be called when the web socket connection gets closed.
      */
     public monitorUser(
         listenKey: string,
-        callback: ( update: AccountUpdate | OrderUpdate ) => any ): void {
+        onMessage: ( update: AccountUpdate | OrderUpdate ) => any,
+        onClosedConnection: () => any ): void {
 
         let websocket: WebSocket = new WebSocket(
             this.WS_BASE_URL + listenKey,
             { perMessageDeflate: false }
         );
+
+        setWsHeartbeat( websocket, '{ "kind": "ping" }', {
+            pingTimeout: 60000,
+            pingInterval: 60000
+        } );
 
         websocket.on( "message", ( data ) => {
 
@@ -668,16 +711,20 @@ export class BinanceApiClient {
             switch( jsonData.e ) {
 
                 case "outboundAccountInfo": {
-                    callback( new AccountUpdate( jsonData ) );
+                    onMessage( new AccountUpdate( jsonData ) );
                     break;
                 }
                 case "executionReport": {
-                    callback( new OrderUpdate( jsonData ) );
+                    onMessage( new OrderUpdate( jsonData ) );
                     break;
                 }
 
             }
 
+        } );
+
+        websocket.on( "close", async () => {
+            onClosedConnection();
         } );
 
     }
