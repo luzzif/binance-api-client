@@ -590,13 +590,13 @@ export class BinanceApiClient {
     public monitorOrderBook(
         symbol: string,
         onMessage: ( update: OrderBookUpdate ) => any,
-        onClosedConnection: () => any ): void {
+        onClosedConnection?: () => any ): void {
 
         let websocket: WebSocket;
 
         function handleClosedConnection() {
 
-            if( !isNullOrUndefined( websocket ) ) {
+            if( !isNullOrUndefined( websocket ) && !isNullOrUndefined( onClosedConnection ) ) {
                 onClosedConnection();
             }
             websocket = new WebSocket(
@@ -645,7 +645,7 @@ export class BinanceApiClient {
 
         function handleClosedConnection() {
 
-            if( !isNullOrUndefined( websocket ) ) {
+            if( !isNullOrUndefined( websocket ) && !isNullOrUndefined( onClosedConnection ) ) {
                 onClosedConnection();
             }
             websocket = new WebSocket(
@@ -677,7 +677,7 @@ export class BinanceApiClient {
     public monitorTrades(
         symbol: string,
         onMessage: ( update: TradeUpdate ) => any,
-        onClosedConnection: () => any ): void {
+        onClosedConnection?: () => any ): void {
 
         let websocket: WebSocket;
 
@@ -687,7 +687,7 @@ export class BinanceApiClient {
 
         function handleClosedConnection() {
 
-            if( !isNullOrUndefined( websocket ) ) {
+            if( !isNullOrUndefined( websocket ) && !isNullOrUndefined( onClosedConnection ) ) {
                 onClosedConnection();
             }
             websocket = new WebSocket(
@@ -720,13 +720,13 @@ export class BinanceApiClient {
     public monitorUser(
         listenKey: string,
         onMessage: ( update: AccountUpdate | OrderUpdate ) => any,
-        onClosedConnection: () => any ): void {
+        onClosedConnection?: () => any ): void {
 
         let websocket: WebSocket;
 
         function handleClosedConnection() {
 
-            if( !isNullOrUndefined( websocket ) ) {
+            if( !isNullOrUndefined( websocket ) && !isNullOrUndefined( onClosedConnection ) ) {
                 onClosedConnection();
             }
             websocket = new WebSocket(
