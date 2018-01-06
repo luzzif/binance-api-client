@@ -4,6 +4,7 @@ import { TimeInForce } from "../../enums/TimeInForce";
 import { OrderExecutionStatus } from "../../enums/OrderExecutionStatus";
 import { OrderStatus } from "../../enums/OrderStatus";
 import { OrderRejectionMotive } from "../../enums/OrderRejectionMotive";
+import { FilterType } from "../../enums/FilterType";
 
 export class OrderUpdate {
 
@@ -27,14 +28,14 @@ export class OrderUpdate {
         this._timestamp = new Date( json.E );
         this._symbol = json.s;
         this._newClientId = json.c;
-        this._side = OrderSide[ json.S as string ];
-        this._type = OrderType[ json.o as string ];
-        this._timeInForce = TimeInForce[ json.f as string ];
+        this._side = OrderSide[ json.S as keyof typeof OrderSide ];
+        this._type = OrderType[ json.o as keyof typeof OrderType ];
+        this._timeInForce = TimeInForce[ json.f as keyof typeof TimeInForce ];
         this._quantity = json.q;
         this._price = json.p;
-        this._executionStatus = OrderExecutionStatus[ json.x as string ];
-        this._status = OrderStatus[ json.X as string ];
-        this._rejectionMotive = OrderRejectionMotive[ json.r as string ];
+        this._executionStatus = OrderExecutionStatus[ json.x as keyof typeof OrderExecutionStatus ];
+        this._status = OrderStatus[ json.X as keyof typeof OrderStatus ];
+        this._rejectionMotive = OrderRejectionMotive[ json.r as keyof typeof OrderRejectionMotive ];
         this._id = json.i;
         this._lastFilledTradePrice = json.L;
         this._placedAt = new Date( json.T );

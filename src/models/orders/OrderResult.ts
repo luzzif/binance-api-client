@@ -2,6 +2,7 @@ import { OrderStatus } from "../../enums/OrderStatus";
 import { TimeInForce } from "../../enums/TimeInForce";
 import { OrderType } from "../../enums/OrderType";
 import { OrderSide } from "../../enums/OrderSide";
+import { FilterType } from "../../enums/FilterType";
 
 export class OrderResult {
 
@@ -26,10 +27,10 @@ export class OrderResult {
         this._price = json.price;
         this._originalQuantity = json.origQty;
         this._executedQuantity = json.executedQty;
-        this._status = OrderStatus[ json.status as string ];
-        this._timeInForce = TimeInForce[ json.timeInForce as string ];
-        this._type = OrderType[ json.type as string ];
-        this._side = OrderSide[ json.side as string ];
+        this._status = OrderStatus[ json.status as keyof typeof OrderStatus ];
+        this._timeInForce = TimeInForce[ json.timeInForce as keyof typeof TimeInForce ];
+        this._type = OrderType[ json.type as keyof typeof OrderType ];
+        this._side = OrderSide[ json.side as keyof typeof OrderSide ];
 
     }
 

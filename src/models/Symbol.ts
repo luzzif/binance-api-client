@@ -25,7 +25,7 @@ export class Symbol {
     constructor( json: any ) {
 
         this._name = json.symbol;
-        this._status = SymbolStatus[ json.status as string ];
+        this._status = SymbolStatus[ json.status as keyof typeof SymbolStatus ];
         this._baseAsset = json.baseAsset;
         this._baseAssetPrecision = json.baseAssetPrecision;
         this._quoteAsset = json.quoteAsset;
@@ -34,14 +34,14 @@ export class Symbol {
 
         this._orderTypes = [];
         for( let orderType of json.orderTypes ) {
-            this._orderTypes.push( OrderType[ orderType as string ] );
+            this._orderTypes.push( OrderType[ orderType as keyof typeof OrderType ] );
         }
 
         this._filters = [];
         for( let jsonFilter of json.filters ) {
 
             let filter: LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter;
-            switch( FilterType[ jsonFilter.filterType as string ] ) {
+            switch( FilterType[ jsonFilter.filterType as keyof typeof FilterType ] ) {
 
                 case FilterType.PRICE_FILTER: {
                     filter = new PriceFilter( jsonFilter );

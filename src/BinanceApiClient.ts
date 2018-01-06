@@ -33,6 +33,7 @@ import { ResponseType } from "./enums/ResponseType";
 import { OrderResult } from "./models/orders/OrderResult";
 import { OrderFull } from "./models/orders/OrderFull";
 import { HeartbeatHandler } from "websocket-heartbeats";
+import { IncomingMessage } from "http";
 
 /**
  * Represents a single Binance API client.
@@ -605,7 +606,7 @@ export class BinanceApiClient {
             onLostConnection
         );
 
-        websocket.on( "message", ( data ) => {
+        websocket.on( "message", ( data: any ) => {
             onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
         } );
 
@@ -638,7 +639,7 @@ export class BinanceApiClient {
             onLostConnection
         );
 
-        websocket.on( "message", ( data ) => {
+        websocket.on( "message", ( data: any ) => {
             onUpdate( new CandlestickUpdate( JSON.parse( data ) ) );
         } );
 
@@ -668,7 +669,7 @@ export class BinanceApiClient {
             onLostConnection
         );
 
-        websocket.on( "message", ( data ) => {
+        websocket.on( "message", ( data: any ) => {
             onUpdate( new TradeUpdate( JSON.parse( data ) ) );
         } );
 
@@ -699,7 +700,7 @@ export class BinanceApiClient {
             onLostConnection
         );
 
-        websocket.on( "message", ( data ) => {
+        websocket.on( "message", ( data: any ) => {
 
             let jsonData = JSON.parse( data );
             switch( jsonData.e ) {
@@ -761,7 +762,7 @@ export class BinanceApiClient {
 
         try {
 
-            return await request( {
+            let response: any = await request( {
 
                 method: HttpMethod[ httpMethod ],
                 url: apiUrl.href,
@@ -770,9 +771,9 @@ export class BinanceApiClient {
                 maxAttempts: 10,
                 retryDelay: 2500,
                 retryStrategy: request.RetryStrategies.NetworkError,
-                fullResponse: false
 
             } );
+            return response.body;
 
         }
         catch( error ) {
@@ -819,7 +820,7 @@ export class BinanceApiClient {
             apiUrl.searchParams.append( "timestamp", new Date().getTime().toString() );
             apiUrl.searchParams.append(
                 "signature",
-                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), BinanceApiClient.API_SECRET )
+                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), BinanceApiClient.API_SECRET ).toString()
             );
 
         }

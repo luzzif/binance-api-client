@@ -32,7 +32,7 @@ export class ExchangeInfo {
         for( let jsonFilter of json.exchangeFilters ) {
 
             let filter: ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter );
-            switch( FilterType[ jsonFilter.filterType as string ] ) {
+            switch( FilterType[ jsonFilter.filterType as keyof typeof FilterType ] ) {
 
                 case FilterType.EXCHANGE_MAX_NUM_ORDERS: {
                     filter = new MaxOrdersFilter( jsonFilter );
