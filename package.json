@@ -32,7 +32,7 @@
         "request": "^2.83.0",
         "requestretry": "^1.12.2",
         "typescript": "^2.6.2",
-        "websocket-heartbeats": "^0.3.1",
+        "websocket-heartbeats": "^1.0.0",
         "ws": "^3.3.3"
     }
 }
