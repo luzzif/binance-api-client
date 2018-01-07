@@ -1,7 +1,7 @@
 /**
  * Represents a single order book update.
  */
-import { PlacedOrder } from "./PlacedOrder";
+import { PlacedOrder } from "../../order/PlacedOrder";
 
 export class OrderBookUpdate {
 

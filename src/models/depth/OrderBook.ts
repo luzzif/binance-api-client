@@ -1,4 +1,4 @@
-import { PlacedOrder } from "./PlacedOrder";
+import { PlacedOrder } from "../order/PlacedOrder";
 
 /**
  * Represents a single order book.

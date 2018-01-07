@@ -1,6 +1,6 @@
-import { RateLimitType } from "../enums/RateLimitType";
-import { RateLimitInterval } from "../enums/RateLimitInterval";
-import { FilterType } from "../enums/FilterType";
+import { RateLimitType } from "../../enums/RateLimitType";
+import { RateLimitInterval } from "../../enums/RateLimitInterval";
+import { FilterType } from "../../enums/FilterType";
 
 export class RateLimit {
 

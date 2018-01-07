@@ -1,11 +1,11 @@
-import { RateLimit } from "./RateLimit";
+import { RateLimit } from "../filter/RateLimit";
 import { Symbol } from "./Symbol";
-import { FilterType } from "../enums/FilterType";
-import { MaxOrdersFilter } from "./filters/MaxOrdersFilter";
-import { MaxAlgoOrdersFilter } from "./filters/MaxAlgoOrdersFilter";
-import { LotSizeFilter } from "./filters/LotSizeFilter";
-import { MinimumNotionalFilter } from "./filters/MinimumNotionalFilter";
-import { PriceFilter } from "./filters/PriceFilter";
+import { FilterType } from "../../enums/FilterType";
+import { MaxOrdersFilter } from "../filter/MaxOrdersFilter";
+import { MaxAlgoOrdersFilter } from "../filter/MaxAlgoOrdersFilter";
+import { LotSizeFilter } from "../filter/LotSizeFilter";
+import { MinimumNotionalFilter } from "../filter/MinimumNotionalFilter";
+import { PriceFilter } from "../filter/PriceFilter";
 
 /**
  * Represents a single exchange info.

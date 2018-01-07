@@ -1,10 +1,10 @@
-import { OrderSide } from "../../enums/OrderSide";
-import { OrderType } from "../../enums/OrderType";
-import { TimeInForce } from "../../enums/TimeInForce";
-import { OrderExecutionStatus } from "../../enums/OrderExecutionStatus";
-import { OrderStatus } from "../../enums/OrderStatus";
-import { OrderRejectionMotive } from "../../enums/OrderRejectionMotive";
-import { FilterType } from "../../enums/FilterType";
+import { OrderSide } from "../../../enums/OrderSide";
+import { OrderType } from "../../../enums/OrderType";
+import { TimeInForce } from "../../../enums/TimeInForce";
+import { OrderExecutionStatus } from "../../../enums/OrderExecutionStatus";
+import { OrderStatus } from "../../../enums/OrderStatus";
+import { OrderRejectionMotive } from "../../../enums/OrderRejectionMotive";
+import { FilterType } from "../../../enums/FilterType";
 
 export class OrderUpdate {
 

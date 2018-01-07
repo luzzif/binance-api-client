@@ -1,7 +1,7 @@
 /**
  * Represents a single account update.
  */
-import { Balance } from "./Balance";
+import { Balance } from "../../account/Balance";
 
 export class AccountUpdate {
 

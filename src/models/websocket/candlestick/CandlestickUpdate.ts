@@ -1,4 +1,4 @@
-import { CandlestickInterval } from "../enums/CandlestickInterval";
+import { CandlestickInterval } from "../../../enums/CandlestickInterval";
 
 /**
  * Represents a single candlestick update.
