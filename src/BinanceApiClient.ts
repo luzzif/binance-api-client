@@ -412,7 +412,7 @@ export class BinanceApiClient {
      *
      * @returns An array representing all of the account's open orders.
      */
-    public async getOpenOrders( market: string, timeout?: number ): Promise< Order[] > {
+    public async getOpenOrders( market?: string, timeout?: number ): Promise< Order[] > {
 
         let openOrdersJson: any = await this.makeRequest(
             HttpMethod.GET,
