@@ -10,9 +10,9 @@ export class OrderResult {
     private _orderId: number;
     private _clientOrderId: string;
     private _timestamp: Date;
-    private _price: number;
-    private _originalQuantity: number;
-    private _executedQuantity: number;
+    private _price: string;
+    private _originalQuantity: string;
+    private _executedQuantity: string;
     private _status: OrderStatus;
     private _timeInForce: TimeInForce;
     private _type: OrderType;
@@ -66,27 +66,27 @@ export class OrderResult {
         this._timestamp = value;
     }
 
-    get price(): number {
+    get price(): string {
         return this._price;
     }
 
-    set price( value: number ) {
+    set price( value: string ) {
         this._price = value;
     }
 
-    get originalQuantity(): number {
+    get originalQuantity(): string {
         return this._originalQuantity;
     }
 
-    set originalQuantity( value: number ) {
+    set originalQuantity( value: string ) {
         this._originalQuantity = value;
     }
 
-    get executedQuantity(): number {
+    get executedQuantity(): string {
         return this._executedQuantity;
     }
 
-    set executedQuantity( value: number ) {
+    set executedQuantity( value: string ) {
         this._executedQuantity = value;
     }
 
