@@ -32,10 +32,10 @@ export class Order {
         this._originalQuantity = json.origQty;
         this._executedQuantity = json.executedQty;
         this._status = OrderStatus[ json.status as keyof typeof OrderStatus ];
-        this._timeInForce = TimeInForce[ json._timeInForce as keyof typeof TimeInForce ];
+        this._timeInForce = TimeInForce[ json.timeInForce as keyof typeof TimeInForce ];
         this._type = OrderType[ json.type as keyof typeof OrderType ];
-        this._side = OrderSide[ json._side as keyof typeof OrderSide ];
-        this._stopPrice = json._stopPrice;
+        this._side = OrderSide[ json.side as keyof typeof OrderSide ];
+        this._stopPrice = json.stopPrice;
         this._icebergQuantity = json.icebergQty;
         this._timestamp = new Date( json.time );
 
