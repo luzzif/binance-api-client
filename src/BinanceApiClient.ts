@@ -721,7 +721,7 @@ export class BinanceApiClient {
 
     }
 
-    public addCordProxy(url: string)
+    public addCorsProxy(url: string)
     {
       this.binanceUrl = url + "/" + this.binanceUrl;
     }
