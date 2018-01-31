@@ -20,7 +20,8 @@ export class OrderUpdate {
     private _status: OrderStatus;
     private _rejectionMotive: OrderRejectionMotive;
     private _id: number;
-    private _lastFilledTradePrice: number;
+    private _lastFilledTradePrice: number;    
+    private _cumulativeFilledQuantity: number;
     private _placedAt: Date;
 
     constructor( json: any ) {
@@ -38,6 +39,7 @@ export class OrderUpdate {
         this._rejectionMotive = OrderRejectionMotive[ json.r as keyof typeof OrderRejectionMotive ];
         this._id = json.i;
         this._lastFilledTradePrice = json.L;
+        this._cumulativeFilledQuantity = json.z;
         this._placedAt = new Date( json.T );
 
     }
@@ -144,6 +146,14 @@ export class OrderUpdate {
 
     set lastFilledTradePrice( value: number ) {
         this._lastFilledTradePrice = value;
+    }
+
+    get cumulativeFilledQuantity(): number {
+        return this._cumulativeFilledQuantity;
+    }
+
+    set cumulativeFilledQuantity(value: number) {
+        this._cumulativeFilledQuantity = value;
     }
 
     get placedAt(): Date {
