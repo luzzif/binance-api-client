@@ -612,11 +612,11 @@ export class BinanceApiClient {
             { perMessageDeflate: false }
         );
 
-        HeartbeatHandler.handle(
+        new HeartbeatHandler(
             websocket,
             isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
             onLostConnection
-        );
+        ).handle();
 
         websocket.on( "message", ( data: any ) => {
             // For a combined stream the data is wrapped in an object with the
@@ -631,8 +631,19 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about a
      * single symbol's order book updates.
      *
+<<<<<<< HEAD
      * @param symbol   The symbol of which we want to get the order book updates.
      * @param onUpdate A function to be called when a new update is received.
+=======
+     * @param symbol            The symbol of which we want to get the candlestick updates.
+     * @param interval          The interval to which the requested candlestick updates
+     *                          refer to.
+     * @param onUpdate          A function to be called when a new update is received.
+     * @param connectionTimeout Timeout based on which the web socket connection is
+     *                          considered to be broken based on a heartbeat monitor.
+     * @param onLostConnection  A callback to be invoked when the web socket connection
+     *                          is detected as broken.
+>>>>>>> f78c9c875a54d5fec06817d40c958e773b2b4bf6
      */
     public monitorOrderBook(
         symbol: string,
@@ -661,10 +672,19 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about
      * Kline/candlestick updates.
      *
+<<<<<<< HEAD
      * @param symbols  The symbols of which we want to get the candlestick updates.
      * @param interval The interval to which the requested candlestick updates
      *                 refer to.
      * @param onUpdate A function to be called when a new update is received.
+=======
+     * @param symbol            The symbol of which we want to get the trade updates.
+     * @param onUpdate          A function to be called when a new update is received.
+     * @param connectionTimeout Timeout based on which the web socket connection is
+     *                          considered to be broken based on a heartbeat monitor.
+     * @param onLostConnection  A callback to be invoked when the web socket connection
+     *                          is detected as broken.
+>>>>>>> f78c9c875a54d5fec06817d40c958e773b2b4bf6
      */
      public async monitorCandlesticksCombined(
          symbols: string[],
@@ -702,14 +722,10 @@ export class BinanceApiClient {
       * Initializes a web socket data stream that gives us information about
       * Kline/candlestick updates.
       *
-     * @param symbol            The symbol of which we want to get the candlestick updates.
-     * @param interval          The interval to which the requested candlestick updates
-     *                          refer to.
-     * @param onUpdate          A function to be called when a new update is received.
-     * @param connectionTimeout Timeout based on which the web socket connection is
-     *                          considered to be broken based on a heartbeat monitor.
-     * @param onLostConnection  A callback to be invoked when the web socket connection
-     *                          is detected as broken.
+      * @param symbol   The symbol of which we want to get the candlestick updates.
+      * @param interval The interval to which the requested candlestick updates
+      *                 refer to.
+      * @param onUpdate A function to be called when a new update is received.
       */
      public async monitorCandlesticks(
          symbol: string,
@@ -723,11 +739,11 @@ export class BinanceApiClient {
              { perMessageDeflate: false }
          );
 
-        new HeartbeatHandler(
+         HeartbeatHandler.handle(
              websocket,
              isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
              onLostConnection
-        ).handle();
+         );
 
          websocket.on( "message", ( data: any ) => {
              onUpdate( new CandlestickUpdate( JSON.parse( data ) ) );
@@ -776,12 +792,8 @@ export class BinanceApiClient {
       * Initializes a web socket data stream that gives us information about
       * trade updates.
       *
-     * @param symbol            The symbol of which we want to get the trade updates.
-     * @param onUpdate          A function to be called when a new update is received.
-     * @param connectionTimeout Timeout based on which the web socket connection is
-     *                          considered to be broken based on a heartbeat monitor.
-     * @param onLostConnection  A callback to be invoked when the web socket connection
-     *                          is detected as broken.
+      * @param symbol   The symbol of which we want to get the trade updates.
+      * @param onUpdate A function to be called when a new update is received.
       */
      public monitorTrades(
          symbol: string,
@@ -794,11 +806,11 @@ export class BinanceApiClient {
              { perMessageDeflate: false }
          );
 
-        new HeartbeatHandler(
+         HeartbeatHandler.handle(
              websocket,
              isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
              onLostConnection
-        ).handle();
+         );
 
          websocket.on( "message", ( data: any ) => {
              onUpdate( new TradeUpdate( JSON.parse( data ) ) );
@@ -806,6 +818,20 @@ export class BinanceApiClient {
 
      }
 
+<<<<<<< HEAD
+=======
+        new HeartbeatHandler(
+            websocket,
+            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+            onLostConnection
+        ).handle();
+
+        websocket.on( "message", ( data: any ) => {
+            onUpdate( new TradeUpdate( JSON.parse( data ) ) );
+        } );
+
+    }
+>>>>>>> f78c9c875a54d5fec06817d40c958e773b2b4bf6
 
     /**
      * Initializes a web socket data stream that gives us information about
