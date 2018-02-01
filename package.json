@@ -7,8 +7,8 @@
         "node": "^8.4.0"
     },
     "scripts": {
-        "build": "tsc",
-        "prepublishOnly": "tsc"
+        "build": "tsc && cp index.d.ts build",
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",
@@ -35,7 +35,7 @@
         "request": "^2.83.0",
         "requestretry": "^1.12.2",
         "typescript": "^2.6.2",
-        "websocket-heartbeats": "^1.0.0",
+        "websocket-heartbeats": "^1.1.1",
         "ws": "^3.3.3"
     }
 }
