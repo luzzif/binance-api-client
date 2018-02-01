@@ -688,13 +688,24 @@ export class BinanceApiClient {
      * @param onUpdate A function to be called when a new update is received.
      */
     public monitorTrades(
-        symbol: string,
+        symbol: string | string[],
         onUpdate: ( update: TradeUpdate ) => any,
         connectionTimeout: number,
         onLostConnection: () => any ): void {
-
-        let websocket: WebSocket = new WebSocket(
-            BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
+        const combineStreams: boolean = ( symbol instanceof Array );
+        let url: string = "";
+        if ( combineStreams ) {
+           url = BinanceApiClient.COMBINED_WS_BASE_URL;
+           for (let s of symbol) {
+               url += s.toLowerCase() + "@aggTrade" + "/";
+           }
+           // Trim the final slash
+           url.slice(0, -1);
+        } else if (typeof symbol === "string") {
+           url = BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade";
+        }
+        const websocket: WebSocket = new WebSocket(
+            url,
             { perMessageDeflate: false }
         );
 
@@ -705,7 +716,11 @@ export class BinanceApiClient {
         );
 
         websocket.on( "message", ( data: any ) => {
-            onUpdate( new TradeUpdate( JSON.parse( data ) ) );
+            if (combineStreams === true) {
+                onUpdate( new TradeUpdate( JSON.parse( data ) ) );
+            } else {
+                onUpdate( new TradeUpdate( JSON.parse( data.data ) ) );
+            }
         } );
 
     }
