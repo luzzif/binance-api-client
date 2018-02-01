@@ -596,23 +596,22 @@ export class BinanceApiClient {
         connectionTimeout: number,
         onLostConnection: () => any ): void {
 
-        if (symbol instanceof string) {
-            let websocket: WebSocket = new WebSocket(
-                BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth",
-                { perMessageDeflate: false }
-            );
-        } else {
-            const url: string = BinanceApiClient.WS_BASE_URL;
-            for (s of symbol) {
-                url += symbol.toLowerCase() + "@depth" + "/";
-            }
-            // Trim the final slash
-            str.slice(0, -1);
-            console.log(url);
-            let websocket: WebSocket = new WebSocket(
-                url,
-                { perMessageDeflate: false }
+        const combineStreams: boolean = ( symbol instanceof Array );
+        let url: string = "";
+        if ( combineStreams ) {
+           url = BinanceApiClient.COMBINED_WS_BASE_URL;
+           for (let s of symbol) {
+               url += s.toLowerCase() + "@depth" + "/";
+           }
+           // Trim the final slash
+           url.slice(0, -1);
+        } else if (typeof symbol === "string") {
+           url = BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth";
         }
+        const websocket: WebSocket = new WebSocket(
+            url,
+            { perMessageDeflate: false }
+        );
 
         HeartbeatHandler.handle(
             websocket,
@@ -621,12 +620,12 @@ export class BinanceApiClient {
         );
 
         websocket.on( "message", ( data: any ) => {
-            if (symbol instanceof string) {
-                onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
-            } else {
+            if (combineStreams === true) {
                 // For a combined stream the data is wrapped in an object with the
                 // streamname and the raw data.
                 onUpdate( new OrderBookUpdate( JSON.parse( data.data ) ) );
+            } else {
+                onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
             }
         } );
 
@@ -642,14 +641,26 @@ export class BinanceApiClient {
      * @param onUpdate A function to be called when a new update is received.
      */
     public async monitorCandlesticks(
-        symbol: string,
+        symbol: string | string[],
         interval: CandlestickInterval,
         onUpdate: ( update: CandlestickUpdate ) => any,
         connectionTimeout?: number,
         onLostConnection?: () => any ): Promise< void > {
 
-        let websocket: WebSocket = new WebSocket(
-            BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
+        const combineStreams: boolean = ( symbol instanceof Array );
+        let url: string = "";
+        if ( combineStreams ) {
+           url = BinanceApiClient.COMBINED_WS_BASE_URL;
+           for (let s of symbol) {
+               url += s.toLowerCase() + "@kline_" + interval + "/";
+           }
+           // Trim the final slash
+           url.slice(0, -1);
+        } else if (typeof symbol === "string") {
+           url = BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval;
+        }
+        const websocket: WebSocket = new WebSocket(
+            url,
             { perMessageDeflate: false }
         );
 
@@ -660,7 +671,11 @@ export class BinanceApiClient {
         );
 
         websocket.on( "message", ( data: any ) => {
-            onUpdate( new CandlestickUpdate( JSON.parse( data ) ) );
+            if ( combineStreams ) {
+                onUpdate( new CandlestickUpdate( JSON.parse( data.data ) ) );
+            } else {
+                onUpdate( new CandlestickUpdate( JSON.parse( data ) ) );
+            }
         } );
 
     }
