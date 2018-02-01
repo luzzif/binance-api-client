@@ -6,6 +6,7 @@ import { PlacedOrder } from "../../order/PlacedOrder";
 export class OrderBookUpdate {
 
     private _timestamp: Date;
+    private _symbol: string;
     private _id: number;
     private _asks: PlacedOrder[];
     private _bids: PlacedOrder[];
@@ -13,6 +14,7 @@ export class OrderBookUpdate {
     constructor( json: any ) {
 
         this._timestamp = new Date( json.E );
+        this._symbol = json.s;
         this._id = json.u;
 
         this._asks = [];
@@ -33,6 +35,14 @@ export class OrderBookUpdate {
 
     set timestamp( value: Date ) {
         this._timestamp = value;
+    }
+
+    get symbol(): string {
+        return this._symbol;
+    }
+
+    set symbol( value: string ) {
+        this._symbol = value;
     }
 
     get id(): number {

@@ -6,6 +6,7 @@ import { CandlestickInterval } from "../../../enums/CandlestickInterval";
 export class CandlestickUpdate {
 
     private _timestamp: Date;
+    private _symbol: string;
     private _openingTime: Date;
     private _openingPrice: number;
     private _highestPrice: number;
@@ -26,6 +27,7 @@ export class CandlestickUpdate {
     constructor( json: any ) {
 
         this._timestamp = new Date( json.E );
+        this._symbol = json.s;
         this._openingTime = new Date( json.k.t );
         this._openingPrice = json.k.o;
         this._highestPrice = json.k.h;
@@ -51,6 +53,14 @@ export class CandlestickUpdate {
 
     set timestamp( value: Date ) {
         this._timestamp = value;
+    }
+
+    get symbol(): string {
+        return this._symbol;
+    }
+
+    set symbol( value: string ) {
+        this._symbol = value;
     }
 
     get openingTime(): Date {
