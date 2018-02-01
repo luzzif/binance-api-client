@@ -40,6 +40,7 @@ import { IncomingMessage } from "http";
  */
 export class BinanceApiClient {
 
+    private static readonly COMBINED_WS_BASE_URL: string = "wss://stream.binance.com:9443/stream?streams=";
     private static readonly WS_BASE_URL: string = "wss://stream.binance.com:9443/ws/";
     private static readonly DEFAULT_WS_TIMEOUT: number = 60000;
 
@@ -590,15 +591,28 @@ export class BinanceApiClient {
      * @param onUpdate A function to be called when a new update is received.
      */
     public monitorOrderBook(
-        symbol: string,
+        symbol: string | string[],
         onUpdate: ( update: OrderBookUpdate ) => any,
         connectionTimeout: number,
         onLostConnection: () => any ): void {
 
-        let websocket: WebSocket = new WebSocket(
-            BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth",
-            { perMessageDeflate: false }
-        );
+        if (symbol instanceof string) {
+            let websocket: WebSocket = new WebSocket(
+                BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth",
+                { perMessageDeflate: false }
+            );
+        } else {
+            const url: string = BinanceApiClient.WS_BASE_URL;
+            for (s of symbol) {
+                url += symbol.toLowerCase() + "@depth" + "/";
+            }
+            // Trim the final slash
+            str.slice(0, -1);
+            console.log(url);
+            let websocket: WebSocket = new WebSocket(
+                url,
+                { perMessageDeflate: false }
+        }
 
         HeartbeatHandler.handle(
             websocket,
@@ -607,7 +621,13 @@ export class BinanceApiClient {
         );
 
         websocket.on( "message", ( data: any ) => {
-            onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
+            if (symbol instanceof string) {
+                onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
+            } else {
+                // For a combined stream the data is wrapped in an object with the
+                // streamname and the raw data.
+                onUpdate( new OrderBookUpdate( JSON.parse( data.data ) ) );
+            }
         } );
 
     }
