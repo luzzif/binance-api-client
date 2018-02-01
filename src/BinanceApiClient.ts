@@ -590,24 +590,19 @@ export class BinanceApiClient {
      * @param symbol   The symbol of which we want to get the order book updates.
      * @param onUpdate A function to be called when a new update is received.
      */
-    public monitorOrderBook(
-        symbol: string | string[],
+    public monitorOrderBookCombined(
+        symbol: string[],
         onUpdate: ( update: OrderBookUpdate ) => any,
         connectionTimeout: number,
         onLostConnection: () => any ): void {
 
-        const combineStreams: boolean = ( symbol instanceof Array );
         let url: string = "";
-        if ( combineStreams ) {
-           url = BinanceApiClient.COMBINED_WS_BASE_URL;
-           for (let s of symbol) {
-               url += s.toLowerCase() + "@depth" + "/";
-           }
-           // Trim the final slash
-           url.slice(0, -1);
-        } else if (typeof symbol === "string") {
-           url = BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth";
+        url = BinanceApiClient.COMBINED_WS_BASE_URL;
+        for (let s of symbol) {
+            url += s.toLowerCase() + "@depth" + "/";
         }
+        // Trim the final slash
+        url.slice(0, -1);
         const websocket: WebSocket = new WebSocket(
             url,
             { perMessageDeflate: false }
@@ -620,13 +615,39 @@ export class BinanceApiClient {
         );
 
         websocket.on( "message", ( data: any ) => {
-            if (combineStreams === true) {
-                // For a combined stream the data is wrapped in an object with the
-                // streamname and the raw data.
-                onUpdate( new OrderBookUpdate( JSON.parse( data.data ) ) );
-            } else {
-                onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
-            }
+            // For a combined stream the data is wrapped in an object with the
+            // streamname and the raw data.
+            onUpdate( new OrderBookUpdate( JSON.parse( data.data ) ) );
+        } );
+
+    }
+
+    /**
+     * Initializes a web socket data stream that gives us information about a
+     * single symbol's order book updates.
+     *
+     * @param symbol   The symbol of which we want to get the order book updates.
+     * @param onUpdate A function to be called when a new update is received.
+     */
+    public monitorOrderBook(
+        symbol: string,
+        onUpdate: ( update: OrderBookUpdate ) => any,
+        connectionTimeout: number,
+        onLostConnection: () => any ): void {
+
+        let websocket: WebSocket = new WebSocket(
+            BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth",
+            { perMessageDeflate: false }
+        );
+
+        HeartbeatHandler.handle(
+            websocket,
+            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+            onLostConnection
+        );
+
+        websocket.on( "message", ( data: any ) => {
+            onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
         } );
 
     }
@@ -635,95 +656,141 @@ export class BinanceApiClient {
      * Initializes a web socket data stream that gives us information about
      * Kline/candlestick updates.
      *
-     * @param symbol   The symbol of which we want to get the candlestick updates.
+     * @param symbols  The symbols of which we want to get the candlestick updates.
      * @param interval The interval to which the requested candlestick updates
      *                 refer to.
      * @param onUpdate A function to be called when a new update is received.
      */
-    public async monitorCandlesticks(
-        symbol: string | string[],
-        interval: CandlestickInterval,
-        onUpdate: ( update: CandlestickUpdate ) => any,
-        connectionTimeout?: number,
-        onLostConnection?: () => any ): Promise< void > {
+     public async monitorCandlesticksCombined(
+         symbols: string[],
+         interval: CandlestickInterval,
+         onUpdate: ( update: CandlestickUpdate ) => any,
+         connectionTimeout?: number,
+         onLostConnection?: () => any ): Promise< void > {
 
-        const combineStreams: boolean = ( symbol instanceof Array );
-        let url: string = "";
-        if ( combineStreams ) {
-           url = BinanceApiClient.COMBINED_WS_BASE_URL;
-           for (let s of symbol) {
-               url += s.toLowerCase() + "@kline_" + interval + "/";
-           }
-           // Trim the final slash
-           url.slice(0, -1);
-        } else if (typeof symbol === "string") {
-           url = BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval;
-        }
-        const websocket: WebSocket = new WebSocket(
-            url,
-            { perMessageDeflate: false }
-        );
+         let url: string = "";
+         url = BinanceApiClient.COMBINED_WS_BASE_URL;
+         for (let s of symbols) {
+             url += s.toLowerCase() + "@kline_" + interval + "/";
+         }
+         // Trim the final slash
+         url.slice(0, -1);
+         const websocket: WebSocket = new WebSocket(
+             url,
+             { perMessageDeflate: false }
+         );
 
-        HeartbeatHandler.handle(
-            websocket,
-            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
-            onLostConnection
-        );
+         HeartbeatHandler.handle(
+             websocket,
+             isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+             onLostConnection
+         );
 
-        websocket.on( "message", ( data: any ) => {
-            if ( combineStreams ) {
-                onUpdate( new CandlestickUpdate( JSON.parse( data.data ) ) );
-            } else {
-                onUpdate( new CandlestickUpdate( JSON.parse( data ) ) );
-            }
-        } );
+         websocket.on( "message", ( data: any ) => {
+             onUpdate( new CandlestickUpdate( JSON.parse( data.data ) ) );
+         } );
 
-    }
+     }
 
-    /**
-     * Initializes a web socket data stream that gives us information about
-     * trade updates.
-     *
-     * @param symbol   The symbol of which we want to get the trade updates.
-     * @param onUpdate A function to be called when a new update is received.
-     */
-    public monitorTrades(
-        symbol: string | string[],
-        onUpdate: ( update: TradeUpdate ) => any,
-        connectionTimeout: number,
-        onLostConnection: () => any ): void {
-        const combineStreams: boolean = ( symbol instanceof Array );
-        let url: string = "";
-        if ( combineStreams ) {
-           url = BinanceApiClient.COMBINED_WS_BASE_URL;
-           for (let s of symbol) {
-               url += s.toLowerCase() + "@aggTrade" + "/";
-           }
-           // Trim the final slash
-           url.slice(0, -1);
-        } else if (typeof symbol === "string") {
-           url = BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade";
-        }
-        const websocket: WebSocket = new WebSocket(
-            url,
-            { perMessageDeflate: false }
-        );
+     /**
+      * Initializes a web socket data stream that gives us information about
+      * Kline/candlestick updates.
+      *
+      * @param symbol   The symbol of which we want to get the candlestick updates.
+      * @param interval The interval to which the requested candlestick updates
+      *                 refer to.
+      * @param onUpdate A function to be called when a new update is received.
+      */
+     public async monitorCandlesticks(
+         symbol: string,
+         interval: CandlestickInterval,
+         onUpdate: ( update: CandlestickUpdate ) => any,
+         connectionTimeout?: number,
+         onLostConnection?: () => any ): Promise< void > {
 
-        HeartbeatHandler.handle(
-            websocket,
-            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
-            onLostConnection
-        );
+         let websocket: WebSocket = new WebSocket(
+             BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
+             { perMessageDeflate: false }
+         );
 
-        websocket.on( "message", ( data: any ) => {
-            if (combineStreams === true) {
-                onUpdate( new TradeUpdate( JSON.parse( data ) ) );
-            } else {
-                onUpdate( new TradeUpdate( JSON.parse( data.data ) ) );
-            }
-        } );
+         HeartbeatHandler.handle(
+             websocket,
+             isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+             onLostConnection
+         );
 
-    }
+         websocket.on( "message", ( data: any ) => {
+             onUpdate( new CandlestickUpdate( JSON.parse( data ) ) );
+         } );
+
+     }
+
+     /**
+      * Initializes a web socket data stream that gives us information about
+      * trade updates.
+      *
+      * @param symbols   The symbols of which we want to get the trade updates.
+      * @param onUpdate A function to be called when a new update is received.
+      */
+     public monitorTradesCombined(
+         symbols: string[],
+         onUpdate: ( update: TradeUpdate ) => any,
+         connectionTimeout: number,
+         onLostConnection: () => any ): void {
+         let url: string = "";
+         url = BinanceApiClient.COMBINED_WS_BASE_URL;
+         for (let s of symbols) {
+             url += s.toLowerCase() + "@aggTrade" + "/";
+         }
+         // Trim the final slash
+         url.slice(0, -1);
+         const websocket: WebSocket = new WebSocket(
+             url,
+             { perMessageDeflate: false }
+         );
+
+         HeartbeatHandler.handle(
+             websocket,
+             isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+             onLostConnection
+         );
+
+         websocket.on( "message", ( data: any ) => {
+             onUpdate( new TradeUpdate( JSON.parse( data.data ) ) );
+         } );
+
+     }
+
+     /**
+      * Initializes a web socket data stream that gives us information about
+      * trade updates.
+      *
+      * @param symbol   The symbol of which we want to get the trade updates.
+      * @param onUpdate A function to be called when a new update is received.
+      */
+     public monitorTrades(
+         symbol: string,
+         onUpdate: ( update: TradeUpdate ) => any,
+         connectionTimeout: number,
+         onLostConnection: () => any ): void {
+
+         let websocket: WebSocket = new WebSocket(
+             BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
+             { perMessageDeflate: false }
+         );
+
+         HeartbeatHandler.handle(
+             websocket,
+             isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+             onLostConnection
+         );
+
+         websocket.on( "message", ( data: any ) => {
+             onUpdate( new TradeUpdate( JSON.parse( data ) ) );
+         } );
+
+     }
+
 
     /**
      * Initializes a web socket data stream that gives us information about
