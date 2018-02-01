@@ -612,11 +612,11 @@ export class BinanceApiClient {
             { perMessageDeflate: false }
         );
 
-        HeartbeatHandler.handle(
+        new HeartbeatHandler(
             websocket,
             isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
             onLostConnection
-        );
+        ).handle();
 
         websocket.on( "message", ( data: any ) => {
             // For a combined stream the data is wrapped in an object with the
@@ -685,11 +685,11 @@ export class BinanceApiClient {
              { perMessageDeflate: false }
          );
 
-         HeartbeatHandler.handle(
+         new HeartbeatHandler(
              websocket,
              isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
              onLostConnection
-         );
+         ).handle();
 
          websocket.on( "message", ( data: any ) => {
              const rawData = JSON.parse( data );
@@ -759,11 +759,11 @@ export class BinanceApiClient {
              { perMessageDeflate: false }
          );
 
-         HeartbeatHandler.handle(
+         new HeartbeatHandler(
              websocket,
              isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
              onLostConnection
-         );
+         ).handle();
 
          websocket.on( "message", ( data: any ) => {
              const rawData = JSON.parse( data );
