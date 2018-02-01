@@ -272,7 +272,7 @@ export class BinanceApiClient {
             [ "newClientOrderId", clientOrderId ],
             [ "stopPrice", stopPrice ],
             [ "icebergQty", icebergQuantity ],
-            [ "newOrderRespType", ResponseType[ responseType] ]
+            [ "newOrderRespType", isNullOrUndefined( responseType ) ? null : ResponseType[ responseType ] ]
         );
 
         switch( responseType ) {
