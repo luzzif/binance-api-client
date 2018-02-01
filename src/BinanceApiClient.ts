@@ -618,7 +618,7 @@ export class BinanceApiClient {
             // For a combined stream the data is wrapped in an object with the
             // streamname and the raw data.
             const rawData = JSON.parse( data );
-            onUpdate( new OrderBookUpdate( JSON.parse( rawData["data"] ) ) );
+            onUpdate( new OrderBookUpdate( rawData.data ) );
         } );
 
     }
@@ -689,7 +689,7 @@ export class BinanceApiClient {
 
          websocket.on( "message", ( data: any ) => {
              const rawData = JSON.parse( data );
-             onUpdate( new CandlestickUpdate( rawData["data"] ) );
+             onUpdate( new CandlestickUpdate( rawData.data ) );
          } );
 
      }
@@ -759,7 +759,7 @@ export class BinanceApiClient {
 
          websocket.on( "message", ( data: any ) => {
              const rawData = JSON.parse( data );
-             onUpdate( new TradeUpdate( JSON.parse( rawData["data"] ) ) );
+             onUpdate( new TradeUpdate( rawData.data ) );
          } );
 
      }
