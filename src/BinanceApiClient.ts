@@ -783,7 +783,7 @@ export class BinanceApiClient {
 
         try {
 
-            let response: any = await request( {
+            return await request( {
 
                 method: HttpMethod[ httpMethod ],
                 url: apiUrl.href,
@@ -791,7 +791,6 @@ export class BinanceApiClient {
                 json: true
 
             } );
-            return response.body;
 
         }
         catch( error ) {

@@ -11,7 +11,7 @@ export class Balance {
     constructor( json: any ) {
 
         this._asset = json.asset || json.a;
-        this._available = json.free || json.f;
+        this._available = json.free || json.available || json.f;
         this._locked = json.locked || json.l;
 
     }
