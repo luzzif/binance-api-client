@@ -1,4 +1,4 @@
-import {Filter} from "./abstraction/Filter";
+import { Filter } from "./abstraction/Filter";
 
 /**
  * Represents a single maximum exchange order number filter.
