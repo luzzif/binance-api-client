@@ -33,7 +33,6 @@ import { ResponseType } from "./enums/ResponseType";
 import { OrderResult } from "./models/order/OrderResult";
 import { OrderFull } from "./models/order/OrderFull";
 import { HeartbeatHandler } from "websocket-heartbeats";
-import { IncomingMessage } from "http";
 
 /**
  * Represents a single Binance API client.
@@ -266,9 +265,15 @@ export class BinanceApiClient {
             [ "symbol", symbol ],
             [ "side", OrderSide[ side ] ],
             [ "type", OrderType[ type ] ],
-            [ "timeInForce", type === OrderType.MARKET ? null : TimeInForce[ timeInForce ] ],
+            [
+                "timeInForce",
+                type === OrderType.MARKET || type === OrderType.STOP_LOSS ? null : TimeInForce[ timeInForce ]
+            ],
             [ "quantity", quantity ],
-            [ "price", type === OrderType.MARKET ? null : price ],
+            [
+                "price",
+                type === OrderType.MARKET || type === OrderType.STOP_LOSS ? null : price
+            ],
             [ "newClientOrderId", clientOrderId ],
             [ "stopPrice", stopPrice ],
             [ "icebergQty", icebergQuantity ],
