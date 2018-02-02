@@ -1,7 +1,9 @@
+import { Filter } from "./abstraction/Filter";
+
 /**
  * Represents a single price filter.
  */
-export class PriceFilter {
+export class PriceFilter implements Filter {
 
     private _minimumPrice: number;
     private _maximumPrice: number;

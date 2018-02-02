@@ -1,7 +1,9 @@
+import { Filter } from "./abstraction/Filter";
+
 /**
- * Represents a single maximum order number filter.
+ * Represents a single exchange maximum number of orders filter.
  */
-export class MaxOrdersFilter {
+export class MaxExchangeAlgoOrdersFilter implements Filter {
 
     private _value: number;
 

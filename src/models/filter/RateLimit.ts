@@ -1,6 +1,5 @@
 import { RateLimitType } from "../../enums/RateLimitType";
 import { RateLimitInterval } from "../../enums/RateLimitInterval";
-import { FilterType } from "../../enums/FilterType";
 
 export class RateLimit {
 
@@ -10,8 +9,8 @@ export class RateLimit {
 
     constructor( json: any ) {
 
-        this._type = RateLimitType[ json.rateLimitType as keyof typeof RateLimitType ];
-        this._interval = RateLimitInterval[ json.interval as keyof typeof RateLimitInterval ];
+        this._type = RateLimitType[ json.rateLimitType as string ];
+        this._interval = RateLimitInterval[ json.interval as string ];
         this._value = json.limit;
 
     }

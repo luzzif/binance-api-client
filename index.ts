@@ -15,8 +15,8 @@ export { ApiError } from "./src/errors/ApiError";
 export { AuthenticationError } from "./src/errors/AuthenticationError";
 
 export { LotSizeFilter } from "./src/models/filter/LotSizeFilter";
-export { MaxAlgoOrdersFilter } from "./src/models/filter/MaxAlgoOrdersFilter";
-export { MaxOrdersFilter } from "./src/models/filter/MaxOrdersFilter";
+export { MaxAlgoOrdersFilter } from "./src/models/filter/MaxSymbolAlgoOrdersFilter";
+export { MaxOrdersFilter } from "./src/models/filter/MaxSymbolOrdersFilter";
 export { MinimumNotionalFilter } from "./src/models/filter/MinimumNotionalFilter";
 export { PriceFilter } from "./src/models/filter/PriceFilter";
 

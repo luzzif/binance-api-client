@@ -1,14 +1,14 @@
 import { Filter } from "./abstraction/Filter";
 
 /**
- * Represents a single minimum notional filter.
+ * Represents a single maximum symbol order number filter.
  */
-export class MinimumNotionalFilter implements Filter {
+export class MaxOrdersFilter implements Filter {
 
     private _value: number;
 
     constructor( json: any ) {
-        this._value = json.minNotional;
+        this._value = json.limit;
     }
 
     get value(): number {

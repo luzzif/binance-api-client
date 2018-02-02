@@ -1,11 +1,14 @@
 import { RateLimit } from "../filter/RateLimit";
 import { Symbol } from "./Symbol";
 import { FilterType } from "../../enums/FilterType";
-import { MaxOrdersFilter } from "../filter/MaxOrdersFilter";
-import { MaxAlgoOrdersFilter } from "../filter/MaxAlgoOrdersFilter";
+import { MaxOrdersFilter } from "../filter/MaxSymbolOrdersFilter";
+import { MaxAlgoOrdersFilter } from "../filter/MaxSymbolAlgoOrdersFilter";
 import { LotSizeFilter } from "../filter/LotSizeFilter";
 import { MinimumNotionalFilter } from "../filter/MinimumNotionalFilter";
 import { PriceFilter } from "../filter/PriceFilter";
+import { Filter } from "../filter/abstraction/Filter";
+import { MaxExchangeOrdersFilter } from "../filter/MaxExchangeOrdersFilter";
+import { MaxExchangeAlgoOrdersFilter } from "../filter/MaxExchangeAlgoOrdersFilter";
 
 /**
  * Represents a single exchange info.
@@ -15,7 +18,7 @@ export class ExchangeInfo {
     private _timezone: string;
     private _serverTime: Date;
     private _rateLimits: RateLimit[];
-    private _filters: ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter )[];
+    private _filters: Filter[];
     private _symbols: Symbol[];
 
     constructor( json: any ) {
@@ -31,16 +34,27 @@ export class ExchangeInfo {
         this._filters = [];
         for( let jsonFilter of json.exchangeFilters ) {
 
-            let filter: ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter );
-            switch( FilterType[ jsonFilter.filterType as keyof typeof FilterType ] ) {
+            let filter: Filter;
+            switch( FilterType[ jsonFilter.filterType as string ] ) {
 
-                case FilterType.EXCHANGE_MAX_NUM_ORDERS: {
+                case FilterType.MAX_NUM_ORDERS: {
                     filter = new MaxOrdersFilter( jsonFilter );
                     break;
                 }
-                case FilterType.EXCHANGE_MAX_ALGO_ORDERS: {
+                case FilterType.EXCHANGE_MAX_NUM_ORDERS: {
+                    filter = new MaxExchangeOrdersFilter( jsonFilter );
+                    break;
+                }
+                case FilterType.MAX_ALGO_ORDERS: {
                     filter = new MaxAlgoOrdersFilter( jsonFilter );
                     break;
+                }
+                case FilterType.EXCHANGE_MAX_ALGO_ORDERS: {
+                    filter = new MaxExchangeAlgoOrdersFilter( jsonFilter );
+                    break;
+                }
+                default: {
+                    filter = null;
                 }
 
             }
@@ -79,11 +93,11 @@ export class ExchangeInfo {
         this._rateLimits = value;
     }
 
-    get filters(): ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter )[] {
+    get filters(): Filter[] {
         return this._filters;
     }
 
-    set filters( value: ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter )[] ) {
+    set filters( value: Filter[] ) {
         this._filters = value;
     }
 

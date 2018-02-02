@@ -4,8 +4,8 @@ import { PriceFilter } from "../filter/PriceFilter";
 import { FilterType } from "../../enums/FilterType";
 import { LotSizeFilter } from "../filter/LotSizeFilter";
 import { MinimumNotionalFilter } from "../filter/MinimumNotionalFilter";
-import { MaxOrdersFilter } from "../filter/MaxOrdersFilter";
-import { MaxAlgoOrdersFilter } from "../filter/MaxAlgoOrdersFilter";
+import { MaxOrdersFilter } from "../filter/MaxSymbolOrdersFilter";
+import { MaxAlgoOrdersFilter } from "../filter/MaxSymbolAlgoOrdersFilter";
 
 /**
  * Represents a single symbol.

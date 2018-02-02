@@ -1,7 +1,9 @@
+import { Filter } from "./abstraction/Filter";
+
 /**
- * Represents a single maximum algo order number filter.
+ * Represents a single maximum symbol algo order number filter.
  */
-export class MaxAlgoOrdersFilter {
+export class MaxAlgoOrdersFilter implements Filter {
 
     private _value: number;
 

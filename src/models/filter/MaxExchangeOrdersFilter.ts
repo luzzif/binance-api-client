@@ -1,14 +1,14 @@
-import { Filter } from "./abstraction/Filter";
+import {Filter} from "./abstraction/Filter";
 
 /**
- * Represents a single minimum notional filter.
+ * Represents a single maximum exchange order number filter.
  */
-export class MinimumNotionalFilter implements Filter {
+export class MaxExchangeOrdersFilter implements Filter {
 
     private _value: number;
 
     constructor( json: any ) {
-        this._value = json.minNotional;
+        this._value = json.limit;
     }
 
     get value(): number {
