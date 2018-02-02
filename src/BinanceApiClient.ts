@@ -3,7 +3,7 @@ import { ApiVersion } from "./enums/ApiVersion";
 import * as CryptoJs from "crypto-js";
 import { HttpMethod } from "./enums/HttpMethod";
 import { AuthenticationError } from "./errors/AuthenticationError";
-import * as request from "requestretry";
+import * as request from "request-promise";
 import * as Path from "path";
 import { isNullOrUndefined } from "util";
 import { URL } from "url";
@@ -788,10 +788,7 @@ export class BinanceApiClient {
                 method: HttpMethod[ httpMethod ],
                 url: apiUrl.href,
                 headers: headers,
-                json: true,
-                maxAttempts: 10,
-                retryDelay: 2500,
-                retryStrategy: request.RetryStrategies.NetworkError,
+                json: true
 
             } );
             return response.body;

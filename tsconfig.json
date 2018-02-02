@@ -3,9 +3,7 @@
         "module": "commonjs",
         "target": "es6",
         "sourceMap": true,
-        "outDir": "build",
-        "noImplicitReturns": true,
-        "noImplicitAny": true
+        "outDir": "build"
     },
     "exclude": [
         "node_modules"
