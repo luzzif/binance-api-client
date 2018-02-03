@@ -33,7 +33,6 @@ import { ResponseType } from "./enums/ResponseType";
 import { OrderResult } from "./models/order/OrderResult";
 import { OrderFull } from "./models/order/OrderFull";
 import { HeartbeatHandler } from "websocket-heartbeats";
-import { IncomingMessage } from "http";
 
 /**
  * Represents a single Binance API client.
