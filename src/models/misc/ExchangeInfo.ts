@@ -6,6 +6,9 @@ import { MaxAlgoOrdersFilter } from "../filter/MaxSymbolAlgoOrdersFilter";
 import { Filter } from "../filter/abstraction/Filter";
 import { MaxExchangeOrdersFilter } from "../filter/MaxExchangeOrdersFilter";
 import { MaxExchangeAlgoOrdersFilter } from "../filter/MaxExchangeAlgoOrdersFilter";
+import { PriceFilter } from "../filter/PriceFilter";
+import { LotSizeFilter } from "../filter/LotSizeFilter";
+import { MinimumNotionalFilter } from "../filter/MinimumNotionalFilter";
 
 /**
  * Represents a single exchange info.
@@ -34,6 +37,18 @@ export class ExchangeInfo {
             let filter: Filter;
             switch( FilterType[ jsonFilter.filterType as string ] ) {
 
+                case FilterType.PRICE_FILTER: {
+                    filter = new PriceFilter( jsonFilter );
+                    break;
+                }
+                case FilterType.LOT_SIZE: {
+                    filter = new LotSizeFilter( jsonFilter );
+                    break;
+                }
+                case FilterType.MIN_NOTIONAL: {
+                    filter = new MinimumNotionalFilter( jsonFilter );
+                    break;
+                }
                 case FilterType.MAX_NUM_ORDERS: {
                     filter = new MaxOrdersFilter( jsonFilter );
                     break;
@@ -55,7 +70,9 @@ export class ExchangeInfo {
                 }
 
             }
-            this._filters.push( filter );
+            if ( filter != null ) {
+                this._filters.push( filter );
+            }
 
         }
 
