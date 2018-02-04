@@ -14,11 +14,14 @@ export { TimeInForce } from "./src/enums/TimeInForce";
 export { ApiError } from "./src/errors/ApiError";
 export { AuthenticationError } from "./src/errors/AuthenticationError";
 
+export { SymbolFilter } from "./src/models/filter/abstraction/SymbolFilter";
+export { ExchangeFilter } from "./src/models/filter/abstraction/ExchangeFilter";
 export { LotSizeFilter } from "./src/models/filter/LotSizeFilter";
-export { MaxAlgoOrdersFilter } from "./src/models/filter/MaxSymbolAlgoOrdersFilter";
-export { MaxOrdersFilter } from "./src/models/filter/MaxSymbolOrdersFilter";
+export { MaxAlgoOrdersFilter } from "./src/models/filter/MaxAlgoOrdersFilter";
+export { MaxOrdersFilter } from "./src/models/filter/MaxOrdersFilter";
 export { MinimumNotionalFilter } from "./src/models/filter/MinimumNotionalFilter";
 export { PriceFilter } from "./src/models/filter/PriceFilter";
+export { RateLimit } from "./src/models/filter/RateLimit";
 
 export { CanceledOrderData } from "./src/models/order/CanceledOrderData";
 export { Order } from "./src/models/order/Order";
@@ -38,7 +41,6 @@ export { Candlestick } from "./src/models/candlestick/Candlestick";
 export { CandlestickUpdate } from "./src/models/websocket/candlestick/CandlestickUpdate";
 export { ExchangeInfo } from "./src/models/misc/ExchangeInfo";
 export { LatestPrice } from "./src/models/depth/LatestPrice";
-export { RateLimit } from "./src/models/filter/RateLimit";
 export { Symbol } from "./src/models/misc/Symbol";
 export { Ticker } from "./src/models/ticker/Ticker";
 export { TickerStatistics } from "./src/models/ticker/TickerStatistics";

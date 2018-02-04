@@ -4,8 +4,9 @@ import { PriceFilter } from "../filter/PriceFilter";
 import { FilterType } from "../../enums/FilterType";
 import { LotSizeFilter } from "../filter/LotSizeFilter";
 import { MinimumNotionalFilter } from "../filter/MinimumNotionalFilter";
-import { MaxOrdersFilter } from "../filter/MaxSymbolOrdersFilter";
-import { MaxAlgoOrdersFilter } from "../filter/MaxSymbolAlgoOrdersFilter";
+import { MaxOrdersFilter } from "../filter/MaxOrdersFilter";
+import { MaxAlgoOrdersFilter } from "../filter/MaxAlgoOrdersFilter";
+import { SymbolFilter } from "../filter/abstraction/SymbolFilter";
 
 /**
  * Represents a single symbol.
@@ -20,7 +21,7 @@ export class Symbol {
     private _quoteAssetPrecision: number;
     private _orderTypes: OrderType[];
     private _icebergAllowed: boolean;
-    private _filters: ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter )[];
+    private _filters: SymbolFilter[];
 
     constructor( json: any ) {
 
@@ -40,7 +41,7 @@ export class Symbol {
         this._filters = [];
         for( let jsonFilter of json.filters ) {
 
-            let filter: LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter;
+            let filter: SymbolFilter;
             switch( FilterType[ jsonFilter.filterType as keyof typeof FilterType ] ) {
 
                 case FilterType.PRICE_FILTER: {
@@ -135,11 +136,11 @@ export class Symbol {
         this._icebergAllowed = value;
     }
 
-    get filters(): ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter )[] {
+    get filters(): SymbolFilter[] {
         return this._filters;
     }
 
-    set filters( value: ( LotSizeFilter | MaxAlgoOrdersFilter | MaxOrdersFilter | MinimumNotionalFilter | PriceFilter )[] ) {
+    set filters( value: SymbolFilter[] ) {
         this._filters = value;
     }
 

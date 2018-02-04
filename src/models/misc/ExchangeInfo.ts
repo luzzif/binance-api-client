@@ -1,11 +1,9 @@
 import { RateLimit } from "../filter/RateLimit";
 import { Symbol } from "./Symbol";
 import { FilterType } from "../../enums/FilterType";
-import { MaxOrdersFilter } from "../filter/MaxSymbolOrdersFilter";
-import { MaxAlgoOrdersFilter } from "../filter/MaxSymbolAlgoOrdersFilter";
-import { Filter } from "../filter/abstraction/Filter";
-import { MaxExchangeOrdersFilter } from "../filter/MaxExchangeOrdersFilter";
-import { MaxExchangeAlgoOrdersFilter } from "../filter/MaxExchangeAlgoOrdersFilter";
+import { ExchangeFilter } from "../filter/abstraction/ExchangeFilter";
+import { MaxOrdersFilter } from "../filter/MaxOrdersFilter";
+import { MaxAlgoOrdersFilter } from "../filter/MaxAlgoOrdersFilter";
 
 /**
  * Represents a single exchange info.
@@ -15,7 +13,7 @@ export class ExchangeInfo {
     private _timezone: string;
     private _serverTime: Date;
     private _rateLimits: RateLimit[];
-    private _filters: Filter[];
+    private _filters: ExchangeFilter[];
     private _symbols: Symbol[];
 
     constructor( json: any ) {
@@ -31,23 +29,15 @@ export class ExchangeInfo {
         this._filters = [];
         for( let jsonFilter of json.exchangeFilters ) {
 
-            let filter: Filter;
+            let filter: ExchangeFilter;
             switch( FilterType[ jsonFilter.filterType as string ] ) {
 
-                case FilterType.MAX_NUM_ORDERS: {
+                case FilterType.EXCHANGE_MAX_NUM_ORDERS: {
                     filter = new MaxOrdersFilter( jsonFilter );
                     break;
                 }
-                case FilterType.EXCHANGE_MAX_NUM_ORDERS: {
-                    filter = new MaxExchangeOrdersFilter( jsonFilter );
-                    break;
-                }
-                case FilterType.MAX_ALGO_ORDERS: {
-                    filter = new MaxAlgoOrdersFilter( jsonFilter );
-                    break;
-                }
                 case FilterType.EXCHANGE_MAX_ALGO_ORDERS: {
-                    filter = new MaxExchangeAlgoOrdersFilter( jsonFilter );
+                    filter = new MaxAlgoOrdersFilter( jsonFilter );
                     break;
                 }
                 default: {
@@ -90,11 +80,11 @@ export class ExchangeInfo {
         this._rateLimits = value;
     }
 
-    get filters(): Filter[] {
+    get filters(): ExchangeFilter[] {
         return this._filters;
     }
 
-    set filters( value: Filter[] ) {
+    set filters( value: ExchangeFilter[] ) {
         this._filters = value;
     }
 
