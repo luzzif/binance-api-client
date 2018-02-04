@@ -1,9 +1,9 @@
-import { Filter } from "./abstraction/Filter";
+import { SymbolFilter } from "./abstraction/SymbolFilter";
 
 /**
  * Represents a single price filter.
  */
-export class PriceFilter implements Filter {
+export class PriceFilter implements SymbolFilter {
 
     private _minimumPrice: number;
     private _maximumPrice: number;
