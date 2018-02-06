@@ -26,6 +26,7 @@ import * as WebSocket from "ws";
 import { OrderBookUpdate } from "./models/websocket/depth/OrderBookUpdate";
 import { CandlestickUpdate } from "./models/websocket/candlestick/CandlestickUpdate";
 import { TradeUpdate } from "./models/websocket/trade/TradeUpdate";
+import { RawTradeUpdate } from "./models/websocket/trade/RawTradeUpdate";
 import { AccountUpdate } from "./models/websocket/account/AccountUpdate";
 import { OrderUpdate } from "./models/websocket/order/OrderUpdate";
 import { ExchangeInfo } from "./models/misc/ExchangeInfo";
@@ -747,6 +748,7 @@ export class BinanceApiClient {
 
     }
 
+
     /**
      * Initializes a web socket data stream that gives us information about
      * trade updates for a number of symbols on the one socket.
@@ -758,15 +760,15 @@ export class BinanceApiClient {
      * @param onLostConnection  A callback to be invoked when the web socket connection
      *                          is detected as broken.
      */
-    public monitorTradesCombined(
+    public monitorRawTradesCombined(
          symbols: string[],
-         onUpdate: ( update: TradeUpdate ) => any,
+         onUpdate: ( update: RawTradeUpdate ) => any,
          connectionTimeout: number,
          onLostConnection: () => any ): void {
          let url: string = "";
          url = BinanceApiClient.COMBINED_WS_BASE_URL;
          for ( let s of symbols ) {
-             url += s.toLowerCase() + "@aggTrade" + "/";
+             url += s.toLowerCase() + "@trade" + "/";
          }
          // Trim the final slash
          url.slice( 0, -1 );
@@ -783,11 +785,51 @@ export class BinanceApiClient {
 
          websocket.on( "message", ( data: any ) => {
              const rawData = JSON.parse( data );
-             onUpdate( new TradeUpdate( rawData.data ) );
+             onUpdate( new RawTradeUpdate( rawData.data ) );
          } );
 
      }
 
+     /**
+      * Initializes a web socket data stream that gives us information about
+      * trade updates for a number of symbols on the one socket.
+      *
+      * @param symbols           The symbols of which we want to get the trade updates.
+      * @param onUpdate          A function to be called when a new update is received.
+      * @param connectionTimeout Timeout based on which the web socket connection is
+      *                          considered to be broken based on a heartbeat monitor.
+      * @param onLostConnection  A callback to be invoked when the web socket connection
+      *                          is detected as broken.
+      */
+     public monitorTradesCombined(
+          symbols: string[],
+          onUpdate: ( update: TradeUpdate ) => any,
+          connectionTimeout: number,
+          onLostConnection: () => any ): void {
+          let url: string = "";
+          url = BinanceApiClient.COMBINED_WS_BASE_URL;
+          for ( let s of symbols ) {
+              url += s.toLowerCase() + "@aggTrade" + "/";
+          }
+          // Trim the final slash
+          url.slice( 0, -1 );
+          const websocket: WebSocket = new WebSocket(
+              url,
+              { perMessageDeflate: false }
+          );
+
+          new HeartbeatHandler(
+              websocket,
+              isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+              onLostConnection
+          ).handle();
+
+          websocket.on( "message", ( data: any ) => {
+              const rawData = JSON.parse( data );
+              onUpdate( new TradeUpdate( rawData.data ) );
+          } );
+
+    }
 
     /**
      * Initializes a web socket data stream that gives us information about
