@@ -589,7 +589,9 @@ export class BinanceApiClient {
 
     /**
      * Initializes a web socket data stream that gives us information about a
-     * single symbol's order book updates.
+     * single symbol's order book updates. Stream keepalive is performed through
+     * [[keepAliveUserStream]] following the rules described
+     * [here](https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md)
      *
      * @param symbol            The symbol of which we want to get the order book updates.
      * @param onUpdate          A function to be called when a new update is received.
@@ -623,7 +625,9 @@ export class BinanceApiClient {
 
     /**
      * Initializes a web socket data stream that gives us information about
-     * Kline/candlestick updates.
+     * Kline/candlestick updates. Stream keepalive is performed through
+     * [[keepAliveUserStream]] following the rules described
+     * [here](https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md)
      *
      * @param symbol            The symbol of which we want to get the candlestick updates.
      * @param interval          The interval to which the requested candlestick updates
@@ -660,7 +664,9 @@ export class BinanceApiClient {
 
     /**
      * Initializes a web socket data stream that gives us information about
-     * trade updates.
+     * trade updates. Stream keepalive is performed through
+     * [[keepAliveUserStream]] following the rules described
+     * [here](https://github.com/binance-exchange/binance-official-api-docs/blob/master/web-socket-streams.md)
      *
      * @param symbol            The symbol of which we want to get the trade updates.
      * @param onUpdate          A function to be called when a new update is received.
@@ -694,7 +700,9 @@ export class BinanceApiClient {
 
     /**
      * Initializes a web socket data stream that gives us information about
-     * the personal account updates.
+     * the personal account updates. Stream keepalive is performed through
+     * [[keepAliveUserStream]] following the rules described
+     * [here](https://github.com/binance-exchange/binance-official-api-docs/blob/master/user-data-stream.md)
      *
      * @param listenKey         The listen key returned when a user data stream gets
      *                          initialized by [[openUserStream]].

@@ -90,6 +90,7 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#_cumulativefilledquantity" class="tsd-kind-icon">_cumulative<wbr>Filled<wbr>Quantity</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#_executionstatus" class="tsd-kind-icon">_execution<wbr>Status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#_id" class="tsd-kind-icon">_id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#_lastfilledtradeprice" class="tsd-kind-icon">_last<wbr>Filled<wbr>Trade<wbr>Price</a></li>
@@ -109,6 +110,7 @@
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#cumulativefilledquantity" class="tsd-kind-icon">cumulative<wbr>Filled<wbr>Quantity</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#executionstatus" class="tsd-kind-icon">execution<wbr>Status</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_src_models_websocket_order_orderupdate_.orderupdate.html#lastfilledtradeprice" class="tsd-kind-icon">last<wbr>Filled<wbr>Trade<wbr>Price</a></li>
@@ -140,7 +142,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L24">src/models/websocket/order/OrderUpdate.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L25">src/models/websocket/order/OrderUpdate.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -157,12 +159,22 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_executionstatus" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _execution<wbr>Status</h3>
-					<div class="tsd-signature tsd-kind-icon">_execution<wbr>Status<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_enums_orderexecutionstatus_.orderexecutionstatus.html" class="tsd-signature-type">OrderExecutionStatus</a></div>
+					<a name="_cumulativefilledquantity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _cumulative<wbr>Filled<wbr>Quantity</h3>
+					<div class="tsd-signature tsd-kind-icon">_cumulative<wbr>Filled<wbr>Quantity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L19">src/models/websocket/order/OrderUpdate.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L24">src/models/websocket/order/OrderUpdate.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_executionstatus" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _execution<wbr>Status</h3>
+					<div class="tsd-signature tsd-kind-icon">_execution<wbr>Status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrderExecutionStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REPLACED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.TRADE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.EXPIRED</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L19">src/models/websocket/order/OrderUpdate.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,7 +184,7 @@
 					<div class="tsd-signature tsd-kind-icon">_id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L22">src/models/websocket/order/OrderUpdate.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L22">src/models/websocket/order/OrderUpdate.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">_last<wbr>Filled<wbr>Trade<wbr>Price<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L23">src/models/websocket/order/OrderUpdate.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L23">src/models/websocket/order/OrderUpdate.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">_new<wbr>Client<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L13">src/models/websocket/order/OrderUpdate.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L13">src/models/websocket/order/OrderUpdate.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">_placed<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L24">src/models/websocket/order/OrderUpdate.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L25">src/models/websocket/order/OrderUpdate.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,7 +224,7 @@
 					<div class="tsd-signature tsd-kind-icon">_price<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L18">src/models/websocket/order/OrderUpdate.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L18">src/models/websocket/order/OrderUpdate.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -222,37 +234,37 @@
 					<div class="tsd-signature tsd-kind-icon">_quantity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L17">src/models/websocket/order/OrderUpdate.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L17">src/models/websocket/order/OrderUpdate.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_rejectionmotive" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _rejection<wbr>Motive</h3>
-					<div class="tsd-signature tsd-kind-icon">_rejection<wbr>Motive<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_enums_orderrejectionmotive_.orderrejectionmotive.html" class="tsd-signature-type">OrderRejectionMotive</a></div>
+					<div class="tsd-signature tsd-kind-icon">_rejection<wbr>Motive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrderRejectionMotive.NONE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_INSTRUMENT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.MARKET_CLOSED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.PRICE_QTY_EXCEED_HARD_LIMITS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.DUPLICATE_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ACCOUNT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.INSUFFICIENT_BALANCE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_INACTIVE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_CANNOT_SETTLE</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L21">src/models/websocket/order/OrderUpdate.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L21">src/models/websocket/order/OrderUpdate.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_side" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _side</h3>
-					<div class="tsd-signature tsd-kind-icon">_side<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_enums_orderside_.orderside.html" class="tsd-signature-type">OrderSide</a></div>
+					<div class="tsd-signature tsd-kind-icon">_side<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrderSide.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderSide.SELL</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L14">src/models/websocket/order/OrderUpdate.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L14">src/models/websocket/order/OrderUpdate.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_status" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _status</h3>
-					<div class="tsd-signature tsd-kind-icon">_status<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_enums_orderstatus_.orderstatus.html" class="tsd-signature-type">OrderStatus</a></div>
+					<div class="tsd-signature tsd-kind-icon">_status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrderStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PARTIALLY_FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PENDING_CANCEL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.EXPIRED</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L20">src/models/websocket/order/OrderUpdate.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L20">src/models/websocket/order/OrderUpdate.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -262,17 +274,17 @@
 					<div class="tsd-signature tsd-kind-icon">_symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L12">src/models/websocket/order/OrderUpdate.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L12">src/models/websocket/order/OrderUpdate.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_timeinforce" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _time<wbr>InForce</h3>
-					<div class="tsd-signature tsd-kind-icon">_time<wbr>InForce<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_enums_timeinforce_.timeinforce.html" class="tsd-signature-type">TimeInForce</a></div>
+					<div class="tsd-signature tsd-kind-icon">_time<wbr>InForce<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TimeInForce.GTC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.IOC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.FOK</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L16">src/models/websocket/order/OrderUpdate.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L16">src/models/websocket/order/OrderUpdate.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -282,17 +294,17 @@
 					<div class="tsd-signature tsd-kind-icon">_timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L11">src/models/websocket/order/OrderUpdate.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L11">src/models/websocket/order/OrderUpdate.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_type" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _type</h3>
-					<div class="tsd-signature tsd-kind-icon">_type<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_enums_ordertype_.ordertype.html" class="tsd-signature-type">OrderType</a></div>
+					<div class="tsd-signature tsd-kind-icon">_type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrderType.LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.MARKET</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_MAKER</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L15">src/models/websocket/order/OrderUpdate.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L15">src/models/websocket/order/OrderUpdate.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -300,31 +312,74 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
-					<a name="executionstatus" class="tsd-anchor"></a>
-					<h3>execution<wbr>Status</h3>
+					<a name="cumulativefilledquantity" class="tsd-anchor"></a>
+					<h3>cumulative<wbr>Filled<wbr>Quantity</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> executionStatus<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderexecutionstatus_.orderexecutionstatus.html" class="tsd-signature-type">OrderExecutionStatus</a></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> executionStatus<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderexecutionstatus_.orderexecutionstatus.html" class="tsd-signature-type">OrderExecutionStatus</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> cumulativeFilledQuantity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> cumulativeFilledQuantity<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L109">src/models/websocket/order/OrderUpdate.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L151">src/models/websocket/order/OrderUpdate.ts:151</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/_src_enums_orderexecutionstatus_.orderexecutionstatus.html" class="tsd-signature-type">OrderExecutionStatus</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L113">src/models/websocket/order/OrderUpdate.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L155">src/models/websocket/order/OrderUpdate.ts:155</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="../enums/_src_enums_orderexecutionstatus_.orderexecutionstatus.html" class="tsd-signature-type">OrderExecutionStatus</a></h5>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="executionstatus" class="tsd-anchor"></a>
+					<h3>execution<wbr>Status</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> executionStatus<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderExecutionStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REPLACED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.TRADE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.EXPIRED</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> executionStatus<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderExecutionStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REPLACED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.TRADE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.EXPIRED</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L111">src/models/websocket/order/OrderUpdate.ts:111</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OrderExecutionStatus.NEW</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderExecutionStatus.CANCELED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderExecutionStatus.REPLACED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderExecutionStatus.REJECTED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderExecutionStatus.TRADE</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderExecutionStatus.EXPIRED</span>
+							</h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L115">src/models/websocket/order/OrderUpdate.ts:115</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">OrderExecutionStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REPLACED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.TRADE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderExecutionStatus.EXPIRED</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -342,7 +397,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L133">src/models/websocket/order/OrderUpdate.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L135">src/models/websocket/order/OrderUpdate.ts:135</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -350,7 +405,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L137">src/models/websocket/order/OrderUpdate.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L139">src/models/websocket/order/OrderUpdate.ts:139</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -374,7 +429,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L141">src/models/websocket/order/OrderUpdate.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L143">src/models/websocket/order/OrderUpdate.ts:143</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -382,7 +437,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L145">src/models/websocket/order/OrderUpdate.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L147">src/models/websocket/order/OrderUpdate.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -406,7 +461,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L61">src/models/websocket/order/OrderUpdate.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L63">src/models/websocket/order/OrderUpdate.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -414,7 +469,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L65">src/models/websocket/order/OrderUpdate.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L67">src/models/websocket/order/OrderUpdate.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -438,7 +493,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L149">src/models/websocket/order/OrderUpdate.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L159">src/models/websocket/order/OrderUpdate.ts:159</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
@@ -446,7 +501,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L153">src/models/websocket/order/OrderUpdate.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L163">src/models/websocket/order/OrderUpdate.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -470,7 +525,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L101">src/models/websocket/order/OrderUpdate.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L103">src/models/websocket/order/OrderUpdate.ts:103</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -478,7 +533,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L105">src/models/websocket/order/OrderUpdate.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L107">src/models/websocket/order/OrderUpdate.ts:107</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -502,7 +557,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L93">src/models/websocket/order/OrderUpdate.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L95">src/models/websocket/order/OrderUpdate.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -510,7 +565,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L97">src/models/websocket/order/OrderUpdate.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L99">src/models/websocket/order/OrderUpdate.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -527,28 +582,47 @@
 					<a name="rejectionmotive" class="tsd-anchor"></a>
 					<h3>rejection<wbr>Motive</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rejectionMotive<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderrejectionmotive_.orderrejectionmotive.html" class="tsd-signature-type">OrderRejectionMotive</a></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rejectionMotive<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderrejectionmotive_.orderrejectionmotive.html" class="tsd-signature-type">OrderRejectionMotive</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rejectionMotive<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderRejectionMotive.NONE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_INSTRUMENT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.MARKET_CLOSED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.PRICE_QTY_EXCEED_HARD_LIMITS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.DUPLICATE_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ACCOUNT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.INSUFFICIENT_BALANCE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_INACTIVE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_CANNOT_SETTLE</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> rejectionMotive<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderRejectionMotive.NONE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_INSTRUMENT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.MARKET_CLOSED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.PRICE_QTY_EXCEED_HARD_LIMITS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.DUPLICATE_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ACCOUNT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.INSUFFICIENT_BALANCE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_INACTIVE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_CANNOT_SETTLE</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L125">src/models/websocket/order/OrderUpdate.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L127">src/models/websocket/order/OrderUpdate.ts:127</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/_src_enums_orderrejectionmotive_.orderrejectionmotive.html" class="tsd-signature-type">OrderRejectionMotive</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OrderRejectionMotive.NONE</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_INSTRUMENT</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.MARKET_CLOSED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.PRICE_QTY_EXCEED_HARD_LIMITS</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ORDER</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.DUPLICATE_ORDER</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ACCOUNT</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.INSUFFICIENT_BALANCE</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_INACTIVE</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_CANNOT_SETTLE</span>
+							</h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L129">src/models/websocket/order/OrderUpdate.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L131">src/models/websocket/order/OrderUpdate.ts:131</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="../enums/_src_enums_orderrejectionmotive_.orderrejectionmotive.html" class="tsd-signature-type">OrderRejectionMotive</a></h5>
+									<h5>value: <span class="tsd-signature-type">OrderRejectionMotive.NONE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_INSTRUMENT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.MARKET_CLOSED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.PRICE_QTY_EXCEED_HARD_LIMITS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.DUPLICATE_ORDER</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.UNKNOWN_ACCOUNT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.INSUFFICIENT_BALANCE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_INACTIVE</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderRejectionMotive.ACCOUNT_CANNOT_SETTLE</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -559,28 +633,31 @@
 					<a name="side" class="tsd-anchor"></a>
 					<h3>side</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> side<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderside_.orderside.html" class="tsd-signature-type">OrderSide</a></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> side<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderside_.orderside.html" class="tsd-signature-type">OrderSide</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> side<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderSide.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderSide.SELL</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> side<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderSide.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderSide.SELL</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L69">src/models/websocket/order/OrderUpdate.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L71">src/models/websocket/order/OrderUpdate.ts:71</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/_src_enums_orderside_.orderside.html" class="tsd-signature-type">OrderSide</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OrderSide.BUY</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderSide.SELL</span>
+							</h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L73">src/models/websocket/order/OrderUpdate.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L75">src/models/websocket/order/OrderUpdate.ts:75</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="../enums/_src_enums_orderside_.orderside.html" class="tsd-signature-type">OrderSide</a></h5>
+									<h5>value: <span class="tsd-signature-type">OrderSide.BUY</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderSide.SELL</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -591,28 +668,41 @@
 					<a name="status" class="tsd-anchor"></a>
 					<h3>status</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> status<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderstatus_.orderstatus.html" class="tsd-signature-type">OrderStatus</a></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> status<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_orderstatus_.orderstatus.html" class="tsd-signature-type">OrderStatus</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> status<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PARTIALLY_FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PENDING_CANCEL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.EXPIRED</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> status<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PARTIALLY_FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PENDING_CANCEL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.EXPIRED</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L117">src/models/websocket/order/OrderUpdate.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L119">src/models/websocket/order/OrderUpdate.ts:119</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/_src_enums_orderstatus_.orderstatus.html" class="tsd-signature-type">OrderStatus</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OrderStatus.NEW</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderStatus.PARTIALLY_FILLED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderStatus.FILLED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderStatus.CANCELED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderStatus.PENDING_CANCEL</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderStatus.REJECTED</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderStatus.EXPIRED</span>
+							</h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L121">src/models/websocket/order/OrderUpdate.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L123">src/models/websocket/order/OrderUpdate.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="../enums/_src_enums_orderstatus_.orderstatus.html" class="tsd-signature-type">OrderStatus</a></h5>
+									<h5>value: <span class="tsd-signature-type">OrderStatus.NEW</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PARTIALLY_FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.FILLED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.CANCELED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.PENDING_CANCEL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.REJECTED</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderStatus.EXPIRED</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -630,7 +720,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L53">src/models/websocket/order/OrderUpdate.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L55">src/models/websocket/order/OrderUpdate.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -638,7 +728,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L57">src/models/websocket/order/OrderUpdate.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L59">src/models/websocket/order/OrderUpdate.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -655,28 +745,33 @@
 					<a name="timeinforce" class="tsd-anchor"></a>
 					<h3>time<wbr>InForce</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> timeInForce<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_timeinforce_.timeinforce.html" class="tsd-signature-type">TimeInForce</a></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> timeInForce<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_timeinforce_.timeinforce.html" class="tsd-signature-type">TimeInForce</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> timeInForce<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TimeInForce.GTC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.IOC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.FOK</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> timeInForce<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TimeInForce.GTC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.IOC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.FOK</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L85">src/models/websocket/order/OrderUpdate.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L87">src/models/websocket/order/OrderUpdate.ts:87</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/_src_enums_timeinforce_.timeinforce.html" class="tsd-signature-type">TimeInForce</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TimeInForce.GTC</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">TimeInForce.IOC</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">TimeInForce.FOK</span>
+							</h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L89">src/models/websocket/order/OrderUpdate.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L91">src/models/websocket/order/OrderUpdate.ts:91</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="../enums/_src_enums_timeinforce_.timeinforce.html" class="tsd-signature-type">TimeInForce</a></h5>
+									<h5>value: <span class="tsd-signature-type">TimeInForce.GTC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.IOC</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TimeInForce.FOK</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -694,7 +789,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L45">src/models/websocket/order/OrderUpdate.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L47">src/models/websocket/order/OrderUpdate.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
@@ -702,7 +797,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L49">src/models/websocket/order/OrderUpdate.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L51">src/models/websocket/order/OrderUpdate.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -719,28 +814,41 @@
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
 					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_ordertype_.ordertype.html" class="tsd-signature-type">OrderType</a></li>
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> type<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../enums/_src_enums_ordertype_.ordertype.html" class="tsd-signature-type">OrderType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderType.LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.MARKET</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_MAKER</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> type<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrderType.LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.MARKET</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_MAKER</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L77">src/models/websocket/order/OrderUpdate.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L79">src/models/websocket/order/OrderUpdate.ts:79</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/_src_enums_ordertype_.ordertype.html" class="tsd-signature-type">OrderType</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OrderType.LIMIT</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.MARKET</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.STOP_LOSS</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.STOP_LOSS_LIMIT</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.TAKE_PROFIT</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.TAKE_PROFIT_LIMIT</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">OrderType.LIMIT_MAKER</span>
+							</h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/51c5661/src/models/websocket/order/OrderUpdate.ts#L81">src/models/websocket/order/OrderUpdate.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/luzzif/binance-api-client/blob/0d24174/src/models/websocket/order/OrderUpdate.ts#L83">src/models/websocket/order/OrderUpdate.ts:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <a href="../enums/_src_enums_ordertype_.ordertype.html" class="tsd-signature-type">OrderType</a></h5>
+									<h5>value: <span class="tsd-signature-type">OrderType.LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.MARKET</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.STOP_LOSS_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.TAKE_PROFIT_LIMIT</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OrderType.LIMIT_MAKER</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -769,6 +877,9 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_src_models_websocket_order_orderupdate_.orderupdate.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_models_websocket_order_orderupdate_.orderupdate.html#_cumulativefilledquantity" class="tsd-kind-icon">_cumulative<wbr>Filled<wbr>Quantity</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_models_websocket_order_orderupdate_.orderupdate.html#_executionstatus" class="tsd-kind-icon">_execution<wbr>Status</a>
@@ -811,6 +922,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_models_websocket_order_orderupdate_.orderupdate.html#_type" class="tsd-kind-icon">_type</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="_src_models_websocket_order_orderupdate_.orderupdate.html#cumulativefilledquantity" class="tsd-kind-icon">cumulative<wbr>Filled<wbr>Quantity</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_src_models_websocket_order_orderupdate_.orderupdate.html#executionstatus" class="tsd-kind-icon">execution<wbr>Status</a>
