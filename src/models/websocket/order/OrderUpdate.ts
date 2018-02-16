@@ -4,7 +4,6 @@ import { TimeInForce } from "../../../enums/TimeInForce";
 import { OrderExecutionStatus } from "../../../enums/OrderExecutionStatus";
 import { OrderStatus } from "../../../enums/OrderStatus";
 import { OrderRejectionMotive } from "../../../enums/OrderRejectionMotive";
-import { FilterType } from "../../../enums/FilterType";
 
 export class OrderUpdate {
 
@@ -21,6 +20,7 @@ export class OrderUpdate {
     private _rejectionMotive: OrderRejectionMotive;
     private _id: number;
     private _lastFilledTradePrice: number;
+    private _lastExecutedQuantity: number;
     private _cumulativeFilledQuantity: number;
     private _placedAt: Date;
 
@@ -32,14 +32,15 @@ export class OrderUpdate {
         this._side = OrderSide[ json.S as keyof typeof OrderSide ];
         this._type = OrderType[ json.o as keyof typeof OrderType ];
         this._timeInForce = TimeInForce[ json.f as keyof typeof TimeInForce ];
-        this._quantity = json.q;
-        this._price = json.p;
+        this._quantity = parseFloat( json.q );
+        this._price = parseFloat( json.p );
         this._executionStatus = OrderExecutionStatus[ json.x as keyof typeof OrderExecutionStatus ];
         this._status = OrderStatus[ json.X as keyof typeof OrderStatus ];
         this._rejectionMotive = OrderRejectionMotive[ json.r as keyof typeof OrderRejectionMotive ];
         this._id = json.i;
-        this._lastFilledTradePrice = json.L;        
-        this._cumulativeFilledQuantity = json.z;
+        this._lastFilledTradePrice = parseFloat( json.L );
+        this._lastExecutedQuantity = parseFloat( json.l );
+        this._cumulativeFilledQuantity = parseFloat( json.z );
         this._placedAt = new Date( json.T );
 
     }
@@ -147,6 +148,14 @@ export class OrderUpdate {
     set lastFilledTradePrice( value: number ) {
         this._lastFilledTradePrice = value;
     }
+    
+    get lastExecutedQuantity(): number {
+        return this._lastExecutedQuantity;
+    }
+
+    set lastExecutedQuantity( value: number ) {
+        this._lastExecutedQuantity = value;
+    }    
     
     get cumulativeFilledQuantity(): number {
         return this._cumulativeFilledQuantity;
