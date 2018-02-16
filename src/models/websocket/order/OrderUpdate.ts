@@ -150,6 +150,14 @@ export class OrderUpdate {
         this._lastFilledTradePrice = value;
     }
     
+    get lastExecutedQuantity(): number {
+        return this._lastExecutedQuantity;
+    }
+
+    set lastExecutedQuantity( value: number ) {
+        this._lastExecutedQuantity = value;
+    }    
+    
     get cumulativeFilledQuantity(): number {
         return this._cumulativeFilledQuantity;
     }
