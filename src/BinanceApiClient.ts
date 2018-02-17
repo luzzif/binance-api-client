@@ -38,13 +38,14 @@ import { HeartbeatHandler } from "websocket-heartbeats";
  * Represents a single Binance API client.
  */
 export class BinanceApiClient {
-
+ 
     private static readonly WS_BASE_URL: string = "wss://stream.binance.com:9443/ws/";
     private static readonly DEFAULT_WS_TIMEOUT: number = 60000;
 
     private static API_KEY: string;
     private static API_SECRET: string;
 
+    private binanceUrl: string = "https://api.binance.com";
     /**
      * Initializes a new Binance API client.
      *
@@ -749,6 +750,11 @@ export class BinanceApiClient {
 
     }
 
+    public addCorsProxy(url: string)
+    {
+      this.binanceUrl = url + "/" + this.binanceUrl;
+    }
+
     /**
      * Utility method that sets up and sends a request to the Binance's API, handling
      * the authentication through the API key and API secret parameters possibly given
@@ -774,8 +780,10 @@ export class BinanceApiClient {
 
         let apiUrl: URL = new URL(
             Path.join( "/api", apiVersion, accessedResource ),
-            "https://api.binance.com"
+            this.binanceUrl
         );
+
+        
 
         for( let parameter of parameters ) {
 
