@@ -35,7 +35,7 @@
         "request": "^2.83.0",
         "request-promise": "^4.2.2",
         "typescript": "^2.6.2",
-        "websocket-heartbeats": "^1.1.1",
+        "websocket-heartbeats": "https://github.com/gemmell/websocket-heartbeats.git",
         "ws": "^3.3.3"
     }
 }
