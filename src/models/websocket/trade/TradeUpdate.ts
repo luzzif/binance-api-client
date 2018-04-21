@@ -18,8 +18,8 @@ export class TradeUpdate {
         this._timestamp = new Date( json.E );
         this._symbol = json.s;
         this._aggregatedId = json.a;
-        this._price = json.p;
-        this._quantity = json.q;
+        this._price = parseFloat(json.p);
+        this._quantity = parseFloat(json.q);
         this._firstBreakdownId = json.f;
         this._lastBreakdownId = json.l;
         this._placedAt = new Date( json.T );

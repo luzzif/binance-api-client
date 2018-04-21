@@ -18,8 +18,8 @@ export class RawTradeUpdate {
         this._timestamp = new Date( json.E );
         this._symbol = json.s;
         this._tradeId = json.t;
-        this._price = json.p;
-        this._quantity = json.q;
+        this._price = parseFloat(json.p);
+        this._quantity = parseFloat(json.q);
         this._buyerOrderId = json.b;
         this._sellerOrderId = json.a;
         this._placedAt = new Date( json.T );
