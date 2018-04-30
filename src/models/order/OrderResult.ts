@@ -24,9 +24,9 @@ export class OrderResult {
         this._orderId = json.orderId;
         this._clientOrderId = json.clientOrderId;
         this._timestamp = new Date( json.transactTime );
-        this._price = json.price;
-        this._originalQuantity = json.origQty;
-        this._executedQuantity = json.executedQty;
+        this._price = parseFloat(json.price);
+        this._originalQuantity = parseFloat(json.origQty);
+        this._executedQuantity = parseFloat(json.executedQty);
         this._status = OrderStatus[ json.status as keyof typeof OrderStatus ];
         this._timeInForce = TimeInForce[ json.timeInForce as keyof typeof TimeInForce ];
         this._type = OrderType[ json.type as keyof typeof OrderType ];

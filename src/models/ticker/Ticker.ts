@@ -12,10 +12,10 @@ export class Ticker {
     constructor( json: any ) {
 
         this._symbol = json.symbol;
-        this._bidPrice = json.bidPrice;
-        this._bidQuantity = json.bidQty;
-        this._askPrice = json.askPrice;
-        this._askQuantity = json.askQty;
+        this._bidPrice = parseFloat(json.bidPrice);
+        this._bidQuantity = parseFloat(json.bidQty);
+        this._askPrice = parseFloat(json.askPrice);
+        this._askQuantity = parseFloat(json.askQty);
 
     }
 

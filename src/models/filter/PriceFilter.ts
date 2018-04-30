@@ -11,9 +11,9 @@ export class PriceFilter implements SymbolFilter {
 
     constructor( json: any ) {
 
-        this._minimumPrice = json.minPrice;
-        this._maximumPrice = json.maxPrice;
-        this._tickSize = json.tickSize;
+        this._minimumPrice = parseFloat(json.minPrice);
+        this._maximumPrice = parseFloat(json.maxPrice);
+        this._tickSize = parseFloat(json.tickSize);
 
     }
 

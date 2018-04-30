@@ -8,7 +8,7 @@ export class MinimumNotionalFilter implements SymbolFilter {
     private _value: number;
 
     constructor( json: any ) {
-        this._value = json.minNotional;
+        this._value = parseFloat(json.minNotional);
     }
 
     get value(): number {

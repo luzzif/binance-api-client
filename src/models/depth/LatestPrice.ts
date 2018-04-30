@@ -8,7 +8,7 @@ export class LatestPrice {
 
     constructor( json: any ) {
         this._symbol = json.symbol;
-        this._price = json.price;
+        this._price = parseFloat(json.price);
     }
 
     get symbol(): string {
