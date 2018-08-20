@@ -28,14 +28,16 @@
     },
     "homepage": "https://github.com/luzzif/binance-api-client#readme",
     "dependencies": {
-        "@types/crypto-js": "^3.1.38",
-        "@types/node": "^8.5.7",
-        "@types/requestretry": "^1.12.3",
         "crypto-js": "^3.1.9-1",
-        "request": "^2.83.0",
+        "request": "^2.88.0",
         "request-promise": "^4.2.2",
-        "typescript": "^2.6.2",
-        "websocket-heartbeats": "^1.1.1",
-        "ws": "^3.3.3"
+        "typescript": "^3.0.1",
+        "websocket-heartbeats": "^1.2.0",
+        "ws": "^6.0.0"
+    },
+    "devDependencies": {
+        "@types/crypto-js": "^3.1.38",
+        "@types/node": "^10.7.1",
+        "@types/requestretry": "^1.12.3"
     }
 }
