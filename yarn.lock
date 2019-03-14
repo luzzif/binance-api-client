@@ -20,7 +20,11 @@
   version "10.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.1.tgz#b704d7c259aa40ee052eec678758a68d07132a2e"
 
-"@types/node@^8.5.7", "@types/node@^8.9.4":
+"@types/node@^10.7.1":
+  version "10.14.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.1.tgz#8701cd760acc20beba5ffe0b7a1b879f39cb8c41"
+
+"@types/node@^8.9.4":
   version "8.10.26"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.26.tgz#950e3d4e6b316ba6e1ae4e84d9155aba67f88c2f"
 
@@ -33,9 +37,9 @@
     "@types/node" "*"
     "@types/tough-cookie" "*"
 
-"@types/requestretry@^1.12.3":
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/@types/requestretry/-/requestretry-1.12.3.tgz#b92b529676eace165b0d0e29f855fbb30d288b15"
+"@types/requestretry@^1.12.4":
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/@types/requestretry/-/requestretry-1.12.4.tgz#28e7ed8250b3224349b8746f62dffbd16b587881"
   dependencies:
     "@types/node" "*"
     "@types/request" "*"
