@@ -37,9 +37,9 @@
     "@types/node" "*"
     "@types/tough-cookie" "*"
 
-"@types/requestretry@^1.12.4":
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/@types/requestretry/-/requestretry-1.12.4.tgz#28e7ed8250b3224349b8746f62dffbd16b587881"
+"@types/requestretry@^1.12.5":
+  version "1.12.5"
+  resolved "https://registry.yarnpkg.com/@types/requestretry/-/requestretry-1.12.5.tgz#c8abf9eb173a9c61d7099ca378acca3e8a483007"
   dependencies:
     "@types/node" "*"
     "@types/request" "*"
