@@ -274,10 +274,10 @@ export class BinanceApiClient {
             [ "quantity", quantity ],
             [
                 "price",
-                type === OrderType.MARKET || type === OrderType.STOP_LOSS ? null : price
+                type === OrderType.MARKET || type === OrderType.STOP_LOSS ? null : price.toFixed(8)
             ],
             [ "newClientOrderId", clientOrderId ],
-            [ "stopPrice", stopPrice ],
+            [ "stopPrice", stopPrice.toFixed(8) ],
             [ "icebergQty", icebergQuantity ],
             [ "newOrderRespType", isNullOrUndefined( responseType ) ? null : ResponseType[ responseType ] ]
         );
