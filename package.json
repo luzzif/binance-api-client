@@ -1,6 +1,6 @@
 {
     "name": "binance-api-client",
-    "version": "2.5.1",
+    "version": "2.7.0",
     "description": "A wrapper which can be used to interact with Binance's API. Entirely developed in TypeScript.",
     "main": "build/index.js",
     "engines": {
@@ -28,14 +28,16 @@
     },
     "homepage": "https://github.com/luzzif/binance-api-client#readme",
     "dependencies": {
-        "@types/crypto-js": "^3.1.38",
-        "@types/node": "^8.5.7",
-        "@types/requestretry": "^1.12.3",
         "crypto-js": "^3.1.9-1",
-        "request": "^2.83.0",
-        "request-promise": "^4.2.2",
-        "typescript": "^2.6.2",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4",
+        "typescript": "^3.4.4",
         "websocket-heartbeats": "^1.2.0",
-        "ws": "^3.3.3"
+        "ws": "^6.2.1"
+    },
+    "devDependencies": {
+        "@types/crypto-js": "^3.1.38",
+        "@types/node": "^10.7.1",
+        "@types/requestretry": "^1.12.4"
     }
 }
