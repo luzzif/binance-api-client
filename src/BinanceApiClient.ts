@@ -963,7 +963,7 @@ export class BinanceApiClient {
             this.setupAuthentication( httpMethod, apiUrl, requiredAuthentication );
 
         try {
-
+            console.log("SENDING: " + apiUrl.href);
             return await request( {
 
                 method: HttpMethod[ httpMethod ],
