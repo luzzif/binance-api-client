@@ -259,7 +259,9 @@ export class BinanceApiClient {
         icebergQuantity?: number,
         responseType?: ResponseType ): Promise< OrderAcknowledgement | OrderResult | OrderFull > {
 
-        console.log("BinanceApiClient says the price is" + price.toFixed(8));
+        
+        const priceAsString: string = price.toFixed(8);
+        console.log("BinanceApiClient says the price is" + priceAsString);
         let jsonResponse: any = await this.makeRequest(
             HttpMethod.POST,
             ApiVersion.V3,
@@ -275,10 +277,10 @@ export class BinanceApiClient {
             [ "quantity", quantity ],
             [
                 "price",
-                (type === OrderType.MARKET || type === OrderType.STOP_LOSS) ? null : price.toFixed(8)
+                (type === OrderType.MARKET || type === OrderType.STOP_LOSS) ? null : price
             ],
             [ "newClientOrderId", clientOrderId ],
-            [ "stopPrice", stopPrice.toFixed(8) ],
+            [ "stopPrice", stopPrice ],
             [ "icebergQty", icebergQuantity ],
             [ "newOrderRespType", isNullOrUndefined( responseType ) ? null : ResponseType[ responseType ] ]
         );
