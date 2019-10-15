@@ -1,15 +1,15 @@
 /**
- * Represents a single trade update.
+ * Represents a single raw trade update.
  */
-export class TradeUpdate {
+export class RawTradeUpdate {
 
     private _timestamp: Date;
     private _symbol: string;
-    private _aggregatedId: number;
+    private _tradeId: number;
     private _price: number;
     private _quantity: number;
-    private _firstBreakdownId: number;
-    private _lastBreakdownId: number;
+    private _buyerOrderId: number;
+    private _sellerOrderId: number;
     private _placedAt: Date;
     private _buyerMaker: boolean;
 
@@ -17,11 +17,11 @@ export class TradeUpdate {
 
         this._timestamp = new Date( json.E );
         this._symbol = json.s;
-        this._aggregatedId = json.a;
+        this._tradeId = json.t;
         this._price = parseFloat(json.p);
         this._quantity = parseFloat(json.q);
-        this._firstBreakdownId = json.f;
-        this._lastBreakdownId = json.l;
+        this._buyerOrderId = json.b;
+        this._sellerOrderId = json.a;
         this._placedAt = new Date( json.T );
         this._buyerMaker = json.m;
 
@@ -43,12 +43,12 @@ export class TradeUpdate {
         this._symbol = value;
     }
 
-    get aggregatedId(): number {
-        return this._aggregatedId;
+    get tradeId(): number {
+        return this._tradeId;
     }
 
-    set aggregatedId( value: number ) {
-        this._aggregatedId = value;
+    set tradeId( value: number ) {
+        this._tradeId = value;
     }
 
     get price(): number {
@@ -67,20 +67,20 @@ export class TradeUpdate {
         this._quantity = value;
     }
 
-    get firstBreakdownId(): number {
-        return this._firstBreakdownId;
+    get buyerOrderId(): number {
+        return this._buyerOrderId;
     }
 
-    set firstBreakdownId( value: number ) {
-        this._firstBreakdownId = value;
+    set buyerOrderId( value: number ) {
+        this._buyerOrderId = value;
     }
 
-    get lastBreakdownId(): number {
-        return this._lastBreakdownId;
+    get sellerOrderId(): number {
+        return this._sellerOrderId;
     }
 
-    set lastBreakdownId( value: number ) {
-        this._lastBreakdownId = value;
+    set sellerOrderId( value: number ) {
+        this._sellerOrderId = value;
     }
 
     get placedAt(): Date {

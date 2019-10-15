@@ -7,8 +7,8 @@ export class PlacedOrder {
     private _quantity: number;
 
     constructor( json: any ) {
-        this._price = json[ 0 ];
-        this._quantity = json[ 1 ];
+        this._price = parseFloat(json[ 0 ]);
+        this._quantity = parseFloat(json[ 1 ]);
     }
 
     get price(): number {

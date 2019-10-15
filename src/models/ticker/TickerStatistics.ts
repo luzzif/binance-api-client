@@ -22,17 +22,17 @@ export class TickerStatistics {
 
     constructor( json: any ) {
 
-        this._priceChange = json.priceChange;
-        this._priceChangePercentage = json.priceChangePercent;
-        this._weightedAveragePrice = json.weightedAvgPrice;
-        this._previousClosurePrice = json.prevClosePrice;
-        this._lastPrice = json.lastPrice;
-        this._bidPrice = json.bidPrice;
-        this._askPrice = json.askPrice;
-        this._openingPrice = json.openPrice;
-        this._highestPrice = json.highPrice;
-        this._lowestPrice = json.lowPrice;
-        this._volume = json.volume;
+        this._priceChange = parseFloat(json.priceChange);
+        this._priceChangePercentage = parseFloat(json.priceChangePercent);
+        this._weightedAveragePrice = parseFloat(json.weightedAvgPrice);
+        this._previousClosurePrice = parseFloat(json.prevClosePrice);
+        this._lastPrice = parseFloat(json.lastPrice);
+        this._bidPrice = parseFloat(json.bidPrice);
+        this._askPrice = parseFloat(json.askPrice);
+        this._openingPrice = parseFloat(json.openPrice);
+        this._highestPrice = parseFloat(json.highPrice);
+        this._lowestPrice = parseFloat(json.lowPrice);
+        this._volume = parseFloat(json.volume);
         this._openingTime = new Date( json.openTime );
         this._closureTime = new Date( json.closeTime );
         this._firstTradeId = json.firstId;

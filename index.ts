@@ -46,5 +46,6 @@ export { Ticker } from "./src/models/ticker/Ticker";
 export { TickerStatistics } from "./src/models/ticker/TickerStatistics";
 export { Trade } from "./src/models/trade/Trade";
 export { TradeUpdate } from "./src/models/websocket/trade/TradeUpdate";
+export { RawTradeUpdate } from "./src/models/websocket/trade/RawTradeUpdate";
 
 export { BinanceApiClient } from "./src/BinanceApiClient";

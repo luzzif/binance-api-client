@@ -10,9 +10,9 @@ export class OrderResult {
     private _orderId: number;
     private _clientOrderId: string;
     private _timestamp: Date;
-    private _price: string;
-    private _originalQuantity: string;
-    private _executedQuantity: string;
+    private _price: number;
+    private _originalQuantity: number;
+    private _executedQuantity: number;
     private _status: OrderStatus;
     private _timeInForce: TimeInForce;
     private _type: OrderType;
@@ -24,9 +24,9 @@ export class OrderResult {
         this._orderId = json.orderId;
         this._clientOrderId = json.clientOrderId;
         this._timestamp = new Date( json.transactTime );
-        this._price = json.price;
-        this._originalQuantity = json.origQty;
-        this._executedQuantity = json.executedQty;
+        this._price = parseFloat(json.price);
+        this._originalQuantity = parseFloat(json.origQty);
+        this._executedQuantity = parseFloat(json.executedQty);
         this._status = OrderStatus[ json.status as keyof typeof OrderStatus ];
         this._timeInForce = TimeInForce[ json.timeInForce as keyof typeof TimeInForce ];
         this._type = OrderType[ json.type as keyof typeof OrderType ];
@@ -66,27 +66,27 @@ export class OrderResult {
         this._timestamp = value;
     }
 
-    get price(): string {
+    get price(): number {
         return this._price;
     }
 
-    set price( value: string ) {
+    set price( value: number ) {
         this._price = value;
     }
 
-    get originalQuantity(): string {
+    get originalQuantity(): number {
         return this._originalQuantity;
     }
 
-    set originalQuantity( value: string ) {
+    set originalQuantity( value: number ) {
         this._originalQuantity = value;
     }
 
-    get executedQuantity(): string {
+    get executedQuantity(): number {
         return this._executedQuantity;
     }
 
-    set executedQuantity( value: string ) {
+    set executedQuantity( value: number ) {
         this._executedQuantity = value;
     }
 
