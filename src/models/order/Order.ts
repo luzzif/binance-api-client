@@ -2,13 +2,11 @@ import { OrderStatus } from "../../enums/OrderStatus";
 import { TimeInForce } from "../../enums/TimeInForce";
 import { OrderType } from "../../enums/OrderType";
 import { OrderSide } from "../../enums/OrderSide";
-import { FilterType } from "../../enums/FilterType";
 
 /**
  * Represents a single open order.
  */
 export class Order {
-
     private _symbol: string;
     private _id: number;
     private _clientId: string;
@@ -23,29 +21,28 @@ export class Order {
     private _icebergQuantity: number;
     private _timestamp: Date;
 
-    constructor( json: any ) {
-
+    constructor(json: any) {
         this._symbol = json.symbol;
         this._id = json.orderId;
         this._clientId = json.clientOrderId;
         this._price = json.price;
         this._originalQuantity = json.origQty;
         this._executedQuantity = json.executedQty;
-        this._status = OrderStatus[ json.status as keyof typeof OrderStatus ];
-        this._timeInForce = TimeInForce[ json.timeInForce as keyof typeof TimeInForce ];
-        this._type = OrderType[ json.type as keyof typeof OrderType ];
-        this._side = OrderSide[ json.side as keyof typeof OrderSide ];
+        this._status = OrderStatus[json.status as keyof typeof OrderStatus];
+        this._timeInForce =
+            TimeInForce[json.timeInForce as keyof typeof TimeInForce];
+        this._type = OrderType[json.type as keyof typeof OrderType];
+        this._side = OrderSide[json.side as keyof typeof OrderSide];
         this._stopPrice = json.stopPrice;
         this._icebergQuantity = json.icebergQty;
-        this._timestamp = new Date( json.time );
-
+        this._timestamp = new Date(json.time);
     }
 
     get symbol(): string {
         return this._symbol;
     }
 
-    set symbol( value: string ) {
+    set symbol(value: string) {
         this._symbol = value;
     }
 
@@ -53,7 +50,7 @@ export class Order {
         return this._id;
     }
 
-    set id( value: number ) {
+    set id(value: number) {
         this._id = value;
     }
 
@@ -61,7 +58,7 @@ export class Order {
         return this._clientId;
     }
 
-    set clientId( value: string ) {
+    set clientId(value: string) {
         this._clientId = value;
     }
 
@@ -69,7 +66,7 @@ export class Order {
         return this._price;
     }
 
-    set price( value: number ) {
+    set price(value: number) {
         this._price = value;
     }
 
@@ -77,7 +74,7 @@ export class Order {
         return this._originalQuantity;
     }
 
-    set originalQuantity( value: number ) {
+    set originalQuantity(value: number) {
         this._originalQuantity = value;
     }
 
@@ -85,7 +82,7 @@ export class Order {
         return this._executedQuantity;
     }
 
-    set executedQuantity( value: number ) {
+    set executedQuantity(value: number) {
         this._executedQuantity = value;
     }
 
@@ -93,7 +90,7 @@ export class Order {
         return this._status;
     }
 
-    set status( value: OrderStatus ) {
+    set status(value: OrderStatus) {
         this._status = value;
     }
 
@@ -101,7 +98,7 @@ export class Order {
         return this._timeInForce;
     }
 
-    set timeInForce( value: TimeInForce ) {
+    set timeInForce(value: TimeInForce) {
         this._timeInForce = value;
     }
 
@@ -109,7 +106,7 @@ export class Order {
         return this._type;
     }
 
-    set type( value: OrderType ) {
+    set type(value: OrderType) {
         this._type = value;
     }
 
@@ -117,7 +114,7 @@ export class Order {
         return this._side;
     }
 
-    set side( value: OrderSide ) {
+    set side(value: OrderSide) {
         this._side = value;
     }
 
@@ -125,7 +122,7 @@ export class Order {
         return this._stopPrice;
     }
 
-    set stopPrice( value: number ) {
+    set stopPrice(value: number) {
         this._stopPrice = value;
     }
 
@@ -133,7 +130,7 @@ export class Order {
         return this._icebergQuantity;
     }
 
-    set icebergQuantity( value: number ) {
+    set icebergQuantity(value: number) {
         this._icebergQuantity = value;
     }
 
@@ -141,8 +138,7 @@ export class Order {
         return this._timestamp;
     }
 
-    set timestamp( value: Date ) {
+    set timestamp(value: Date) {
         this._timestamp = value;
     }
-
 }

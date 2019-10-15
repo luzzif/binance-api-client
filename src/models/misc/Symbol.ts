@@ -12,7 +12,6 @@ import { SymbolFilter } from "../filter/abstraction/SymbolFilter";
  * Represents a single symbol.
  */
 export class Symbol {
-
     private _name: string;
     private _status: SymbolStatus;
     private _baseAsset: string;
@@ -23,10 +22,9 @@ export class Symbol {
     private _icebergAllowed: boolean;
     private _filters: SymbolFilter[];
 
-    constructor( json: any ) {
-
+    constructor(json: any) {
         this._name = json.symbol;
-        this._status = SymbolStatus[ json.status as keyof typeof SymbolStatus ];
+        this._status = SymbolStatus[json.status as keyof typeof SymbolStatus];
         this._baseAsset = json.baseAsset;
         this._baseAssetPrecision = json.baseAssetPrecision;
         this._quoteAsset = json.quoteAsset;
@@ -34,49 +32,48 @@ export class Symbol {
         this._icebergAllowed = json.icebergAllowed;
 
         this._orderTypes = [];
-        for( let orderType of json.orderTypes ) {
-            this._orderTypes.push( OrderType[ orderType as keyof typeof OrderType ] );
+        for (const orderType of json.orderTypes) {
+            this._orderTypes.push(
+                OrderType[orderType as keyof typeof OrderType]
+            );
         }
 
         this._filters = [];
-        for( let jsonFilter of json.filters ) {
-
+        for (const jsonFilter of json.filters) {
             let filter: SymbolFilter;
-            switch( FilterType[ jsonFilter.filterType as keyof typeof FilterType ] ) {
-
+            switch (
+                FilterType[jsonFilter.filterType as keyof typeof FilterType]
+            ) {
                 case FilterType.PRICE_FILTER: {
-                    filter = new PriceFilter( jsonFilter );
+                    filter = new PriceFilter(jsonFilter);
                     break;
                 }
                 case FilterType.LOT_SIZE: {
-                    filter = new LotSizeFilter( jsonFilter );
+                    filter = new LotSizeFilter(jsonFilter);
                     break;
                 }
                 case FilterType.MIN_NOTIONAL: {
-                    filter = new MinimumNotionalFilter( jsonFilter );
+                    filter = new MinimumNotionalFilter(jsonFilter);
                     break;
                 }
                 case FilterType.MAX_NUM_ORDERS: {
-                    filter = new MaxOrdersFilter( jsonFilter );
+                    filter = new MaxOrdersFilter(jsonFilter);
                     break;
                 }
                 case FilterType.MAX_ALGO_ORDERS: {
-                    filter = new MaxAlgoOrdersFilter( jsonFilter );
+                    filter = new MaxAlgoOrdersFilter(jsonFilter);
                     break;
                 }
-
             }
-            this._filters.push( filter );
-
+            this._filters.push(filter);
         }
-
     }
 
     get name(): string {
         return this._name;
     }
 
-    set name( value: string ) {
+    set name(value: string) {
         this._name = value;
     }
 
@@ -84,7 +81,7 @@ export class Symbol {
         return this._status;
     }
 
-    set status( value: SymbolStatus ) {
+    set status(value: SymbolStatus) {
         this._status = value;
     }
 
@@ -92,7 +89,7 @@ export class Symbol {
         return this._baseAsset;
     }
 
-    set baseAsset( value: string ) {
+    set baseAsset(value: string) {
         this._baseAsset = value;
     }
 
@@ -100,7 +97,7 @@ export class Symbol {
         return this._baseAssetPrecision;
     }
 
-    set baseAssetPrecision( value: number ) {
+    set baseAssetPrecision(value: number) {
         this._baseAssetPrecision = value;
     }
 
@@ -108,7 +105,7 @@ export class Symbol {
         return this._quoteAsset;
     }
 
-    set quoteAsset( value: string ) {
+    set quoteAsset(value: string) {
         this._quoteAsset = value;
     }
 
@@ -116,7 +113,7 @@ export class Symbol {
         return this._quoteAssetPrecision;
     }
 
-    set quoteAssetPrecision( value: number ) {
+    set quoteAssetPrecision(value: number) {
         this._quoteAssetPrecision = value;
     }
 
@@ -124,7 +121,7 @@ export class Symbol {
         return this._orderTypes;
     }
 
-    set orderTypes( value: OrderType[] ) {
+    set orderTypes(value: OrderType[]) {
         this._orderTypes = value;
     }
 
@@ -132,7 +129,7 @@ export class Symbol {
         return this._icebergAllowed;
     }
 
-    set icebergAllowed( value: boolean ) {
+    set icebergAllowed(value: boolean) {
         this._icebergAllowed = value;
     }
 
@@ -140,8 +137,7 @@ export class Symbol {
         return this._filters;
     }
 
-    set filters( value: SymbolFilter[] ) {
+    set filters(value: SymbolFilter[]) {
         this._filters = value;
     }
-
 }

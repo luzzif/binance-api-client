@@ -1,7 +1,5 @@
 export enum RateLimitInterval {
-
-    SECOND,
-    MINUTE,
-    DAY
-
+  SECOND,
+  MINUTE,
+  DAY
 }

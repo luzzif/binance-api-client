@@ -2,10 +2,8 @@ import { OrderStatus } from "../../enums/OrderStatus";
 import { TimeInForce } from "../../enums/TimeInForce";
 import { OrderType } from "../../enums/OrderType";
 import { OrderSide } from "../../enums/OrderSide";
-import { FilterType } from "../../enums/FilterType";
 
 export class OrderResult {
-
     private _symbol: string;
     private _orderId: number;
     private _clientOrderId: string;
@@ -18,27 +16,26 @@ export class OrderResult {
     private _type: OrderType;
     private _side: OrderSide;
 
-    constructor( json: any ) {
-
+    constructor(json: any) {
         this._symbol = json.symbol;
         this._orderId = json.orderId;
         this._clientOrderId = json.clientOrderId;
-        this._timestamp = new Date( json.transactTime );
+        this._timestamp = new Date(json.transactTime);
         this._price = json.price;
         this._originalQuantity = json.origQty;
         this._executedQuantity = json.executedQty;
-        this._status = OrderStatus[ json.status as keyof typeof OrderStatus ];
-        this._timeInForce = TimeInForce[ json.timeInForce as keyof typeof TimeInForce ];
-        this._type = OrderType[ json.type as keyof typeof OrderType ];
-        this._side = OrderSide[ json.side as keyof typeof OrderSide ];
-
+        this._status = OrderStatus[json.status as keyof typeof OrderStatus];
+        this._timeInForce =
+            TimeInForce[json.timeInForce as keyof typeof TimeInForce];
+        this._type = OrderType[json.type as keyof typeof OrderType];
+        this._side = OrderSide[json.side as keyof typeof OrderSide];
     }
 
     get symbol(): string {
         return this._symbol;
     }
 
-    set symbol( value: string ) {
+    set symbol(value: string) {
         this._symbol = value;
     }
 
@@ -46,7 +43,7 @@ export class OrderResult {
         return this._orderId;
     }
 
-    set orderId( value: number ) {
+    set orderId(value: number) {
         this._orderId = value;
     }
 
@@ -54,7 +51,7 @@ export class OrderResult {
         return this._clientOrderId;
     }
 
-    set clientOrderId( value: string ) {
+    set clientOrderId(value: string) {
         this._clientOrderId = value;
     }
 
@@ -62,7 +59,7 @@ export class OrderResult {
         return this._timestamp;
     }
 
-    set timestamp( value: Date ) {
+    set timestamp(value: Date) {
         this._timestamp = value;
     }
 
@@ -70,7 +67,7 @@ export class OrderResult {
         return this._price;
     }
 
-    set price( value: string ) {
+    set price(value: string) {
         this._price = value;
     }
 
@@ -78,7 +75,7 @@ export class OrderResult {
         return this._originalQuantity;
     }
 
-    set originalQuantity( value: string ) {
+    set originalQuantity(value: string) {
         this._originalQuantity = value;
     }
 
@@ -86,7 +83,7 @@ export class OrderResult {
         return this._executedQuantity;
     }
 
-    set executedQuantity( value: string ) {
+    set executedQuantity(value: string) {
         this._executedQuantity = value;
     }
 
@@ -94,7 +91,7 @@ export class OrderResult {
         return this._status;
     }
 
-    set status( value: OrderStatus ) {
+    set status(value: OrderStatus) {
         this._status = value;
     }
 
@@ -102,7 +99,7 @@ export class OrderResult {
         return this._timeInForce;
     }
 
-    set timeInForce( value: TimeInForce ) {
+    set timeInForce(value: TimeInForce) {
         this._timeInForce = value;
     }
 
@@ -110,7 +107,7 @@ export class OrderResult {
         return this._type;
     }
 
-    set type( value: OrderType ) {
+    set type(value: OrderType) {
         this._type = value;
     }
 
@@ -118,8 +115,7 @@ export class OrderResult {
         return this._side;
     }
 
-    set side( value: OrderSide ) {
+    set side(value: OrderSide) {
         this._side = value;
     }
-
 }

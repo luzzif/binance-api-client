@@ -2,26 +2,23 @@ import { OrderResult } from "./OrderResult";
 import { PlacedOrderFill } from "./PlacedOrderFill";
 
 export class OrderFull {
-
     private _result: OrderResult;
     private _fills: PlacedOrderFill[];
 
-    constructor( json: any ) {
-
-        this._result = new OrderResult( json );
+    constructor(json: any) {
+        this._result = new OrderResult(json);
 
         this._fills = [];
-        for( let jsonFill of json.fills ) {
-            this._fills.push( new PlacedOrderFill( jsonFill ) );
+        for (const jsonFill of json.fills) {
+            this._fills.push(new PlacedOrderFill(jsonFill));
         }
-
     }
 
     get result(): OrderResult {
         return this._result;
     }
 
-    set result( value: OrderResult ) {
+    set result(value: OrderResult) {
         this._result = value;
     }
 
@@ -29,8 +26,7 @@ export class OrderFull {
         return this._fills;
     }
 
-    set fills( value: PlacedOrderFill[] ) {
+    set fills(value: PlacedOrderFill[]) {
         this._fills = value;
     }
-
 }

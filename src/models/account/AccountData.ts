@@ -4,7 +4,6 @@
 import { Balance } from "./Balance";
 
 export class AccountData {
-
     private _makerCommission: number;
     private _takerCommission: number;
     private _buyerCommission: number;
@@ -14,28 +13,26 @@ export class AccountData {
     private _canDeposit: boolean;
     private _balances: Balance[];
 
-    constructor( json: any ) {
-
+    constructor(json: any) {
         this._makerCommission = json.makerCommission;
         this._takerCommission = json.takerCommission;
         this._buyerCommission = json.buyerCommission;
-        this._sellerCommission= json.sellerCommission;
+        this._sellerCommission = json.sellerCommission;
         this._canTrade = json.canTrade;
         this._canWithdraw = json.canWithdraw;
         this._canDeposit = json.canDeposit;
 
         this._balances = [];
-        for( let balanceJson of json.balances ) {
-            this._balances.push( new Balance( balanceJson ) );
+        for (const balanceJson of json.balances) {
+            this._balances.push(new Balance(balanceJson));
         }
-
     }
 
     get makerCommission(): number {
         return this._makerCommission;
     }
 
-    set makerCommission( value: number ) {
+    set makerCommission(value: number) {
         this._makerCommission = value;
     }
 
@@ -43,7 +40,7 @@ export class AccountData {
         return this._takerCommission;
     }
 
-    set takerCommission( value: number ) {
+    set takerCommission(value: number) {
         this._takerCommission = value;
     }
 
@@ -51,7 +48,7 @@ export class AccountData {
         return this._buyerCommission;
     }
 
-    set buyerCommission( value: number ) {
+    set buyerCommission(value: number) {
         this._buyerCommission = value;
     }
 
@@ -59,7 +56,7 @@ export class AccountData {
         return this._sellerCommission;
     }
 
-    set sellerCommission( value: number ) {
+    set sellerCommission(value: number) {
         this._sellerCommission = value;
     }
 
@@ -67,7 +64,7 @@ export class AccountData {
         return this._canTrade;
     }
 
-    set canTrade( value: boolean ) {
+    set canTrade(value: boolean) {
         this._canTrade = value;
     }
 
@@ -75,7 +72,7 @@ export class AccountData {
         return this._canWithdraw;
     }
 
-    set canWithdraw( value: boolean ) {
+    set canWithdraw(value: boolean) {
         this._canWithdraw = value;
     }
 
@@ -83,7 +80,7 @@ export class AccountData {
         return this._canDeposit;
     }
 
-    set canDeposit( value: boolean ) {
+    set canDeposit(value: boolean) {
         this._canDeposit = value;
     }
 
@@ -91,8 +88,7 @@ export class AccountData {
         return this._balances;
     }
 
-    set balances( value: Balance[] ) {
+    set balances(value: Balance[]) {
         this._balances = value;
     }
-
 }

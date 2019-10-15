@@ -6,7 +6,6 @@ import { OrderStatus } from "../../../enums/OrderStatus";
 import { OrderRejectionMotive } from "../../../enums/OrderRejectionMotive";
 
 export class OrderUpdate {
-
     private _timestamp: Date;
     private _symbol: string;
     private _newClientId: string;
@@ -24,32 +23,32 @@ export class OrderUpdate {
     private _cumulativeFilledQuantity: number;
     private _placedAt: Date;
 
-    constructor( json: any ) {
-
-        this._timestamp = new Date( json.E );
+    constructor(json: any) {
+        this._timestamp = new Date(json.E);
         this._symbol = json.s;
         this._newClientId = json.c;
-        this._side = OrderSide[ json.S as keyof typeof OrderSide ];
-        this._type = OrderType[ json.o as keyof typeof OrderType ];
-        this._timeInForce = TimeInForce[ json.f as keyof typeof TimeInForce ];
-        this._quantity = parseFloat( json.q );
-        this._price = parseFloat( json.p );
-        this._executionStatus = OrderExecutionStatus[ json.x as keyof typeof OrderExecutionStatus ];
-        this._status = OrderStatus[ json.X as keyof typeof OrderStatus ];
-        this._rejectionMotive = OrderRejectionMotive[ json.r as keyof typeof OrderRejectionMotive ];
+        this._side = OrderSide[json.S as keyof typeof OrderSide];
+        this._type = OrderType[json.o as keyof typeof OrderType];
+        this._timeInForce = TimeInForce[json.f as keyof typeof TimeInForce];
+        this._quantity = parseFloat(json.q);
+        this._price = parseFloat(json.p);
+        this._executionStatus =
+            OrderExecutionStatus[json.x as keyof typeof OrderExecutionStatus];
+        this._status = OrderStatus[json.X as keyof typeof OrderStatus];
+        this._rejectionMotive =
+            OrderRejectionMotive[json.r as keyof typeof OrderRejectionMotive];
         this._id = json.i;
-        this._lastFilledTradePrice = parseFloat( json.L );
-        this._lastExecutedQuantity = parseFloat( json.l );
-        this._cumulativeFilledQuantity = parseFloat( json.z );
-        this._placedAt = new Date( json.T );
-
+        this._lastFilledTradePrice = parseFloat(json.L);
+        this._lastExecutedQuantity = parseFloat(json.l);
+        this._cumulativeFilledQuantity = parseFloat(json.z);
+        this._placedAt = new Date(json.T);
     }
 
     get timestamp(): Date {
         return this._timestamp;
     }
 
-    set timestamp( value: Date ) {
+    set timestamp(value: Date) {
         this._timestamp = value;
     }
 
@@ -57,7 +56,7 @@ export class OrderUpdate {
         return this._symbol;
     }
 
-    set symbol( value: string ) {
+    set symbol(value: string) {
         this._symbol = value;
     }
 
@@ -65,7 +64,7 @@ export class OrderUpdate {
         return this._newClientId;
     }
 
-    set newClientId( value: string ) {
+    set newClientId(value: string) {
         this._newClientId = value;
     }
 
@@ -73,7 +72,7 @@ export class OrderUpdate {
         return this._side;
     }
 
-    set side( value: OrderSide ) {
+    set side(value: OrderSide) {
         this._side = value;
     }
 
@@ -81,7 +80,7 @@ export class OrderUpdate {
         return this._type;
     }
 
-    set type( value: OrderType ) {
+    set type(value: OrderType) {
         this._type = value;
     }
 
@@ -89,7 +88,7 @@ export class OrderUpdate {
         return this._timeInForce;
     }
 
-    set timeInForce( value: TimeInForce ) {
+    set timeInForce(value: TimeInForce) {
         this._timeInForce = value;
     }
 
@@ -97,7 +96,7 @@ export class OrderUpdate {
         return this._quantity;
     }
 
-    set quantity( value: number ) {
+    set quantity(value: number) {
         this._quantity = value;
     }
 
@@ -105,7 +104,7 @@ export class OrderUpdate {
         return this._price;
     }
 
-    set price( value: number ) {
+    set price(value: number) {
         this._price = value;
     }
 
@@ -113,7 +112,7 @@ export class OrderUpdate {
         return this._executionStatus;
     }
 
-    set executionStatus( value: OrderExecutionStatus ) {
+    set executionStatus(value: OrderExecutionStatus) {
         this._executionStatus = value;
     }
 
@@ -121,15 +120,15 @@ export class OrderUpdate {
         return this._status;
     }
 
-    set status( value: OrderStatus ) {
+    set status(value: OrderStatus) {
         this._status = value;
     }
 
-    get rejectionMotive() {
+    get rejectionMotive(): OrderRejectionMotive {
         return this._rejectionMotive;
     }
 
-    set rejectionMotive( value ) {
+    set rejectionMotive(value) {
         this._rejectionMotive = value;
     }
 
@@ -137,7 +136,7 @@ export class OrderUpdate {
         return this._id;
     }
 
-    set id( value: number ) {
+    set id(value: number) {
         this._id = value;
     }
 
@@ -145,18 +144,18 @@ export class OrderUpdate {
         return this._lastFilledTradePrice;
     }
 
-    set lastFilledTradePrice( value: number ) {
+    set lastFilledTradePrice(value: number) {
         this._lastFilledTradePrice = value;
     }
-    
+
     get lastExecutedQuantity(): number {
         return this._lastExecutedQuantity;
     }
 
-    set lastExecutedQuantity( value: number ) {
+    set lastExecutedQuantity(value: number) {
         this._lastExecutedQuantity = value;
-    }    
-    
+    }
+
     get cumulativeFilledQuantity(): number {
         return this._cumulativeFilledQuantity;
     }
@@ -169,8 +168,7 @@ export class OrderUpdate {
         return this._placedAt;
     }
 
-    set placedAt( value: Date ) {
+    set placedAt(value: Date) {
         this._placedAt = value;
     }
-
 }

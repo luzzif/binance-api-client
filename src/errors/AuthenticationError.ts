@@ -8,15 +8,22 @@ import { URL } from "url";
  * a specific resource.
  */
 export class AuthenticationError extends Error {
-
-    constructor( httpMethod: HttpMethod, apiUrl: URL, requiredAuthentication: AuthenticationMethod ) {
-
-        super(
-            "Endpoint [ " + HttpMethod[ httpMethod ] + " ]@[ " + apiUrl.href.split( "?" )[ 0 ] + " ] requires " +
-            "an API key " + ( requiredAuthentication == AuthenticationMethod.SIGNED ? "and API secret " : "" ) +
-            "in order to be accessed"
-        );
-
-    }
-
+  constructor(
+    httpMethod: HttpMethod,
+    apiUrl: URL,
+    requiredAuthentication: AuthenticationMethod
+  ) {
+    super(
+      "Endpoint [ " +
+        HttpMethod[httpMethod] +
+        " ]@[ " +
+        apiUrl.href.split("?")[0] +
+        " ] requires " +
+        "an API key " +
+        (requiredAuthentication == AuthenticationMethod.SIGNED
+          ? "and API secret "
+          : "") +
+        "in order to be accessed"
+    );
+  }
 }

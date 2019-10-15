@@ -38,8 +38,8 @@ import { HeartbeatHandler } from "websocket-heartbeats";
  * Represents a single Binance API client.
  */
 export class BinanceApiClient {
-
-    private static readonly WS_BASE_URL: string = "wss://stream.binance.com:9443/ws/";
+    private static readonly WS_BASE_URL: string =
+        "wss://stream.binance.com:9443/ws/";
     private static readonly DEFAULT_WS_TIMEOUT: number = 60000;
 
     private static API_KEY: string;
@@ -51,7 +51,7 @@ export class BinanceApiClient {
      * @param apiKey    The personal account API key.
      * @param apiSecret The personal account API secret.
      */
-    constructor( apiKey?: string, apiSecret?: string ) {
+    constructor(apiKey?: string, apiSecret?: string) {
         BinanceApiClient.API_KEY = apiKey;
         BinanceApiClient.API_SECRET = apiSecret;
     }
@@ -59,26 +59,24 @@ export class BinanceApiClient {
     /**
      * Interface to the "GET v1/ping" Binance's API operation.
      */
-    public async ping(): Promise< void > {
-
+    public async ping(): Promise<void> {
         await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V1,
             "ping",
             AuthenticationMethod.NONE
         );
-
     }
 
-    public async getExchangeInfo(): Promise< ExchangeInfo > {
-
-        return new ExchangeInfo( await this.makeRequest(
-            HttpMethod.GET,
-            ApiVersion.V1,
-            "exchangeInfo",
-            AuthenticationMethod.NONE
-        ) );
-
+    public async getExchangeInfo(): Promise<ExchangeInfo> {
+        return new ExchangeInfo(
+            await this.makeRequest(
+                HttpMethod.GET,
+                ApiVersion.V1,
+                "exchangeInfo",
+                AuthenticationMethod.NONE
+            )
+        );
     }
 
     /**
@@ -86,15 +84,15 @@ export class BinanceApiClient {
      *
      * @returns The Binance's server time.
      */
-    public async getServerTime(): Promise< Date > {
-
-        return new Date( ( await this.makeRequest(
-            HttpMethod.GET,
-            ApiVersion.V1,
-            "time",
-            AuthenticationMethod.NONE
-        ) ).serverTime );
-
+    public async getServerTime(): Promise<Date> {
+        return new Date(
+            (await this.makeRequest(
+                HttpMethod.GET,
+                ApiVersion.V1,
+                "time",
+                AuthenticationMethod.NONE
+            )).serverTime
+        );
     }
 
     /**
@@ -105,17 +103,20 @@ export class BinanceApiClient {
      *
      * @returns The order book respecting the given constraints.
      */
-    public async getOrderBook( symbol: string, limit?: number ): Promise< OrderBook > {
-
-        return new OrderBook( await this.makeRequest(
-            HttpMethod.GET,
-            ApiVersion.V1,
-            "depth",
-            AuthenticationMethod.NONE,
-            [ "symbol", symbol ],
-            [ "limit", limit ]
-        ) );
-
+    public async getOrderBook(
+        symbol: string,
+        limit?: number
+    ): Promise<OrderBook> {
+        return new OrderBook(
+            await this.makeRequest(
+                HttpMethod.GET,
+                ApiVersion.V1,
+                "depth",
+                AuthenticationMethod.NONE,
+                ["symbol", symbol],
+                ["limit", limit]
+            )
+        );
     }
 
     /**
@@ -138,26 +139,25 @@ export class BinanceApiClient {
         interval: CandlestickInterval,
         limit?: number,
         startTime?: number,
-        endTime?: number ): Promise< Candlestick[] > {
-
-        let candlesticksJson: any = await this.makeRequest(
+        endTime?: number
+    ): Promise<Candlestick[]> {
+        const candlesticksJson: any = await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V1,
             "klines",
             AuthenticationMethod.NONE,
-            [ "symbol", symbol ],
-            [ "interval", interval ],
-            [ "limit", limit ],
-            [ "startTime", startTime ],
-            [ "endTime", endTime ]
+            ["symbol", symbol],
+            ["interval", interval],
+            ["limit", limit],
+            ["startTime", startTime],
+            ["endTime", endTime]
         );
 
-        let candlesticks: Candlestick[] = [];
-        for( let candlestickJson of candlesticksJson ) {
-            candlesticks.push( new Candlestick( candlestickJson ) );
+        const candlesticks: Candlestick[] = [];
+        for (const candlestickJson of candlesticksJson) {
+            candlesticks.push(new Candlestick(candlestickJson));
         }
         return candlesticks;
-
     }
 
     /**
@@ -169,16 +169,18 @@ export class BinanceApiClient {
      *
      * @returns The last 24-hour ticker statistics.
      */
-    public async getLastDayTickerStatistics( symbol: string ): Promise< TickerStatistics > {
-
-        return new TickerStatistics( await this.makeRequest(
-            HttpMethod.GET,
-            ApiVersion.V1,
-            "ticker/24hr",
-            AuthenticationMethod.NONE,
-            [ "symbol", symbol ]
-        ) );
-
+    public async getLastDayTickerStatistics(
+        symbol: string
+    ): Promise<TickerStatistics> {
+        return new TickerStatistics(
+            await this.makeRequest(
+                HttpMethod.GET,
+                ApiVersion.V1,
+                "ticker/24hr",
+                AuthenticationMethod.NONE,
+                ["symbol", symbol]
+            )
+        );
     }
 
     /**
@@ -187,21 +189,19 @@ export class BinanceApiClient {
      *
      * @returns A latest prices array for all the symbols.
      */
-    public async getLatestPrices(): Promise< LatestPrice[] > {
-
-        let latestPricesJson: any = await this.makeRequest(
+    public async getLatestPrices(): Promise<LatestPrice[]> {
+        const latestPricesJson: any = await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V1,
             "ticker/allPrices",
             AuthenticationMethod.NONE
         );
 
-        let latestPrices: LatestPrice[] = [];
-        for( let latestPriceJson of latestPricesJson ) {
-            latestPrices.push( new LatestPrice( latestPriceJson ) );
+        const latestPrices: LatestPrice[] = [];
+        for (const latestPriceJson of latestPricesJson) {
+            latestPrices.push(new LatestPrice(latestPriceJson));
         }
         return latestPrices;
-
     }
 
     /**
@@ -210,21 +210,19 @@ export class BinanceApiClient {
      *
      * @returns The best price/quantity in the order book for all symbols.
      */
-    public async getTickers(): Promise< Ticker[] > {
-
-        let tickersJson: any = await this.makeRequest(
+    public async getTickers(): Promise<Ticker[]> {
+        const tickersJson: any = await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V1,
             "ticker/allBookTickers",
             AuthenticationMethod.NONE
         );
 
-        let tickers: Ticker[] = [];
-        for( let tickerJson of tickersJson ) {
-            tickers.push( new Ticker( tickerJson ) );
+        const tickers: Ticker[] = [];
+        for (const tickerJson of tickersJson) {
+            tickers.push(new Ticker(tickerJson));
         }
         return tickers;
-
     }
 
     /**
@@ -255,45 +253,51 @@ export class BinanceApiClient {
         clientOrderId?: string,
         stopPrice?: number,
         icebergQuantity?: number,
-        responseType?: ResponseType ): Promise< OrderAcknowledgement | OrderResult | OrderFull > {
-
-        let jsonResponse: any = await this.makeRequest(
+        responseType?: ResponseType
+    ): Promise<OrderAcknowledgement | OrderResult | OrderFull> {
+        const jsonResponse: any = await this.makeRequest(
             HttpMethod.POST,
             ApiVersion.V3,
             "order",
             AuthenticationMethod.SIGNED,
-            [ "symbol", symbol ],
-            [ "side", OrderSide[ side ] ],
-            [ "type", OrderType[ type ] ],
+            ["symbol", symbol],
+            ["side", OrderSide[side]],
+            ["type", OrderType[type]],
             [
                 "timeInForce",
-                type === OrderType.MARKET || type === OrderType.STOP_LOSS ? null : TimeInForce[ timeInForce ]
+                type === OrderType.MARKET || type === OrderType.STOP_LOSS
+                    ? null
+                    : TimeInForce[timeInForce]
             ],
-            [ "quantity", quantity ],
+            ["quantity", quantity],
             [
                 "price",
-                type === OrderType.MARKET || type === OrderType.STOP_LOSS ? null : price
+                type === OrderType.MARKET || type === OrderType.STOP_LOSS
+                    ? null
+                    : price
             ],
-            [ "newClientOrderId", clientOrderId ],
-            [ "stopPrice", stopPrice ],
-            [ "icebergQty", icebergQuantity ],
-            [ "newOrderRespType", isNullOrUndefined( responseType ) ? null : ResponseType[ responseType ] ]
+            ["newClientOrderId", clientOrderId],
+            ["stopPrice", stopPrice],
+            ["icebergQty", icebergQuantity],
+            [
+                "newOrderRespType",
+                isNullOrUndefined(responseType)
+                    ? null
+                    : ResponseType[responseType]
+            ]
         );
 
-        switch( responseType ) {
-
+        switch (responseType) {
             case ResponseType.RESULT: {
-                return new OrderResult( jsonResponse );
+                return new OrderResult(jsonResponse);
             }
             case ResponseType.FULL: {
-                return new OrderFull( jsonResponse );
+                return new OrderFull(jsonResponse);
             }
             default: {
-                return new OrderAcknowledgement( jsonResponse );
+                return new OrderAcknowledgement(jsonResponse);
             }
-
         }
-
     }
 
     /**
@@ -323,25 +327,24 @@ export class BinanceApiClient {
         clientId?: string,
         stopPrice?: number,
         icebergQuantity?: number,
-        timeout?: number ): Promise< void > {
-
+        timeout?: number
+    ): Promise<void> {
         await this.makeRequest(
             HttpMethod.POST,
             ApiVersion.V3,
             "order/test",
             AuthenticationMethod.SIGNED,
-            [ "symbol", symbol ],
-            [ "side", OrderSide[ side ] ],
-            [ "type", OrderType[ type ] ],
-            [ "timeInForce", TimeInForce[ timeInForce ] ],
-            [ "quantity", quantity ],
-            [ "price", price ],
-            [ "newClientOrderId", clientId ],
-            [ "stopPrice", stopPrice ],
-            [ "icebergQty", icebergQuantity ],
-            [ "recvWindow", timeout ]
+            ["symbol", symbol],
+            ["side", OrderSide[side]],
+            ["type", OrderType[type]],
+            ["timeInForce", TimeInForce[timeInForce]],
+            ["quantity", quantity],
+            ["price", price],
+            ["newClientOrderId", clientId],
+            ["stopPrice", stopPrice],
+            ["icebergQty", icebergQuantity],
+            ["recvWindow", timeout]
         );
-
     }
 
     /**
@@ -360,23 +363,24 @@ export class BinanceApiClient {
         symbol: string,
         id?: number,
         clientId?: string,
-        timeout?: number ): Promise< Order > {
-
-        return new Order( await this.makeRequest(
-            HttpMethod.GET,
-            ApiVersion.V3,
-            "order",
-            AuthenticationMethod.SIGNED,
-            [ "symbol", symbol ],
-            [ "orderId", id ],
-            [ "origClientOrderId", clientId ],
-            [ "recvWindow", timeout ]
-        ) );
-
+        timeout?: number
+    ): Promise<Order> {
+        return new Order(
+            await this.makeRequest(
+                HttpMethod.GET,
+                ApiVersion.V3,
+                "order",
+                AuthenticationMethod.SIGNED,
+                ["symbol", symbol],
+                ["orderId", id],
+                ["origClientOrderId", clientId],
+                ["recvWindow", timeout]
+            )
+        );
     }
 
     /**
-     * Interface to the "DELETE v3/order" Binance's API operation.
+     * Interface to the "DEconstE v3/order" Binance's API operation.
      * Cancels a previously placed order.
      *
      * @param symbol      The market on which the order was originally placed.
@@ -393,20 +397,21 @@ export class BinanceApiClient {
         id?: number,
         oldClientId?: string,
         newClientId?: string,
-        timeout?: number ): Promise< CanceledOrderData > {
-
-        return new CanceledOrderData( await this.makeRequest(
-            HttpMethod.DELETE,
-            ApiVersion.V3,
-            "order",
-            AuthenticationMethod.SIGNED,
-            [ "symbol", symbol ],
-            [ "orderId", id ],
-            [ "origClientOrderId", oldClientId ],
-            [ "newClientOrderId", newClientId ],
-            [ "recvWindow", timeout ]
-        ) );
-
+        timeout?: number
+    ): Promise<CanceledOrderData> {
+        return new CanceledOrderData(
+            await this.makeRequest(
+                HttpMethod.DELETE,
+                ApiVersion.V3,
+                "order",
+                AuthenticationMethod.SIGNED,
+                ["symbol", symbol],
+                ["orderId", id],
+                ["origClientOrderId", oldClientId],
+                ["newClientOrderId", newClientId],
+                ["recvWindow", timeout]
+            )
+        );
     }
 
     /**
@@ -417,23 +422,24 @@ export class BinanceApiClient {
      *
      * @returns An array representing all of the account's open orders.
      */
-    public async getOpenOrders( market?: string, timeout?: number ): Promise< Order[] > {
-
-        let openOrdersJson: any = await this.makeRequest(
+    public async getOpenOrders(
+        market?: string,
+        timeout?: number
+    ): Promise<Order[]> {
+        const openOrdersJson: any = await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V3,
             "openOrders",
             AuthenticationMethod.SIGNED,
-            [ "symbol", market ],
-            [ "recvWindow", timeout ]
+            ["symbol", market],
+            ["recvWindow", timeout]
         );
 
-        let openOrders: Order[] = [];
-        for( let openOrderJson of openOrdersJson ) {
-            openOrders.push( new Order( openOrderJson ) );
+        const openOrders: Order[] = [];
+        for (const openOrderJson of openOrdersJson) {
+            openOrders.push(new Order(openOrderJson));
         }
         return openOrders;
-
     }
 
     /**
@@ -453,25 +459,24 @@ export class BinanceApiClient {
         symbol: string,
         id?: number,
         limit?: number,
-        timeout?: number ): Promise< Order[] > {
-
-        let ordersJson: any = await this.makeRequest(
+        timeout?: number
+    ): Promise<Order[]> {
+        const ordersJson: any = await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V3,
             "allOrders",
             AuthenticationMethod.SIGNED,
-            [ "symbol", symbol ],
-            [ "orderId", id ],
-            [ "limit", limit ],
-            [ "recvWindow", timeout ]
+            ["symbol", symbol],
+            ["orderId", id],
+            ["limit", limit],
+            ["recvWindow", timeout]
         );
 
-        let orders: Order[] = [];
-        for( let orderJson of ordersJson ) {
-            orders.push( new Order( orderJson ) );
+        const orders: Order[] = [];
+        for (const orderJson of ordersJson) {
+            orders.push(new Order(orderJson));
         }
         return orders;
-
     }
 
     /**
@@ -482,16 +487,16 @@ export class BinanceApiClient {
      *
      * @returns The current account information.
      */
-    public async getAccountData( timeout?: number ): Promise< AccountData > {
-
-        return new AccountData( await this.makeRequest(
-            HttpMethod.GET,
-            ApiVersion.V3,
-            "account",
-            AuthenticationMethod.SIGNED,
-            [ "recvWindow", timeout ]
-        ) );
-
+    public async getAccountData(timeout?: number): Promise<AccountData> {
+        return new AccountData(
+            await this.makeRequest(
+                HttpMethod.GET,
+                ApiVersion.V3,
+                "account",
+                AuthenticationMethod.SIGNED,
+                ["recvWindow", timeout]
+            )
+        );
     }
 
     /**
@@ -510,25 +515,24 @@ export class BinanceApiClient {
         symbol: string,
         limit?: number,
         fromId?: number,
-        timeout?: number ): Promise< Trade[] > {
-
-        let tradesJson: any = await this.makeRequest(
+        timeout?: number
+    ): Promise<Trade[]> {
+        const tradesJson: any = await this.makeRequest(
             HttpMethod.GET,
             ApiVersion.V3,
             "myTrades",
             AuthenticationMethod.SIGNED,
-            [ "symbol", symbol ],
-            [ "limit", limit ],
-            [ "fromId", fromId ],
-            [ "recvWindow", timeout ]
+            ["symbol", symbol],
+            ["limit", limit],
+            ["fromId", fromId],
+            ["recvWindow", timeout]
         );
 
-        let trades: Trade[] = [];
-        for( let tradeJson of tradesJson ) {
-            trades.push( new Trade( tradeJson ) );
+        const trades: Trade[] = [];
+        for (const tradeJson of tradesJson) {
+            trades.push(new Trade(tradeJson));
         }
         return trades;
-
     }
 
     /**
@@ -538,15 +542,13 @@ export class BinanceApiClient {
      * @returns A listen key to be passed as a parameter when starting a
      *          new data stream.
      */
-    public async openUserStream(): Promise< string > {
-
-        return ( await this.makeRequest(
+    public async openUserStream(): Promise<string> {
+        return (await this.makeRequest(
             HttpMethod.POST,
             ApiVersion.V1,
             "userDataStream",
             AuthenticationMethod.API_KEY
-        ) ).listenKey;
-
+        )).listenKey;
     }
 
     /**
@@ -556,35 +558,31 @@ export class BinanceApiClient {
      * @param streamId A string representing the stream's ID
      *                (returned by [[openUserStream]]).
      */
-    public async keepAliveUserStream( streamId: string ): Promise< void > {
-
+    public async keepAliveUserStream(streamId: string): Promise<void> {
         await this.makeRequest(
             HttpMethod.PUT,
             ApiVersion.V1,
             "userDataStream",
             AuthenticationMethod.API_KEY,
-            [ "listenKey", streamId ]
+            ["listenKey", streamId]
         );
-
     }
 
     /**
-     * Interface to the "DELETE v1/userDataStream" Binance's API operation.
+     * Interface to the "DEconstE v1/userDataStream" Binance's API operation.
      * Closes out a user data stream.
      *
      * @param streamId A string representing the stream's ID
      *                (returned by [[openUserStream]]).
      */
-    public async closeUserStream( streamId: string ): Promise< void > {
-
+    public async closeUserStream(streamId: string): Promise<void> {
         await this.makeRequest(
             HttpMethod.DELETE,
             ApiVersion.V1,
             "userDataStream",
             AuthenticationMethod.API_KEY,
-            [ "listenKey", streamId ]
+            ["listenKey", streamId]
         );
-
     }
 
     /**
@@ -602,25 +600,26 @@ export class BinanceApiClient {
      */
     public monitorOrderBook(
         symbol: string,
-        onUpdate: ( update: OrderBookUpdate ) => any,
+        onUpdate: (update: OrderBookUpdate) => any,
         connectionTimeout: number,
-        onLostConnection: () => any ): void {
-
-        let websocket: WebSocket = new WebSocket(
+        onLostConnection: () => any
+    ): void {
+        const websocket: WebSocket = new WebSocket(
             BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@depth",
             { perMessageDeflate: false }
         );
 
         new HeartbeatHandler(
             websocket,
-            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+            isNullOrUndefined(connectionTimeout)
+                ? BinanceApiClient.DEFAULT_WS_TIMEOUT
+                : connectionTimeout,
             onLostConnection
         ).handle();
 
-        websocket.on( "message", ( data: any ) => {
-            onUpdate( new OrderBookUpdate( JSON.parse( data ) ) );
-        } );
-
+        websocket.on("message", (data: any) => {
+            onUpdate(new OrderBookUpdate(JSON.parse(data)));
+        });
     }
 
     /**
@@ -641,25 +640,29 @@ export class BinanceApiClient {
     public async monitorCandlesticks(
         symbol: string,
         interval: CandlestickInterval,
-        onUpdate: ( update: CandlestickUpdate ) => any,
+        onUpdate: (update: CandlestickUpdate) => any,
         connectionTimeout?: number,
-        onLostConnection?: () => any ): Promise< void > {
-
-        let websocket: WebSocket = new WebSocket(
-            BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@kline_" + interval,
+        onLostConnection?: () => any
+    ): Promise<void> {
+        const websocket: WebSocket = new WebSocket(
+            BinanceApiClient.WS_BASE_URL +
+                symbol.toLowerCase() +
+                "@kline_" +
+                interval,
             { perMessageDeflate: false }
         );
 
         new HeartbeatHandler(
             websocket,
-            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+            isNullOrUndefined(connectionTimeout)
+                ? BinanceApiClient.DEFAULT_WS_TIMEOUT
+                : connectionTimeout,
             onLostConnection
         ).handle();
 
-        websocket.on( "message", ( data: any ) => {
-            onUpdate( new CandlestickUpdate( JSON.parse( data ) ) );
-        } );
-
+        websocket.on("message", (data: any) => {
+            onUpdate(new CandlestickUpdate(JSON.parse(data)));
+        });
     }
 
     /**
@@ -677,25 +680,26 @@ export class BinanceApiClient {
      */
     public monitorTrades(
         symbol: string,
-        onUpdate: ( update: TradeUpdate ) => any,
+        onUpdate: (update: TradeUpdate) => any,
         connectionTimeout: number,
-        onLostConnection: () => any ): void {
-
-        let websocket: WebSocket = new WebSocket(
+        onLostConnection: () => any
+    ): void {
+        const websocket: WebSocket = new WebSocket(
             BinanceApiClient.WS_BASE_URL + symbol.toLowerCase() + "@aggTrade",
             { perMessageDeflate: false }
         );
 
         new HeartbeatHandler(
             websocket,
-            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+            isNullOrUndefined(connectionTimeout)
+                ? BinanceApiClient.DEFAULT_WS_TIMEOUT
+                : connectionTimeout,
             onLostConnection
         ).handle();
 
-        websocket.on( "message", ( data: any ) => {
-            onUpdate( new TradeUpdate( JSON.parse( data ) ) );
-        } );
-
+        websocket.on("message", (data: any) => {
+            onUpdate(new TradeUpdate(JSON.parse(data)));
+        });
     }
 
     /**
@@ -714,39 +718,36 @@ export class BinanceApiClient {
      */
     public monitorUser(
         listenKey: string,
-        onUpdate: ( update: AccountUpdate | OrderUpdate ) => any,
+        onUpdate: (update: AccountUpdate | OrderUpdate) => any,
         connectionTimeout: number,
-        onLostConnection: () => any ): void {
-
-        let websocket: WebSocket = new WebSocket(
+        onLostConnection: () => any
+    ): void {
+        const websocket: WebSocket = new WebSocket(
             BinanceApiClient.WS_BASE_URL + listenKey,
             { perMessageDeflate: false }
         );
 
         new HeartbeatHandler(
             websocket,
-            isNullOrUndefined( connectionTimeout ) ? BinanceApiClient.DEFAULT_WS_TIMEOUT : connectionTimeout,
+            isNullOrUndefined(connectionTimeout)
+                ? BinanceApiClient.DEFAULT_WS_TIMEOUT
+                : connectionTimeout,
             onLostConnection
         ).handle();
 
-        websocket.on( "message", ( data: any ) => {
-
-            let jsonData = JSON.parse( data );
-            switch( jsonData.e ) {
-
+        websocket.on("message", (data: any) => {
+            const jsonData = JSON.parse(data);
+            switch (jsonData.e) {
                 case "outboundAccountInfo": {
-                    onUpdate( new AccountUpdate( jsonData ) );
+                    onUpdate(new AccountUpdate(jsonData));
                     break;
                 }
                 case "executionReport": {
-                    onUpdate( new OrderUpdate( jsonData ) );
+                    onUpdate(new OrderUpdate(jsonData));
                     break;
                 }
-
             }
-
-        } );
-
+        });
     }
 
     /**
@@ -770,46 +771,36 @@ export class BinanceApiClient {
         apiVersion: ApiVersion,
         accessedResource: string,
         requiredAuthentication: AuthenticationMethod,
-        ...parameters: [ string, any ][] ): Promise< any > {
-
-        let apiUrl: URL = new URL(
-            Path.join( "/api", apiVersion, accessedResource ),
+        ...parameters: [string, any][]
+    ): Promise<any> {
+        const apiUrl: URL = new URL(
+            Path.join("/api", apiVersion, accessedResource),
             "https://api.binance.com"
         );
 
-        for( let parameter of parameters ) {
-
-            if( isNullOrUndefined( parameter[ 1 ] ) ) {
+        for (const parameter of parameters) {
+            if (isNullOrUndefined(parameter[1])) {
                 continue;
             }
-            apiUrl.searchParams.append( parameter[ 0 ], parameter[ 1 ].toString() );
-
+            apiUrl.searchParams.append(parameter[0], parameter[1].toString());
         }
 
-        let headers: any =
-            this.setupAuthentication( httpMethod, apiUrl, requiredAuthentication );
+        const headers: any = this.setupAuthentication(
+            httpMethod,
+            apiUrl,
+            requiredAuthentication
+        );
 
         try {
-
-            return await request( {
-
-                method: HttpMethod[ httpMethod ],
+            return await request({
+                method: HttpMethod[httpMethod],
                 url: apiUrl.href,
                 headers: headers,
                 json: true
-
-            } );
-
+            });
+        } catch (error) {
+            throw new ApiError(error.error.code, error.error.msg);
         }
-        catch( error ) {
-
-            throw new ApiError(
-                error.error.code,
-                error.error.msg
-            );
-
-        }
-
     }
 
     /**
@@ -825,32 +816,42 @@ export class BinanceApiClient {
     private setupAuthentication(
         httpMethod: HttpMethod,
         apiUrl: URL,
-        authenticationMethod: AuthenticationMethod ): any {
-
-        let headers: any = {};
-        if( authenticationMethod === AuthenticationMethod.NONE ) {
+        authenticationMethod: AuthenticationMethod
+    ): any {
+        const headers: any = {};
+        if (authenticationMethod === AuthenticationMethod.NONE) {
             return;
         }
 
-        if( isNullOrUndefined( BinanceApiClient.API_KEY ) ) {
-            throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
+        if (isNullOrUndefined(BinanceApiClient.API_KEY)) {
+            throw new AuthenticationError(
+                httpMethod,
+                apiUrl,
+                authenticationMethod
+            );
         }
-        headers[ "X-MBX-APIKEY" ] = BinanceApiClient.API_KEY;
+        headers["X-MBX-APIKEY"] = BinanceApiClient.API_KEY;
 
-        if( authenticationMethod === AuthenticationMethod.SIGNED ) {
-
-            if( isNullOrUndefined( BinanceApiClient.API_SECRET ) ) {
-                throw new AuthenticationError( httpMethod, apiUrl, authenticationMethod );
+        if (authenticationMethod === AuthenticationMethod.SIGNED) {
+            if (isNullOrUndefined(BinanceApiClient.API_SECRET)) {
+                throw new AuthenticationError(
+                    httpMethod,
+                    apiUrl,
+                    authenticationMethod
+                );
             }
-            apiUrl.searchParams.append( "timestamp", new Date().getTime().toString() );
+            apiUrl.searchParams.append(
+                "timestamp",
+                new Date().getTime().toString()
+            );
             apiUrl.searchParams.append(
                 "signature",
-                CryptoJs.HmacSHA256( apiUrl.searchParams.toString(), BinanceApiClient.API_SECRET ).toString()
+                CryptoJs.HmacSHA256(
+                    apiUrl.searchParams.toString(),
+                    BinanceApiClient.API_SECRET
+                ).toString()
             );
-
         }
         return headers;
-
     }
-
 }
