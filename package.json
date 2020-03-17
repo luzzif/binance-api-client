@@ -46,7 +46,7 @@
         "@types/crypto-js": "^3.1.38",
         "@types/node": "^12.12.14",
         "@types/requestretry": "^1.12.5",
-        "@typescript-eslint/eslint-plugin": "^2.9.0",
+        "@typescript-eslint/eslint-plugin": "^2.24.0",
         "@typescript-eslint/parser": "^2.9.0",
         "eslint": "^6.7.1",
         "husky": "^3.1.0"
