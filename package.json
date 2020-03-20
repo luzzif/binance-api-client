@@ -33,22 +33,22 @@
     },
     "homepage": "https://github.com/luzzif/binance-api-client#readme",
     "dependencies": {
-        "crypto-js": "^3.1.9-1",
-        "request": "^2.88.0",
+        "crypto-js": "^4.0.0",
+        "request": "^2.88.2",
         "request-promise": "^4.2.5",
-        "typescript": "^3.7.2",
+        "typescript": "^3.8.3",
         "websocket-heartbeats": "^1.2.0",
-        "ws": "^7.2.0"
+        "ws": "^7.2.3"
     },
     "devDependencies": {
-        "@commitlint/cli": "^8.2.0",
-        "@commitlint/config-conventional": "^8.2.0",
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-conventional": "^8.3.4",
         "@types/crypto-js": "^3.1.38",
-        "@types/node": "^12.12.14",
-        "@types/requestretry": "^1.12.5",
-        "@typescript-eslint/eslint-plugin": "^2.9.0",
-        "@typescript-eslint/parser": "^2.9.0",
-        "eslint": "^6.7.1",
-        "husky": "^3.1.0"
+        "@types/node": "^13.9.2",
+        "@types/requestretry": "^1.12.6",
+        "@typescript-eslint/eslint-plugin": "^2.24.0",
+        "@typescript-eslint/parser": "^2.24.0",
+        "eslint": "^6.8.0",
+        "husky": "^4.2.3"
     }
 }
