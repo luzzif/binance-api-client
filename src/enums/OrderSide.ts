@@ -3,5 +3,5 @@
  */
 export enum OrderSide {
   BUY,
-  SELL
+  SELL,
 }

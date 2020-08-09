@@ -3,5 +3,5 @@
  */
 export enum RateLimitType {
   REQUESTS,
-  ORDERS
+  ORDERS,
 }

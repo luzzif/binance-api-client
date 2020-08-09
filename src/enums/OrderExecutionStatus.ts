@@ -7,5 +7,5 @@ export enum OrderExecutionStatus {
   REPLACED,
   REJECTED,
   TRADE,
-  EXPIRED
+  EXPIRED,
 }

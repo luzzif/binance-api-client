@@ -8,5 +8,5 @@ export enum OrderStatus {
   CANCELED,
   PENDING_CANCEL,
   REJECTED,
-  EXPIRED
+  EXPIRED,
 }

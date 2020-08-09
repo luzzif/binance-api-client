@@ -8,5 +8,5 @@ export enum OrderType {
   STOP_LOSS_LIMIT,
   TAKE_PROFIT,
   TAKE_PROFIT_LIMIT,
-  LIMIT_MAKER
+  LIMIT_MAKER,
 }

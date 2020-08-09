@@ -4,5 +4,5 @@
 export enum ResponseType {
   ACKNOWLEDGEMENT,
   RESULT,
-  FULL
+  FULL,
 }

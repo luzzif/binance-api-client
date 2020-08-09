@@ -4,5 +4,5 @@
 export enum TimeInForce {
   GTC,
   IOC,
-  FOK
+  FOK,
 }

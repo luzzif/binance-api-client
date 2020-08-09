@@ -16,5 +16,5 @@ export enum CandlestickInterval {
   ONE_DAY = "1d",
   THREE_DAYS = "3d",
   ONE_WEEK = "1w",
-  ONE_MONTH = "1M"
+  ONE_MONTH = "1M",
 }
