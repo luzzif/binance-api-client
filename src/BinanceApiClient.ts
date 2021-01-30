@@ -774,7 +774,7 @@ export class BinanceApiClient {
         ...parameters: [string, any][]
     ): Promise<any> {
         const apiUrl: URL = new URL(
-            Path.join("/api", apiVersion, accessedResource),
+            Path.join("api", apiVersion, accessedResource),
             "https://api.binance.com"
         );
 
