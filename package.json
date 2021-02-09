@@ -14,7 +14,7 @@
         "lint:commit-message": "commitlint -e",
         "lint": "yarn lint:code && yarn lint:prettier",
         "prettify": "yarn lint:prettier --write",
-        "prepublishOnly": "npm run build"
+        "postinstall": "npm run build"
     },
     "repository": {
         "type": "git",
