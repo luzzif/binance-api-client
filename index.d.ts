@@ -34,6 +34,7 @@ export { OrderUpdate } from "./src/models/websocket/order/OrderUpdate";
 export { PlacedOrder } from "./src/models/order/PlacedOrder";
 export { PlacedOrderFill } from "./src/models/order/PlacedOrderFill";
 
+export { Leverage } from "./src/models/account/Leverage";
 export { AccountData } from "./src/models/account/AccountData";
 export { AccountUpdate } from "./src/models/websocket/account/AccountUpdate";
 export { Balance } from "./src/models/account/Balance";
