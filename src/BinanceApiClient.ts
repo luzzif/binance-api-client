@@ -21,6 +21,7 @@ import { TimeInForce } from "./enums/TimeInForce";
 import { OrderAcknowledgement } from "./models/order/OrderAcknowledgement";
 import { CanceledOrderData } from "./models/order/CanceledOrderData";
 import { AccountData } from "./models/account/AccountData";
+import { Leverage } from "./models/account/Leverage";
 import { Trade } from "./models/trade/Trade";
 import * as WebSocket from "ws";
 import { OrderBookUpdate } from "./models/websocket/depth/OrderBookUpdate";
@@ -92,6 +93,41 @@ export class BinanceApiClient {
                 "time",
                 AuthenticationMethod.NONE
             )).serverTime
+        );
+    }
+
+    /**
+     * Interface to the "POST v1/leverage" Binance's API operation.
+     * 
+     * @param symbol The symbol for which we want to change the leverage.
+     * @param leverage The leverage that we want to use for this symbol
+     * @param timeout The request validity maximum time frame
+     *                 (defaults to 5000 ms).
+     * @param timestamp The time at wich the request is sent
+     *                 (defaults to now)
+     * 
+     */
+     public async changeInitialLeverage(
+        symbol: string,
+        leverage: number,
+        timeout?: number,
+        timestamp?: number
+     ): Promise<Leverage> {
+        return new Leverage(
+            (await this.makeRequest(
+                HttpMethod.POST,
+                ApiVersion.V1,
+                "leverage",
+                AuthenticationMethod.NONE,
+                ["symbol", symbol],
+                ["leverage", leverage],
+                ["recvWindow", timeout],
+                [
+                    "timestamp", isNullOrUndefined(timestamp)
+                        ? null
+                        : new Date().getTime().toString()
+                ]
+            ))
         );
     }
 
