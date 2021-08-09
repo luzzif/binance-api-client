@@ -12,7 +12,7 @@ export class Leverage {
 
         this._leverage = json.leverage;
         this._maxNotionalValue = json.maxNotionalValue;
-        this._symbol = json.symbol || json.l;
+        this._symbol = json.symbol;
 
     }
 
